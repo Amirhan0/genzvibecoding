@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Смета за минуту — калькулятор ремонта квартиры</title>
+<meta name="description" content="Посчитайте стоимость ремонта квартиры онлайн: площадь, тип отделки, дополнительные работы. Смета и срок сразу на экране.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232f5fe0'/><rect x='26' y='20' width='48' height='60' rx='8' fill='%23fff'/><rect x='34' y='28' width='32' height='13' rx='3' fill='%232f5fe0'/><g fill='%232f5fe0'><circle cx='40' cy='52' r='4.5'/><circle cx='54' cy='52' r='4.5'/><circle cx='68' cy='52' r='4.5' opacity='.35'/><circle cx='40' cy='66' r='4.5'/><circle cx='54' cy='66' r='4.5'/></g></svg>">
+<style>
+:root{
+  --bg:#f5f7fb;
+  --paper:#ffffff;
+  --ink:#111726;
+  --muted:#68718a;
+  --line:#e3e8f2;
+  --blue:#2f5fe0;
+  --blue-soft:#eaf0ff;
+  --green:#0f9d6b;
+  --amber:#e0932f;
+  --r:16px;
+  --shadow:0 2px 4px rgba(17,23,38,.04), 0 12px 28px -12px rgba(17,23,38,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--blue);color:#fff}
+
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left)) max(20px,env(safe-area-inset-right))}
+section{padding:clamp(48px,6vw,84px) 0}
+.eyebrow{
+  display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);font-weight:700;margin-bottom:12px;
+}
+h2{font-size:clamp(27px,4vw,40px);font-weight:800;margin-bottom:12px}
+.lead{color:var(--muted);max-width:580px;font-size:clamp(15px,1.6vw,17px)}
+
+header{
+  position:sticky;top:0;z-index:50;background:rgba(245,247,251,.88);
+  backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s;
+}
+header.stuck{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.brand svg{width:34px;height:34px;flex:none}
+.nav-links{display:flex;gap:26px;font-size:14.5px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:11px;font-weight:700;font-size:15px;transition:.2s;white-space:nowrap;
+}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 20px -8px rgba(47,95,224,.7)}
+.btn-blue:hover{background:#2450c9;transform:translateY(-2px)}
+.btn-blue:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-out{border:1px solid var(--line);background:var(--paper)}
+.btn-out:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm{padding:10px 18px;font-size:14px;border-radius:9px}
+
+/* герой */
+.hero{padding-top:clamp(30px,4vw,56px);padding-bottom:0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+h1{font-size:clamp(34px,5.6vw,56px);font-weight:800;margin-bottom:16px}
+h1 mark{background:linear-gradient(180deg,transparent 62%,#c7d8ff 62%);color:inherit;padding:0 2px}
+.hero p{color:var(--muted);font-size:clamp(16px,1.8vw,18px);max-width:440px;margin-bottom:26px}
+.trust{display:flex;flex-wrap:wrap;gap:22px}
+.trust div b{display:block;font-size:23px;font-weight:800;letter-spacing:-.02em}
+.trust div span{color:var(--muted);font-size:13.5px}
+.hero-art{
+  background:var(--paper);border:1px solid var(--line);border-radius:22px;
+  padding:26px;box-shadow:var(--shadow);
+}
+.bar-row{display:flex;align-items:flex-end;gap:10px;height:150px;margin-bottom:16px}
+.bar{flex:1;border-radius:8px 8px 4px 4px;background:var(--blue-soft);position:relative;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.bar.fill{background:var(--blue)}
+@keyframes grow{from{height:0 !important;opacity:.3}}
+.hero-art h4{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.hero-art .legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.hero-art .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:-1px}
+
+/* калькулятор */
+.calc{display:grid;grid-template-columns:1fr 380px;gap:26px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,30px);box-shadow:var(--shadow)}
+.block{margin-bottom:30px}
+.block:last-child{margin-bottom:0}
+.block > label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+.block .hint{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+
+.area-row{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.area-val{
+  display:flex;align-items:baseline;gap:6px;border:1px solid var(--line);border-radius:11px;
+  padding:10px 14px;background:var(--bg);flex:none;
+}
+.area-val input{
+  width:70px;border:0;background:none;font-family:inherit;font-size:22px;font-weight:800;
+  color:var(--ink);text-align:right;-moz-appearance:textfield;
+}
+.area-val input::-webkit-outer-spin-button,.area-val input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.area-val input:focus{outline:none}
+.area-val span{color:var(--muted);font-size:14px;font-weight:600}
+input[type=range]{
+  flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:99px;
+  background:var(--line);outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--blue);
+  cursor:pointer;border:4px solid #fff;box-shadow:0 2px 8px rgba(47,95,224,.5);
+}
+input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;background:var(--blue);cursor:pointer;
+  border:4px solid #fff;box-shadow:0 2px 8px rgba(47,95,224,.5);
+}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.preset{border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13px;color:var(--muted);background:var(--bg);transition:.15s}
+.preset:hover{border-color:var(--blue);color:var(--blue)}
+
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.type{
+  border:1.5px solid var(--line);border-radius:13px;padding:18px 16px;text-align:left;
+  background:var(--paper);transition:.18s;position:relative;
+}
+.type:hover{border-color:#c3cfe6}
+.type.on{border-color:var(--blue);background:var(--blue-soft)}
+.type b{display:block;font-weight:700;font-size:15.5px;margin-bottom:3px}
+.type span{color:var(--muted);font-size:12.5px;display:block;line-height:1.4}
+.type .rate{display:block;margin-top:9px;font-weight:800;color:var(--blue);font-size:14px}
+
+.extras{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.extra{
+  display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:11px;
+  padding:13px 15px;background:var(--paper);transition:.18s;text-align:left;
+}
+.extra:hover{border-color:#c3cfe6}
+.extra.on{border-color:var(--blue);background:var(--blue-soft)}
+.extra .box{
+  width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex:none;
+  display:grid;place-items:center;font-size:12px;color:#fff;transition:.15s;
+}
+.extra.on .box{background:var(--blue);border-color:var(--blue)}
+.extra .nm{flex:1;font-weight:600;font-size:14.5px}
+.extra .pr{color:var(--muted);font-size:13px;white-space:nowrap;font-weight:600}
+
+/* смета */
+.result{position:sticky;top:88px}
+.result h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.res-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:14.5px;border-bottom:1px solid var(--line)}
+.res-row span{color:var(--muted)}
+.res-row b{font-weight:700;white-space:nowrap}
+.res-sub{padding-left:14px;font-size:13.5px}
+.res-sub span{color:#8a93a8}
+.total{
+  background:var(--ink);color:#fff;border-radius:13px;padding:20px;margin:18px 0;
+}
+.total .lbl{font-size:13px;opacity:.65;margin-bottom:4px}
+.total .val{font-size:clamp(28px,4vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.total .per{font-size:13px;opacity:.65;margin-top:6px}
+.meta{display:flex;gap:10px;margin-bottom:18px}
+.meta div{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.meta b{display:block;font-size:19px;font-weight:800;letter-spacing:-.02em}
+.meta span{color:var(--muted);font-size:12.5px}
+.field{margin-bottom:12px}
+.field input{
+  width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:11px;
+  background:var(--bg);font-family:inherit;font-size:16px;color:var(--ink);transition:border-color .2s;
+}
+.field input:focus{outline:none;border-color:var(--blue);background:var(--paper)}
+.field input::placeholder{color:#a3abbd}
+.note{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+
+.done{display:none;text-align:center}
+.done.on{display:block}
+.done .tick{width:60px;height:60px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:28px;margin:0 auto 16px}
+.done h3{font-size:23px;font-weight:800;margin-bottom:8px}
+.done p{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+
+/* этапы */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.stp{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.stp b{display:block;width:30px;height:30px;border-radius:9px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:14px;margin-bottom:12px}
+.stp h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.stp p{color:var(--muted);font-size:13.5px}
+
+footer{background:var(--ink);color:#9aa3b8;padding:36px 0;font-size:13.5px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+.foot a:hover{color:#fff}
+.demo-badge{
+  position:fixed;right:14px;bottom:14px;z-index:60;background:var(--ink);color:#fff;
+  border-radius:999px;padding:9px 16px;font-size:12px;box-shadow:var(--shadow);
+}
+.demo-badge b{color:#ccff00}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s,transform .55s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .calc{grid-template-columns:1fr}
+  .result{position:static}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .types{grid-template-columns:1fr}
+  .extras{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .area-row{flex-wrap:wrap}
+  .area-val{width:100%;justify-content:space-between}
+  .area-val input{text-align:left;flex:1}
+  .demo-badge{left:10px;right:10px;bottom:10px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="24" fill="#2f5fe0"/>
+        <rect x="26" y="20" width="48" height="60" rx="8" fill="#fff"/>
+        <rect x="34" y="28" width="32" height="13" rx="3" fill="#2f5fe0"/>
+        <g fill="#2f5fe0">
+          <circle cx="40" cy="52" r="4.5"/><circle cx="54" cy="52" r="4.5"/>
+          <circle cx="68" cy="52" r="4.5" opacity=".35"/>
+          <circle cx="40" cy="66" r="4.5"/><circle cx="54" cy="66" r="4.5"/>
+        </g>
+      </svg>
+      Смета за минуту
+    </a>
+    <nav class="nav-links">
+      <a href="#calc">Калькулятор</a>
+      <a href="#how">Как работаем</a>
+    </nav>
+    <a href="#calc" class="btn btn-blue btn-sm">Посчитать</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">ремонт квартир · Алматы и Астана</span>
+      <h1>Узнайте стоимость ремонта <mark>за минуту</mark></h1>
+      <p>Без замерщика и звонков. Двигайте площадь, отмечайте нужные работы — смета считается прямо на экране.</p>
+      <a href="#calc" class="btn btn-blue" style="margin-bottom:26px">Посчитать смету</a>
+      <div class="trust">
+        <div><b>240+</b><span>объектов сдано</span></div>
+        <div><b>2 года</b><span>гарантия на работы</span></div>
+        <div><b>0 ₸</b><span>за выезд замерщика</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <h4>Из чего складывается смета</h4>
+      <div class="bar-row">
+        <div class="bar fill" style="height:74%;animation-delay:.05s"></div>
+        <div class="bar fill" style="height:96%;animation-delay:.1s"></div>
+        <div class="bar" style="height:52%;animation-delay:.15s"></div>
+        <div class="bar fill" style="height:80%;animation-delay:.2s"></div>
+        <div class="bar" style="height:38%;animation-delay:.25s"></div>
+        <div class="bar fill" style="height:64%;animation-delay:.3s"></div>
+        <div class="bar" style="height:44%;animation-delay:.35s"></div>
+      </div>
+      <div class="legend">
+        <span><i style="background:#2f5fe0"></i>работы</span>
+        <span><i style="background:#eaf0ff"></i>материалы</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:28px">
+      <span class="eyebrow">калькулятор</span>
+      <h2>Соберите свою смету</h2>
+      <p class="lead">Цены усреднённые по рынку Алматы и Астаны на 2026 год. Точная сумма — после замера.</p>
+    </div>
+
+    <div class="calc">
+      <div class="panel rv">
+        <div class="block">
+          <label for="area">Площадь квартиры</label>
+          <p class="hint">Общая площадь по документам, включая коридор и санузел.</p>
+          <div class="area-row">
+            <div class="area-val">
+              <input type="number" id="area" value="60" min="10" max="300" inputmode="numeric">
+              <span>м²</span>
+            </div>
+            <input type="range" id="areaRange" min="10" max="300" value="60" step="1" aria-label="Площадь">
+          </div>
+          <div class="presets" id="presets"></div>
+        </div>
+
+        <div class="block">
+          <label>Тип ремонта</label>
+          <p class="hint">Чем сложнее отделка, тем выше цена за квадрат.</p>
+          <div class="types" id="types"></div>
+        </div>
+
+        <div class="block">
+          <label>Дополнительные работы</label>
+          <p class="hint">Считаются отдельно от базовой отделки.</p>
+          <div class="extras" id="extras"></div>
+        </div>
+      </div>
+
+      <div class="result rv">
+        <div class="panel">
+          <div id="resView">
+            <h3>Предварительная смета</h3>
+            <div id="resRows"></div>
+
+            <div class="total">
+              <div class="lbl">Итого под ключ</div>
+              <div class="val" id="total">—</div>
+              <div class="per" id="perM2">—</div>
+            </div>
+
+            <div class="meta">
+              <div><b id="days">—</b><span>дней работ</span></div>
+              <div><b id="crew">—</b><span>человек в бригаде</span></div>
+            </div>
+
+            <div class="field"><input type="text" id="cName" placeholder="Имя"></div>
+            <div class="field"><input type="tel" id="cPhone" placeholder="+7 ___ ___ __ __"></div>
+            <button class="btn btn-blue" id="send" style="width:100%" disabled>Получить смету на телефон</button>
+            <p class="note">Демонстрационный сайт — заявка никуда не отправляется.</p>
+          </div>
+
+          <div class="done" id="done">
+            <div class="tick">✓</div>
+            <h3>Смета отправлена</h3>
+            <p id="doneText"></p>
+            <button class="btn btn-out btn-sm" id="again">Посчитать заново</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="background:var(--paper);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">как работаем</span>
+      <h2>Четыре шага до готовой квартиры</h2>
+    </div>
+    <div class="steps">
+      <div class="stp rv"><b>1</b><h3>Замер</h3><p>Приезжаем бесплатно, снимаем размеры и считаем точную смету.</p></div>
+      <div class="stp rv"><b>2</b><h3>Договор</h3><p>Фиксируем цену и сроки. Смета не растёт по ходу работ.</p></div>
+      <div class="stp rv"><b>3</b><h3>Ремонт</h3><p>Отчёт с фото каждую неделю. Прораб на связи в WhatsApp.</p></div>
+      <div class="stp rv"><b>4</b><h3>Сдача</h3><p>Принимаете работу, подписываем гарантию на два года.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Смета за минуту · Алматы, Астана</div>
+    <div style="display:flex;gap:20px">
+      <a href="#calc">Калькулятор</a><a href="#how">Как работаем</a><a href="#top">Наверх ↑</a>
+    </div>
+  </div>
+</footer>
+
+<a class="demo-badge" href="https://genzvibecoding.vercel.app" target="_blank" rel="noopener">
+  Учебный проект · сделано за вечер на <b>gen z vibecoding</b>
+</a>
+
+<script>
+/* ---------- данные ---------- */
+const TYPES = [
+  { id: 'cosm',   name: 'Косметический', desc: 'Обои, покраска, полы без перепланировки', rate: 45000,  days: .45 },
+  { id: 'kap',    name: 'Капитальный',   desc: 'Со стяжкой, штукатуркой и заменой дверей', rate: 85000,  days: .8  },
+  { id: 'design', name: 'Дизайнерский',  desc: 'По проекту, сложные узлы и материалы',     rate: 145000, days: 1.25 },
+];
+// цена за м² либо фиксированная за объект
+const EXTRAS = [
+  { id: 'elec',  name: 'Электрика под ключ',  perM2: 9000,  fixed: 0 },
+  { id: 'plumb', name: 'Сантехника',          perM2: 0,     fixed: 420000 },
+  { id: 'ceil',  name: 'Натяжные потолки',    perM2: 6500,  fixed: 0 },
+  { id: 'floor', name: 'Тёплый пол',          perM2: 12000, fixed: 0 },
+  { id: 'door',  name: 'Замена окон и дверей',perM2: 0,     fixed: 650000 },
+  { id: 'furn',  name: 'Сборка мебели',       perM2: 0,     fixed: 180000 },
+];
+const PRESETS = [
+  ['Студия', 32], ['1-комн.', 45], ['2-комн.', 62], ['3-комн.', 85], ['4-комн.', 120],
+];
+
+const state = { area: 60, type: TYPES[1], extras: new Set() };
+const money = n => Math.round(n).toLocaleString('ru-RU') + ' ₸';
+
+/* ---------- площадь ---------- */
+const areaInput = document.getElementById('area');
+const areaRange = document.getElementById('areaRange');
+
+function setArea(v, from) {
+  v = Math.min(300, Math.max(10, Math.round(Number(v) || 0)));
+  state.area = v;
+  if (from !== 'input') areaInput.value = v;
+  if (from !== 'range') areaRange.value = v;
+  calc();
+}
+areaRange.oninput = () => setArea(areaRange.value, 'range');
+areaInput.oninput = () => {
+  // при вводе не дёргаем поле, иначе курсор прыгает; чиним значение на blur
+  const v = Number(areaInput.value);
+  if (v >= 10 && v <= 300) setArea(v, 'input');
+};
+areaInput.onblur = () => setArea(areaInput.value);
+
+const presetsEl = document.getElementById('presets');
+PRESETS.forEach(([nm, v]) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'preset';
+  b.textContent = nm + ' · ' + v + ' м²';
+  b.onclick = () => setArea(v);
+  presetsEl.appendChild(b);
+});
+
+/* ---------- тип ремонта ---------- */
+const typesEl = document.getElementById('types');
+TYPES.forEach(t => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'type' + (t === state.type ? ' on' : '');
+  b.innerHTML = '<b></b><span></span><span class="rate"></span>';
+  b.children[0].textContent = t.name;
+  b.children[1].textContent = t.desc;
+  b.children[2].textContent = 'от ' + t.rate.toLocaleString('ru-RU') + ' ₸/м²';
+  b.onclick = () => {
+    state.type = t;
+    [...typesEl.children].forEach(x => x.classList.toggle('on', x === b));
+    calc();
+  };
+  typesEl.appendChild(b);
+});
+
+/* ---------- допработы ---------- */
+const extrasEl = document.getElementById('extras');
+EXTRAS.forEach(x => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'extra';
+  b.innerHTML = '<span class="box">✓</span><span class="nm"></span><span class="pr"></span>';
+  b.querySelector('.nm').textContent = x.name;
+  b.querySelector('.pr').textContent = x.perM2
+    ? '+' + x.perM2.toLocaleString('ru-RU') + ' ₸/м²'
+    : '+' + x.fixed.toLocaleString('ru-RU') + ' ₸';
+  b.onclick = () => {
+    if (state.extras.has(x.id)) state.extras.delete(x.id); else state.extras.add(x.id);
+    b.classList.toggle('on', state.extras.has(x.id));
+    calc();
+  };
+  extrasEl.appendChild(b);
+});
+
+/* ---------- расчёт ---------- */
+const rowsEl = document.getElementById('resRows');
+const totalEl = document.getElementById('total');
+const perEl = document.getElementById('perM2');
+const daysEl = document.getElementById('days');
+const crewEl = document.getElementById('crew');
+const nameEl = document.getElementById('cName');
+const phoneEl = document.getElementById('cPhone');
+const sendBtn = document.getElementById('send');
+
+function calc() {
+  const base = state.area * state.type.rate;
+  const rows = [['Отделка · ' + state.type.name, base]];
+
+  let extraSum = 0;
+  EXTRAS.forEach(x => {
+    if (!state.extras.has(x.id)) return;
+    const sum = x.perM2 ? x.perM2 * state.area : x.fixed;
+    extraSum += sum;
+    rows.push(['— ' + x.name, sum, true]);
+  });
+
+  const work = base + extraSum;
+  const material = work * .38;          // материалы считаем как долю от работ
+  const total = work + material;
+
+  rowsEl.innerHTML = '';
+  rows.forEach(([k, v, sub]) => {
+    const r = document.createElement('div');
+    r.className = 'res-row' + (sub ? ' res-sub' : '');
+    r.innerHTML = '<span></span><b></b>';
+    r.children[0].textContent = k;
+    r.children[1].textContent = money(v);
+    rowsEl.appendChild(r);
+  });
+  const m = document.createElement('div');
+  m.className = 'res-row';
+  m.innerHTML = '<span>Материалы (≈38%)</span><b></b>';
+  m.children[1].textContent = money(material);
+  rowsEl.appendChild(m);
+
+  totalEl.textContent = money(total);
+  perEl.textContent = money(total / state.area) + ' за м²';
+  daysEl.textContent = Math.max(14, Math.round(state.area * state.type.days + state.extras.size * 3));
+  crewEl.textContent = state.area < 50 ? 2 : state.area < 100 ? 3 : 4;
+
+  sendBtn.disabled = !(nameEl.value.trim() && phoneEl.value.trim());
+  state.total = total;
+}
+nameEl.oninput = phoneEl.oninput = calc;
+calc();
+
+sendBtn.onclick = () => {
+  document.getElementById('doneText').textContent =
+    'Смета на ' + money(state.total) + ' для ' + state.area +
+    ' м² отправлена на ' + phoneEl.value.trim() + '. Замерщик позвонит в течение часа.';
+  document.getElementById('resView').style.display = 'none';
+  document.getElementById('done').classList.add('on');
+};
+document.getElementById('again').onclick = () => {
+  document.getElementById('done').classList.remove('on');
+  document.getElementById('resView').style.display = '';
+};
+
+/* ---------- мелочи ---------- */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll', () => hdr.classList.toggle('stuck', scrollY > 10), { passive: true });
+
+const io = new IntersectionObserver((es) => {
+  es.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 70); io.unobserve(e.target); }
+  });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

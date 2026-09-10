@@ -232,10 +232,22 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
   border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card);transition:.25s;
 }
 .res:hover{transform:translateY(-4px);border-color:#3a3a46}
-.res .top{height:150px;display:grid;place-items:center;font-family:'Unbounded';font-weight:700;font-size:20px;color:#08080a;text-align:center;padding:16px}
+.res{display:block}
+.res .top{
+  height:160px;display:grid;place-items:center;align-content:center;gap:8px;
+  font-family:'Unbounded';font-weight:700;font-size:23px;text-align:center;padding:16px;
+}
+.res-kind{
+  font-family:'Inter';font-size:10.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.7;
+}
 .res .bt{padding:20px 22px}
 .res h3{font-size:17px;margin-bottom:7px}
 .res p{font-size:14px;color:var(--muted)}
+.res-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.res-tags span{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.res-go{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;color:var(--acid);transition:transform .2s}
+.res:hover .res-go{transform:translateX(4px)}
 
 /* ---------- game ---------- */
 .game-box{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:clamp(12px,2.4vw,20px);text-align:center}
@@ -482,7 +494,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
     </a>
     <nav class="nav-links">
       <a href="#program">Программа</a>
-      <a href="#results">Результат</a>
+      <a href="#results">Работы</a>
       <a href="#tools">Инструменты</a>
       <a href="#game">Игра</a>
       <a href="#author">Автор</a>
@@ -498,7 +510,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
 <div class="mobile-menu" id="mmenu">
   <a href="#program">Программа</a>
-  <a href="#results">Результат</a>
+  <a href="#results">Работы</a>
   <a href="#tools">Инструменты</a>
   <a href="#game">Игра</a>
   <a href="#author">Автор</a>
@@ -705,27 +717,51 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 <section id="results" style="background:var(--bg-2);border-block:1px solid var(--line)">
   <div class="wrap">
     <div class="rv">
-      <div class="eyebrow">результат</div>
-      <h2 class="sec">Что у тебя будет к концу</h2>
-      <p class="sec-sub">Не конспект и не сертификат, а работающие проекты со ссылками, которые можно открыть с телефона.</p>
+      <div class="eyebrow">мои работы</div>
+      <h2 class="sec">Собрано ровно так, как учу</h2>
+      <p class="sec-sub">Каждая работа — один вечер. Открой любую с телефона и потыкай: меню переключается, время записи занято по-настоящему, смета считается на лету.</p>
     </div>
-    <div class="grid g4">
-      <div class="res rv">
-        <div class="top" style="background:linear-gradient(135deg,#CCFF00,#8fb300)">Лендинг<br>бизнеса</div>
-        <div class="bt"><h3>Сайт-визитка</h3><p>Многоэкранная страница с формой, адаптивом и своей ссылкой в интернете.</p></div>
-      </div>
-      <div class="res rv">
-        <div class="top" style="background:linear-gradient(135deg,#8b5cf6,#5b2ecc);color:#fff">Сайт по<br>референсу</div>
-        <div class="bt"><h3>Копия уровня «дорого»</h3><p>Берём сайт, который нравится, и повторяем его приёмы в своём проекте.</p></div>
-      </div>
-      <div class="res rv">
-        <div class="top" style="background:linear-gradient(135deg,#FF2E9F,#a8145f);color:#fff">Telegram<br>бот</div>
-        <div class="bt"><h3>Бот с заявками</h3><p>Заявка с сайта прилетает в личку, данные складываются в таблицу.</p></div>
-      </div>
-      <div class="res rv">
-        <div class="top" style="background:linear-gradient(135deg,#4ad9d9,#1b8f9c)">Мини-<br>сервис</div>
-        <div class="bt"><h3>Своя идея</h3><p>Калькулятор, каталог, игра — то, что ты придумаешь сам, разбираем на созвоне.</p></div>
-      </div>
+    <div class="grid g3">
+
+      <a class="res rv" href="works/coffee/" target="_blank" rel="noopener">
+        <div class="top" style="background:linear-gradient(150deg,#f7f1e8,#e0cdb2);color:#2e2018">
+          <span class="res-kind">кофейня</span>
+          Восьмое утро
+        </div>
+        <div class="bt">
+          <h3>Лендинг с меню и бронью</h3>
+          <p>Меню с категориями, форма брони стола, нарисованная схема проезда. Ни одной картинки — всё на коде.</p>
+          <div class="res-tags"><span>дизайн</span><span>формы</span><span>адаптив</span></div>
+          <span class="res-go">Открыть сайт →</span>
+        </div>
+      </a>
+
+      <a class="res rv" href="works/barber/" target="_blank" rel="noopener">
+        <div class="top" style="background:linear-gradient(150deg,#1c1e22,#0d0e10);color:#c8a45c">
+          <span class="res-kind" style="color:#8b8f97">барбершоп</span>
+          ЛЕЗВИЕ
+        </div>
+        <div class="bt">
+          <h3>Онлайн-запись в четыре шага</h3>
+          <p>Мастер, услуга, день, время. Занятые слоты выбрать нельзя, прошедшие часы гаснут сами.</p>
+          <div class="res-tags"><span>логика</span><span>календарь</span><span>состояния</span></div>
+          <span class="res-go">Открыть сайт →</span>
+        </div>
+      </a>
+
+      <a class="res rv" href="works/repair/" target="_blank" rel="noopener">
+        <div class="top" style="background:linear-gradient(150deg,#eaf0ff,#c7d8ff);color:#2f5fe0">
+          <span class="res-kind" style="color:#68718a">ремонт квартир</span>
+          Смета за минуту
+        </div>
+        <div class="bt">
+          <h3>Калькулятор со сметой</h3>
+          <p>Площадь ползунком, тип отделки, допработы — сумма, срок и размер бригады пересчитываются сразу.</p>
+          <div class="res-tags"><span>расчёты</span><span>ползунки</span><span>смета</span></div>
+          <span class="res-go">Открыть сайт →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>

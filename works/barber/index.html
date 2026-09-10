@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ЛЕЗВИЕ — барбершоп в Астане · онлайн-запись</title>
+<meta name="description" content="Барбершоп ЛЕЗВИЕ, Астана. Выбери мастера, услугу и время — запись за минуту, без звонков.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23111214'/><path d='M30 22l40 56M70 22L30 78' stroke='%23c8a45c' stroke-width='9' stroke-linecap='round'/></svg>">
+<style>
+:root{
+  --bg:#0d0e10;
+  --bg-2:#131417;
+  --card:#17191d;
+  --line:#26292f;
+  --text:#f0efec;
+  --muted:#8b8f97;
+  --brass:#c8a45c;
+  --brass-dim:rgba(200,164,92,.14);
+  --red:#c0483d;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.disp{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--brass);color:#0d0e10}
+
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left)) max(20px,env(safe-area-inset-right))}
+section{padding:clamp(52px,7vw,96px) 0}
+.eyebrow{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);
+  font-weight:600;margin-bottom:14px;display:block;
+}
+h2{font-size:clamp(30px,5vw,48px);font-weight:600;margin-bottom:12px}
+.lead{color:var(--muted);max-width:560px;font-size:clamp(15px,1.6vw,17px)}
+
+header{
+  position:sticky;top:0;z-index:50;background:rgba(13,14,16,.9);
+  backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s;
+}
+header.stuck{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Oswald';font-size:22px;font-weight:700;letter-spacing:.12em}
+.brand svg{width:32px;height:32px;flex:none}
+.nav-links{display:flex;gap:28px;font-size:13.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.nav-links a:hover{color:var(--brass)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:6px;font-weight:600;font-size:14px;
+  text-transform:uppercase;letter-spacing:.08em;transition:.2s;white-space:nowrap;
+}
+.btn-brass{background:var(--brass);color:#0d0e10}
+.btn-brass:hover{background:#d9b76e;transform:translateY(-2px)}
+.btn-brass:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.btn-out{border:1px solid var(--line);color:var(--text)}
+.btn-out:hover{border-color:var(--brass);color:var(--brass)}
+.btn-sm{padding:10px 20px;font-size:12.5px}
+
+/* герой */
+.hero{position:relative;overflow:hidden;padding-top:clamp(40px,6vw,72px)}
+.hero::before{
+  content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,164,92,.13),transparent 65%);
+  top:-220px;right:-160px;pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+h1{font-size:clamp(46px,9vw,104px);font-weight:700;margin-bottom:18px}
+h1 span{color:var(--brass);display:block}
+.hero p{color:var(--muted);font-size:clamp(16px,1.9vw,19px);max-width:420px;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:36px}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{border:1px solid var(--line);border-radius:6px;padding:9px 15px;font-size:12.5px;color:var(--muted)}
+.badge b{color:var(--brass);font-family:'Oswald';font-size:15px}
+.pole{
+  aspect-ratio:1;border-radius:var(--r);border:1px solid var(--line);background:var(--bg-2);
+  display:grid;place-items:center;overflow:hidden;position:relative;
+}
+.pole svg{width:56%;height:auto}
+.stripes{animation:spin 5s linear infinite}
+@keyframes spin{to{transform:translateY(72px)}}
+
+/* шаги записи */
+.step{margin-bottom:34px}
+.step-head{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.step-num{
+  width:32px;height:32px;border-radius:50%;background:var(--brass-dim);color:var(--brass);
+  display:grid;place-items:center;font-family:'Oswald';font-weight:600;font-size:15px;flex:none;
+  border:1px solid rgba(200,164,92,.3);
+}
+.step-head h3{font-size:19px;font-weight:500}
+
+.masters{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.master{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:22px;text-align:center;transition:.2s;position:relative;
+}
+.master:hover{border-color:#3a3e46}
+.master.on{border-color:var(--brass);background:rgba(200,164,92,.07)}
+.master.on::after{
+  content:"✓";position:absolute;top:12px;right:14px;color:var(--brass);font-size:15px;font-weight:700;
+}
+.master .av{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  font-family:'Oswald';font-size:24px;font-weight:600;color:#0d0e10;
+}
+.master b{display:block;font-family:'Oswald';font-size:19px;font-weight:500;letter-spacing:.04em}
+.master span{color:var(--muted);font-size:13px}
+.master .exp{display:block;color:var(--brass);font-size:12px;margin-top:7px}
+
+.services{display:flex;flex-direction:column;gap:10px}
+.srv{
+  display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--card);padding:17px 20px;transition:.2s;text-align:left;width:100%;
+}
+.srv:hover{border-color:#3a3e46}
+.srv.on{border-color:var(--brass);background:rgba(200,164,92,.07)}
+.srv .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);flex:none;transition:.2s}
+.srv.on .dot{border-color:var(--brass);background:var(--brass);box-shadow:inset 0 0 0 3px var(--card)}
+.srv .nm{flex:1;font-weight:600;font-size:15.5px}
+.srv .nm em{display:block;font-style:normal;color:var(--muted);font-size:13px;font-weight:400;margin-top:2px}
+.srv .dur{color:var(--muted);font-size:13px;white-space:nowrap}
+.srv .pr{font-family:'Oswald';font-size:19px;font-weight:600;white-space:nowrap;min-width:82px;text-align:right}
+
+.days{display:flex;gap:9px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.day{
+  flex:none;width:66px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:12px 6px;text-align:center;transition:.2s;
+}
+.day:hover{border-color:#3a3e46}
+.day.on{border-color:var(--brass);background:var(--brass);color:#0d0e10}
+.day.closed{opacity:.32;cursor:not-allowed}
+.day u{display:block;text-decoration:none;font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.06em}
+.day.on u{color:rgba(13,14,16,.65)}
+.day b{display:block;font-family:'Oswald';font-size:22px;font-weight:600;line-height:1.25}
+.day i{display:block;font-style:normal;font-size:11px;color:var(--muted)}
+.day.on i{color:rgba(13,14,16,.65)}
+
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:9px}
+.slot{
+  border:1px solid var(--line);border-radius:9px;background:var(--card);
+  padding:13px 6px;font-size:14.5px;font-weight:600;transition:.2s;font-variant-numeric:tabular-nums;
+}
+.slot:hover:not(:disabled){border-color:var(--brass);color:var(--brass)}
+.slot.on{background:var(--brass);border-color:var(--brass);color:#0d0e10}
+.slot:disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.slots-empty{color:var(--muted);font-size:14px;padding:14px 0}
+
+/* итог */
+.summary{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);
+  padding:24px;position:sticky;top:88px;
+}
+.summary h3{font-size:17px;font-weight:500;margin-bottom:18px;color:var(--brass)}
+.sum-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.sum-row span{color:var(--muted)}
+.sum-row b{font-weight:600;text-align:right}
+.sum-row.empty b{color:var(--muted);font-weight:400}
+.sum-total{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 20px}
+.sum-total span{color:var(--muted);font-size:14px}
+.sum-total b{font-family:'Oswald';font-size:30px;font-weight:600}
+.book-grid{display:grid;grid-template-columns:1fr 340px;gap:38px;align-items:start}
+/* без min-width:0 колонка растягивается под ленту дней и ломает страницу вбок */
+.book-grid > *{min-width:0}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}
+.field input{
+  width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:9px;
+  background:var(--card);color:var(--text);font-family:inherit;font-size:16px;transition:border-color .2s;
+}
+.field input:focus{outline:none;border-color:var(--brass)}
+.field input::placeholder{color:#5a5e66}
+
+.done{display:none;text-align:center;padding:26px 0}
+.done.on{display:block}
+.done .tick{width:66px;height:66px;border-radius:50%;background:var(--brass);color:#0d0e10;display:grid;place-items:center;font-size:30px;margin:0 auto 18px}
+.done h3{font-size:28px;font-weight:600;margin-bottom:10px}
+.done p{color:var(--muted);margin-bottom:22px}
+.ticket{
+  border:1px dashed var(--line);border-radius:var(--r);background:var(--bg-2);
+  padding:22px;text-align:left;max-width:360px;margin:0 auto;
+}
+.ticket .code{font-family:'Oswald';font-size:26px;color:var(--brass);letter-spacing:.1em;margin-bottom:14px}
+.ticket div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px}
+.ticket div span{color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:13.5px;margin-top:20px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+.foot a:hover{color:var(--brass)}
+.note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+.demo-badge{
+  position:fixed;right:14px;bottom:14px;z-index:60;background:var(--card);border:1px solid var(--line);
+  color:var(--muted);border-radius:999px;padding:9px 16px;font-size:12px;
+}
+.demo-badge b{color:#ccff00}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:940px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .pole{max-width:320px;margin:0 auto}
+  .book-grid{grid-template-columns:1fr;gap:26px}
+  .summary{position:static}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .masters{grid-template-columns:1fr}
+  .master{display:flex;align-items:center;gap:16px;text-align:left;padding:16px}
+  .master .av{margin:0;width:52px;height:52px;font-size:20px}
+  .srv{flex-wrap:wrap;gap:10px 14px}
+  .srv .dur{order:3;width:100%;padding-left:32px}
+  .demo-badge{left:10px;right:10px;bottom:10px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="20" fill="#17191d"/>
+        <path d="M30 22l40 56M70 22L30 78" stroke="#c8a45c" stroke-width="9" stroke-linecap="round"/>
+      </svg>
+      Лезвие
+    </a>
+    <nav class="nav-links">
+      <a href="#book">Запись</a>
+      <a href="#prices">Цены</a>
+      <a href="#where">Адрес</a>
+    </nav>
+    <a href="#book" class="btn btn-brass btn-sm">Записаться</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Астана · с 2018 года</span>
+      <h1>Стрижка<span>без звонков</span></h1>
+      <p>Выбираешь мастера, услугу и время. Занятые слоты сразу видно — записался за минуту и пришёл.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn btn-brass">Выбрать время</a>
+        <a href="#prices" class="btn btn-out">Цены</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>4</b> мастера</span>
+        <span class="badge"><b>30</b> минут стрижка</span>
+        <span class="badge"><b>10:00–21:00</b> без выходных</span>
+      </div>
+    </div>
+    <div class="pole">
+      <svg viewBox="0 0 120 240" aria-hidden="true">
+        <rect x="34" y="12" width="52" height="18" rx="6" fill="#2b2f36"/>
+        <rect x="34" y="210" width="52" height="18" rx="6" fill="#2b2f36"/>
+        <clipPath id="tube"><rect x="40" y="34" width="40" height="172" rx="20"/></clipPath>
+        <g clip-path="url(#tube)">
+          <rect x="40" y="34" width="40" height="172" fill="#f0efec"/>
+          <g class="stripes">
+            <g fill="#c0483d">
+              <rect x="20" y="-40" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="-4" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="32" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="68" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="104" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="140" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="176" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="212" width="80" height="18" transform="rotate(28 60 120)"/>
+            </g>
+            <g fill="#2b6ca8">
+              <rect x="20" y="-22" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="14" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="50" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="86" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="122" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="158" width="80" height="18" transform="rotate(28 60 120)"/>
+              <rect x="20" y="194" width="80" height="18" transform="rotate(28 60 120)"/>
+            </g>
+          </g>
+        </g>
+        <rect x="40" y="34" width="40" height="172" rx="20" fill="none" stroke="#2b2f36" stroke-width="4"/>
+        <rect x="44" y="38" width="12" height="164" rx="6" fill="#fff" opacity=".16"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:38px">
+      <span class="eyebrow">онлайн-запись</span>
+      <h2>Четыре шага</h2>
+      <p class="lead">Свободное время обновляется сразу — то, что занято, выбрать нельзя.</p>
+    </div>
+
+    <div id="wizard">
+      <div class="book-grid">
+        <div>
+          <div class="step">
+            <div class="step-head"><div class="step-num">1</div><h3>Мастер</h3></div>
+            <div class="masters" id="masters"></div>
+          </div>
+
+          <div class="step">
+            <div class="step-head"><div class="step-num">2</div><h3>Услуга</h3></div>
+            <div class="services" id="services"></div>
+          </div>
+
+          <div class="step">
+            <div class="step-head"><div class="step-num">3</div><h3>День</h3></div>
+            <div class="days" id="days"></div>
+          </div>
+
+          <div class="step">
+            <div class="step-head"><div class="step-num">4</div><h3>Время</h3></div>
+            <div class="slots" id="slots"></div>
+          </div>
+        </div>
+
+        <aside class="summary">
+          <h3>Ваша запись</h3>
+          <div id="sumRows"></div>
+          <div class="sum-total"><span>Итого</span><b id="sumTotal">—</b></div>
+          <div class="field">
+            <label for="cName">Имя</label>
+            <input type="text" id="cName" placeholder="Как вас зовут">
+          </div>
+          <div class="field">
+            <label for="cPhone">Телефон</label>
+            <input type="tel" id="cPhone" placeholder="+7 ___ ___ __ __">
+          </div>
+          <button class="btn btn-brass" id="confirm" style="width:100%" disabled>Записаться</button>
+          <p class="note">Демонстрационный сайт — запись никуда не отправляется.</p>
+        </aside>
+      </div>
+    </div>
+
+    <div class="done" id="done">
+      <div class="tick">✓</div>
+      <h3>Вы записаны</h3>
+      <p>Придёт напоминание за два часа до визита.</p>
+      <div class="ticket" id="ticket"></div>
+      <div style="margin-top:24px"><button class="btn btn-out btn-sm" id="again">Записаться ещё</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="prices" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">прайс</span>
+      <h2>Цены</h2>
+      <p class="lead">Цены в тенге. Студентам и школьникам до 18:00 — минус 15%.</p>
+    </div>
+    <div class="services rv" style="margin-top:32px" id="priceList"></div>
+  </div>
+</section>
+
+<section id="where">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">адрес</span>
+      <h2>Где нас найти</h2>
+    </div>
+    <div class="badges rv" style="margin-top:26px;gap:14px">
+      <span class="badge" style="padding:16px 20px"><b>Астана</b><br>пр. Кабанбай батыра 53, 1 этаж</span>
+      <span class="badge" style="padding:16px 20px"><b>10:00 — 21:00</b><br>без выходных</span>
+      <span class="badge" style="padding:16px 20px"><b>+7 707 000 00 00</b><br>звонки и WhatsApp</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Лезвие · Астана</div>
+    <div style="display:flex;gap:20px">
+      <a href="#book">Запись</a><a href="#prices">Цены</a><a href="#top">Наверх ↑</a>
+    </div>
+  </div>
+</footer>
+
+<a class="demo-badge" href="https://genzvibecoding.vercel.app" target="_blank" rel="noopener">
+  Учебный проект · сделано за вечер на <b>gen z vibecoding</b>
+</a>
+
+<script>
+const MASTERS = [
+  { id: 'arman',  name: 'Арман',  role: 'Топ-барбер',  exp: '8 лет опыта', color: '#c8a45c' },
+  { id: 'daniyar',name: 'Данияр', role: 'Барбер',      exp: '5 лет опыта', color: '#2b6ca8' },
+  { id: 'timur',  name: 'Тимур',  role: 'Барбер',      exp: '3 года опыта',color: '#c0483d' },
+];
+const SERVICES = [
+  { id: 'cut',   name: 'Мужская стрижка',   desc: 'машинка и ножницы, укладка',       min: 45, price: 6000 },
+  { id: 'beard', name: 'Стрижка бороды',    desc: 'контур, опасная бритва, масло',    min: 30, price: 4500 },
+  { id: 'combo', name: 'Стрижка + борода',  desc: 'полный комплект, самое ходовое',   min: 75, price: 9000 },
+  { id: 'kid',   name: 'Детская стрижка',   desc: 'до 12 лет, мультики на экране',    min: 30, price: 4000 },
+  { id: 'bald',  name: 'Бритьё головы',     desc: 'налысо, горячее полотенце',        min: 30, price: 3500 },
+];
+
+const state = { master: null, service: null, day: null, slot: null };
+
+/* ---------- мастера ---------- */
+const mWrap = document.getElementById('masters');
+MASTERS.forEach(m => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'master';
+  b.innerHTML = '<div class="av"></div><div><b></b><span></span><span class="exp"></span></div>';
+  const av = b.querySelector('.av');
+  av.style.background = m.color;
+  av.textContent = m.name[0];
+  b.querySelector('b').textContent = m.name;
+  b.querySelector('span').textContent = m.role;
+  b.querySelector('.exp').textContent = m.exp;
+  b.onclick = () => {
+    state.master = m;
+    [...mWrap.children].forEach(x => x.classList.toggle('on', x === b));
+    state.slot = null;
+    drawSlots();
+    sync();
+  };
+  mWrap.appendChild(b);
+});
+
+/* ---------- услуги ---------- */
+// название кладём отдельным текстовым узлом перед <em>, а не через textContent —
+// иначе описание внутри em затрётся
+function fixName(b, s) {
+  const nm = b.querySelector('.nm');
+  nm.insertBefore(document.createTextNode(s.name), nm.firstChild);
+}
+
+const sWrap = document.getElementById('services');
+SERVICES.forEach(s => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'srv';
+  b.innerHTML = '<span class="dot"></span><span class="nm"><em></em></span><span class="dur"></span><span class="pr"></span>';
+  fixName(b, s);
+  b.querySelector('.nm em').textContent = s.desc;
+  b.querySelector('.dur').textContent = s.min + ' мин';
+  b.querySelector('.pr').textContent = s.price.toLocaleString('ru-RU') + ' ₸';
+  b.onclick = () => {
+    state.service = s;
+    [...sWrap.children].forEach(x => x.classList.toggle('on', x === b));
+    state.slot = null;
+    drawSlots();
+    sync();
+  };
+  sWrap.appendChild(b);
+});
+
+const pWrap = document.getElementById('priceList');
+SERVICES.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'srv';
+  d.innerHTML = '<span class="nm"><em></em></span><span class="dur"></span><span class="pr"></span>';
+  fixName(d, s);
+  d.querySelector('.nm em').textContent = s.desc;
+  d.querySelector('.dur').textContent = s.min + ' мин';
+  d.querySelector('.pr').textContent = s.price.toLocaleString('ru-RU') + ' ₸';
+  pWrap.appendChild(d);
+});
+
+/* ---------- дни ---------- */
+const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+const MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+const dWrap = document.getElementById('days');
+const today = new Date(); today.setHours(0, 0, 0, 0);
+
+for (let i = 0; i < 14; i++) {
+  const d = new Date(today);
+  d.setDate(d.getDate() + i);
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'day';
+  b.innerHTML = '<u></u><b></b><i></i>';
+  b.children[0].textContent = i === 0 ? 'сегодня' : WD[d.getDay()];
+  b.children[1].textContent = d.getDate();
+  b.children[2].textContent = MON[d.getMonth()];
+  b.onclick = () => {
+    state.day = d;
+    [...dWrap.children].forEach(x => x.classList.toggle('on', x === b));
+    state.slot = null;
+    drawSlots();
+    sync();
+  };
+  dWrap.appendChild(b);
+  if (i === 0) b.click();
+}
+
+/* ---------- слоты ---------- */
+// «занятость» считаем детерминированно от мастера, даты и времени:
+// при перезаходе на страницу картинка та же, а не случайная каша
+function busy(masterId, date, mins) {
+  const seed = masterId.length * 7919 + date.getDate() * 31 + date.getMonth() * 12 + mins;
+  return (seed * 2654435761 % 100) < 34;
+}
+
+const slotsEl = document.getElementById('slots');
+function drawSlots() {
+  slotsEl.innerHTML = '';
+  if (!state.master || !state.day) {
+    slotsEl.innerHTML = '<p class="slots-empty">Сначала выберите мастера — покажем свободное время.</p>';
+    return;
+  }
+  const now = new Date();
+  const isToday = state.day.toDateString() === now.toDateString();
+  let any = false;
+
+  for (let m = 10 * 60; m <= 20 * 60; m += 30) {
+    const h = Math.floor(m / 60), mi = m % 60;
+    const label = String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
+    const past = isToday && m <= now.getHours() * 60 + now.getMinutes();
+    const taken = busy(state.master.id, state.day, m);
+
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'slot';
+    b.textContent = label;
+    b.disabled = past || taken;
+    if (!b.disabled) {
+      any = true;
+      b.onclick = () => {
+        state.slot = label;
+        [...slotsEl.children].forEach(x => x.classList.toggle('on', x === b));
+        sync();
+      };
+    }
+    slotsEl.appendChild(b);
+  }
+  if (!any) slotsEl.innerHTML = '<p class="slots-empty">На этот день всё занято — выберите другой.</p>';
+}
+
+/* ---------- сводка ---------- */
+const rowsEl = document.getElementById('sumRows');
+const totalEl = document.getElementById('sumTotal');
+const confirmBtn = document.getElementById('confirm');
+const nameEl = document.getElementById('cName');
+const phoneEl = document.getElementById('cPhone');
+
+function dayLabel(d) {
+  return d.getDate() + ' ' + MON[d.getMonth()] + ', ' + WD[d.getDay()];
+}
+
+function sync() {
+  const rows = [
+    ['Мастер', state.master ? state.master.name : null],
+    ['Услуга', state.service ? state.service.name : null],
+    ['День', state.day ? dayLabel(state.day) : null],
+    ['Время', state.slot],
+  ];
+  rowsEl.innerHTML = '';
+  rows.forEach(([k, v]) => {
+    const r = document.createElement('div');
+    r.className = 'sum-row' + (v ? '' : ' empty');
+    r.innerHTML = '<span></span><b></b>';
+    r.children[0].textContent = k;
+    r.children[1].textContent = v || 'не выбрано';
+    rowsEl.appendChild(r);
+  });
+
+  totalEl.textContent = state.service ? state.service.price.toLocaleString('ru-RU') + ' ₸' : '—';
+  confirmBtn.disabled = !(state.master && state.service && state.day && state.slot &&
+                          nameEl.value.trim() && phoneEl.value.trim());
+}
+nameEl.oninput = phoneEl.oninput = sync;
+sync();
+
+confirmBtn.onclick = () => {
+  const code = 'ЛЗ-' + String(Math.floor(1000 + Math.random() * 9000));
+  const end = (() => {
+    const [h, m] = state.slot.split(':').map(Number);
+    const t = h * 60 + m + state.service.min;
+    return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
+  })();
+
+  const t = document.getElementById('ticket');
+  t.innerHTML = '<div class="code"></div>';
+  t.firstChild.textContent = code;
+  [
+    ['Гость', nameEl.value.trim()],
+    ['Телефон', phoneEl.value.trim()],
+    ['Мастер', state.master.name],
+    ['Услуга', state.service.name],
+    ['Когда', dayLabel(state.day) + ', ' + state.slot + '–' + end],
+    ['К оплате', state.service.price.toLocaleString('ru-RU') + ' ₸'],
+  ].forEach(([k, v]) => {
+    const r = document.createElement('div');
+    r.innerHTML = '<span></span><b></b>';
+    r.children[0].textContent = k;
+    r.children[1].textContent = v;
+    t.appendChild(r);
+  });
+
+  document.getElementById('wizard').style.display = 'none';
+  document.getElementById('done').classList.add('on');
+  document.getElementById('book').scrollIntoView({ block: 'center' });
+};
+
+document.getElementById('again').onclick = () => {
+  document.getElementById('done').classList.remove('on');
+  document.getElementById('wizard').style.display = '';
+  state.slot = null;
+  drawSlots();
+  sync();
+};
+
+/* ---------- мелочи ---------- */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll', () => hdr.classList.toggle('stuck', scrollY > 10), { passive: true });
+
+const io = new IntersectionObserver((es) => {
+  es.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 70); io.unobserve(e.target); }
+  });
+}, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
