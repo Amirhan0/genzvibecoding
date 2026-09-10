@@ -131,7 +131,11 @@ h1 em{font-style:italic;color:var(--caramel)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 .info-row{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
 .info-row:last-child{border:0}
-.info-row .ic{width:38px;height:38px;border-radius:11px;background:var(--cream-2);display:grid;place-items:center;flex:none;font-size:17px}
+.info-row .ic{
+  width:40px;height:40px;border-radius:12px;background:var(--cream-2);
+  display:grid;place-items:center;flex:none;color:var(--coffee);
+}
+.info-row .ic svg{width:21px;height:21px;display:block}
 .info-row b{display:block;font-size:15px;margin-bottom:2px}
 .info-row span{color:var(--muted);font-size:14px}
 .map{
@@ -163,8 +167,9 @@ h1 em{font-style:italic;color:var(--caramel)}
 .book-done.on{display:block}
 .book-done .tick{
   width:64px;height:64px;border-radius:50%;background:var(--espresso);color:var(--cream);
-  display:grid;place-items:center;font-size:29px;margin:0 auto 18px;
+  display:grid;place-items:center;margin:0 auto 18px;
 }
+.book-done .tick svg{width:28px;height:28px;display:block}
 .book-done h3{font-size:29px;margin-bottom:10px}
 .book-done p{color:var(--muted);margin-bottom:20px}
 .book-done .card{
@@ -208,6 +213,30 @@ footer{background:var(--espresso);color:#c9b8a5;padding:40px 0;font-size:14px}
 </style>
 </head>
 <body>
+
+<!-- набор иконок: рисуются один раз, дальше через <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-pin" viewBox="0 0 24 24">
+    <path d="M12 21.5s7-6.4 7-11.5a7 7 0 1 0-14 0c0 5.1 7 11.5 7 11.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.8" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <path d="M12 6.6v5.7l3.6 2.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24">
+    <path d="M6.4 3h3.1l1.6 4-2.1 1.5a12.6 12.6 0 0 0 5.6 5.6l1.5-2.1 4 1.6v3.1a2 2 0 0 1-2.2 2A16.6 16.6 0 0 1 4.4 5.2 2 2 0 0 1 6.4 3Z"
+      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-cup" viewBox="0 0 24 24">
+    <path d="M5.4 7.6h13.2l-1.1 12a2.2 2.2 0 0 1-2.2 2H8.7a2.2 2.2 0 0 1-2.2-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M4 4.4h16l-.4 3.2H4.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M10 12.4h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <path d="M4.8 12.6 9.6 17.4 19.2 6.9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
 <header id="hdr">
   <div class="wrap nav">
@@ -299,19 +328,19 @@ footer{background:var(--espresso);color:#c9b8a5;padding:40px 0;font-size:14px}
     <div class="contact-grid" style="margin-top:36px">
       <div class="rv">
         <div class="info-row">
-          <div class="ic">📍</div>
+          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg></div>
           <div><b>Алматы, Панфилова 118</b><span>угол Кабанбай батыра, вход со двора</span></div>
         </div>
         <div class="info-row">
-          <div class="ic">🕗</div>
+          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg></div>
           <div><b>Каждый день, 07:30 — 23:00</b><span>кухня работает до 22:00</span></div>
         </div>
         <div class="info-row">
-          <div class="ic">📞</div>
+          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></div>
           <div><b>+7 707 000 00 00</b><span>звонки и WhatsApp</span></div>
         </div>
         <div class="info-row">
-          <div class="ic">☕</div>
+          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cup"/></svg></div>
           <div><b>Кофе с собой</b><span>своя кружка — скидка 200 ₸</span></div>
         </div>
       </div>
@@ -383,7 +412,7 @@ footer{background:var(--espresso);color:#c9b8a5;padding:40px 0;font-size:14px}
       </div>
 
       <div class="book-done" id="bookDone">
-        <div class="tick">✓</div>
+        <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
         <h3>Стол забронирован</h3>
         <p>Перезвоним за час до визита, чтобы подтвердить.</p>
         <div class="card" id="bookCard"></div>

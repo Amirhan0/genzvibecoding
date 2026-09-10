@@ -106,7 +106,10 @@ h1 span{color:var(--brass);display:block}
 .master:hover{border-color:#3a3e46}
 .master.on{border-color:var(--brass);background:rgba(200,164,92,.07)}
 .master.on::after{
-  content:"✓";position:absolute;top:12px;right:14px;color:var(--brass);font-size:15px;font-weight:700;
+  content:"";position:absolute;top:13px;right:14px;width:15px;height:15px;
+  background:var(--brass);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.8 12.6 9.6 17.4 19.2 6.9' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.8 12.6 9.6 17.4 19.2 6.9' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 .master .av{
   width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
@@ -182,7 +185,8 @@ h1 span{color:var(--brass);display:block}
 
 .done{display:none;text-align:center;padding:26px 0}
 .done.on{display:block}
-.done .tick{width:66px;height:66px;border-radius:50%;background:var(--brass);color:#0d0e10;display:grid;place-items:center;font-size:30px;margin:0 auto 18px}
+.done .tick{width:66px;height:66px;border-radius:50%;background:var(--brass);color:#0d0e10;display:grid;place-items:center;margin:0 auto 18px}
+.done .tick svg{width:29px;height:29px;display:block}
 .done h3{font-size:28px;font-weight:600;margin-bottom:10px}
 .done p{color:var(--muted);margin-bottom:22px}
 .ticket{
@@ -228,6 +232,13 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
 </style>
 </head>
 <body>
+
+<!-- набор иконок: рисуется один раз, дальше через <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <path d="M4.8 12.6 9.6 17.4 19.2 6.9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
 <header id="hdr">
   <div class="wrap nav">
@@ -350,7 +361,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-s
     </div>
 
     <div class="done" id="done">
-      <div class="tick">✓</div>
+      <div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
       <h3>Вы записаны</h3>
       <p>Придёт напоминание за два часа до визита.</p>
       <div class="ticket" id="ticket"></div>
