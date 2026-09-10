@@ -16,8 +16,11 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // .trim() — потому что при копировании в панель Vercel легко утащить пробел
+  // или перевод строки, и тогда Telegram молча отвечает 401.
+  // Заодно срезаем префикс "bot", если токен скопировали вместе с ним.
+  const token = String(process.env.TELEGRAM_BOT_TOKEN || '').trim().replace(/^bot/, '');
+  const chatId = String(process.env.TELEGRAM_CHAT_ID || '').trim();
   if (!token || !chatId) {
     console.error('Не заданы TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID');
     return res.status(500).json({ ok: false, error: 'not_configured' });
@@ -68,9 +71,17 @@ module.exports = async function handler(req, res) {
     });
 
     if (!tg.ok) {
-      const detail = await tg.text().catch(() => '');
-      console.error('Telegram ответил ошибкой:', tg.status, detail);
-      return res.status(502).json({ ok: false, error: 'telegram_failed' });
+      // отдаём причину наружу: в ней нет токена, зато без неё непонятно,
+      // что чинить — токен, chat_id или не нажатый Start у бота
+      const info = await tg.json().catch(() => ({}));
+      const description = info.description || 'нет описания';
+      console.error('Telegram ответил ошибкой:', tg.status, description);
+      return res.status(502).json({
+        ok: false,
+        error: 'telegram_failed',
+        tg_status: tg.status,
+        tg_description: description,
+      });
     }
 
     return res.status(200).json({ ok: true });
