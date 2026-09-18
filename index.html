@@ -123,6 +123,17 @@ header.stuck{background:rgba(8,8,10,.78);backdrop-filter:blur(14px);border-botto
 .glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-1}
 .glow-a{width:520px;height:520px;background:rgba(var(--acid-rgb),.13);top:-160px;right:-120px}
 .glow-b{width:420px;height:420px;background:rgba(139,92,246,.16);top:180px;left:-180px}
+.start-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;padding:9px 16px;border-radius:999px;
+  background:rgba(var(--acid-rgb),.08);border:1px solid rgba(var(--acid-rgb),.3);font-size:14px;color:var(--text);
+}
+.start-badge b{color:var(--acid);font-weight:600}
+.start-badge .sb-sep{color:var(--muted)}
+.start-badge #startLeft{color:var(--muted)}
+.start-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 0 rgba(var(--acid-rgb),.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(var(--acid-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),0)}}
+.guide-legal{font-size:12.5px;color:var(--muted);margin-top:12px}
+.guide-legal a{color:var(--muted);text-decoration:underline}
 .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
 .stat{
   border:1px solid var(--line);background:var(--card);border-radius:14px;
@@ -621,6 +632,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   <div class="wrap">
     <div class="hero-grid">
       <div>
+        <div class="start-badge"><span class="dot"></span><b>Старт 1 октября</b><span class="sb-sep">·</span><span id="startLeft">набор до 1 октября</span></div>
         <div class="stats">
           <div class="stat"><i data-count="1">1</i><span>поток</span></div>
           <div class="stat"><i data-count="2">2</i><span>недели</span></div>
@@ -900,7 +912,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <div class="pricing-in">
         <div>
           <div class="eyebrow">стоимость</div>
-          <div class="big-price">20 000 ₸<small>первый поток · 15 мест</small></div>
+          <div class="big-price">20 000 ₸<small>старт 1 октября · 15 мест</small></div>
           <a href="#apply" class="btn btn-acid btn-lg" style="margin-top:22px">Записаться на поток</a>
         </div>
         <ul class="incl">
@@ -948,6 +960,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
           <div class="guide-price">9 990 ₸<small>PDF, остаётся у тебя</small></div>
           <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Купить в Telegram</a>
         </div>
+        <p class="guide-legal">Покупая гайд, ты соглашаешься с <a href="oferta.html">офертой</a>. Файл цифровой, после отправки возврат не производится.</p>
         <div class="guide-vs">
           <div>
             <div class="gv-head">В гайде</div>
@@ -976,6 +989,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <h2 class="sec">Частые вопросы</h2>
     </div>
     <div class="faq" id="faqList">
+      <div class="q rv"><button type="button">Когда старт и до какого числа набор?<i>+</i></button><div class="a"><p>Старт 1 октября. Набор идёт до 1 октября, в группе 15 мест. Если места закончатся раньше, запись закроется раньше.</p></div></div>
+      <div class="q rv"><button type="button">Можно ли вернуть деньги?<i>+</i></button><div class="a"><p>После оплаты возврата нет, поэтому все условия я рассказываю заранее: что нужен компьютер, платная подписка Claude и поддерживаемая страна. Исключение одно: если поток отменю или перенесу я сам, верну деньги полностью или перенесу тебя на следующий поток, как выберешь. Все условия в <a href="oferta.html" style="color:var(--acid)">договоре-оферте</a>.</p></div></div>
       <div class="q rv"><button type="button">Нужен ли опыт в программировании?<i>+</i></button><div class="a"><p>Нет. В этом весь смысл вайб-кодинга: ты объясняешь задачу обычным языком, а код пишет ИИ. Твоя работа — понятно формулировать и проверять результат.</p></div></div>
       <div class="q rv"><button type="button">Что нужно для учёбы?<i>+</i></button><div class="a"><p>Ноутбук на Windows, Mac или Linux, интернет и пара свободных вечеров в неделю. С одного телефона курс не пройти — нужен компьютер. Ещё до оплаты стоит проверить, что твоя страна есть в списке поддерживаемых на сайте Anthropic.</p></div></div>
       <div class="q rv"><button type="button">Нужно ли платить за что-то ещё, кроме курса?<i>+</i></button><div class="a"><p>Да, и я говорю об этом до оплаты. Claude Code работает только на платном аккаунте Claude — бесплатный план не подойдёт. Это отдельная подписка, её оплачиваешь ты сам напрямую. Актуальную цену смотри на claude.com, она меняется.</p></div></div>
@@ -1040,7 +1055,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
         <label class="consent">
           <input type="checkbox" id="consent" required>
-          <span>Согласен(на) на обработку данных для связи по курсу.</span>
+          <span>Согласен(на) с условиями <a href="oferta.html" target="_blank">договора-оферты</a> и на обработку данных для связи по курсу.</span>
         </label>
 
         <!-- ловушка для ботов: живой человек это поле не видит и не заполняет -->
@@ -1067,7 +1082,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 </section>
 
 <div class="sticky-cta" id="stickyCta">
-  <div class="sp"><i>20 000 ₸</i><span>5 уроков · 2 недели</span></div>
+  <div class="sp"><i>20 000 ₸</i><span>старт 1 октября</span></div>
   <a href="#apply" class="btn btn-acid">Записаться</a>
 </div>
 
@@ -1081,6 +1096,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <a href="https://t.me/ameerqan" target="_blank" rel="noopener">Telegram</a>
       <a href="#program">Программа</a>
       <a href="#price">Цена</a>
+      <a href="oferta.html">Оферта</a>
       <a href="#top">Наверх ↑</a>
     </div>
   </div>
@@ -1116,6 +1132,22 @@ const io = new IntersectionObserver((entries) => {
   });
 }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* ====== сколько дней до старта ====== */
+(() => {
+  const el = document.getElementById('startLeft');
+  const start = new Date('2026-10-01T00:00:00+05:00');     // Алматы
+  const days = Math.ceil((start - Date.now()) / 864e5);
+  const word = n => {
+    const a = n % 10, b = n % 100;
+    if (a === 1 && b !== 11) return 'день';
+    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return 'дня';
+    return 'дней';
+  };
+  if (days > 1) el.textContent = 'до старта ' + days + ' ' + word(days);
+  else if (days === 1) el.textContent = 'старт завтра';
+  else el.textContent = 'поток идёт';
+})();
 
 /* ====== счётчики в шапке ====== */
 document.querySelectorAll('[data-count]').forEach(el => {
