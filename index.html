@@ -406,6 +406,29 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 .foot-mark{width:34px;height:34px;flex:none;color:var(--acid)}
 .foot-brand em{font-style:normal;color:var(--acid);opacity:.85;font-size:12.5px}
 
+/* ---------- обратный отсчёт ---------- */
+.cd-wrap{padding:0 0 clamp(40px,6vw,64px)}
+.cd{
+  display:flex;align-items:center;justify-content:space-between;gap:28px;
+  border:1px solid rgba(var(--acid-rgb),.28);border-radius:24px;padding:22px 24px 22px 30px;
+  background:radial-gradient(120% 180% at 0% 0%,rgba(var(--acid-rgb),.09),transparent 55%),var(--card);
+}
+.cd-kicker{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acid);font-weight:600;margin-bottom:6px}
+.cd-kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
+.cd-date{font:700 20px 'Unbounded';letter-spacing:-.01em}
+.cd-tiles{display:flex;align-items:center;gap:8px}
+.cd-tile{
+  min-width:84px;padding:12px 10px 10px;border-radius:16px;background:#0b0b0e;border:1px solid var(--line);
+  text-align:center;display:flex;flex-direction:column;gap:4px;
+}
+.cd-tile b{font:900 38px/1 'Unbounded';color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.02em;display:block}
+.cd-tile span{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+.cd-tile b.tick{animation:tick .35s ease}
+@keyframes tick{0%{transform:translateY(-6px);opacity:.3}100%{transform:none;opacity:1}}
+.cd-colon{font:900 28px 'Unbounded';color:rgba(var(--acid-rgb),.6);font-style:normal;margin-top:-18px}
+.cd-btn{flex:none}
+.cd.done .cd-tiles{display:none}
+
 /* ---------- marquee ---------- */
 .marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg-2)}
 .marq-in{display:flex;gap:44px;width:max-content;animation:slide 28s linear infinite}
@@ -452,6 +475,12 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 }
 
 /* телефон */
+@media(max-width:1000px){
+  .cd{flex-wrap:wrap;justify-content:center;text-align:center;padding:24px}
+  .cd-text{width:100%}
+  .cd-kicker{justify-content:center}
+}
+
 @media(max-width:900px){
   .guide{grid-template-columns:1fr;gap:34px;text-align:left}
   .guide-cover{max-width:220px;margin:0 auto;padding:18px 16px}
@@ -530,6 +559,12 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
 /* узкий телефон */
 @media(max-width:430px){
+  .cd-tile{min-width:0;flex:1;padding:10px 4px 8px}
+  .cd-tile b{font-size:28px}
+  .cd-tile span{font-size:10.5px}
+  .cd-colon{display:none}
+  .cd-tiles{width:100%;gap:6px}
+  .cd-btn{width:100%}
   .wrap{padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
   .g4{grid-template-columns:1fr}
   .res .top{height:120px;font-size:18px}
@@ -668,6 +703,27 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
     </div>
   </div>
 </section>
+
+<div class="cd-wrap">
+  <div class="wrap">
+    <div class="cd" id="countdown">
+      <div class="cd-text">
+        <div class="cd-kicker"><span class="dot"></span>До старта первого потока</div>
+        <div class="cd-date">1 октября · 15 мест</div>
+      </div>
+      <div class="cd-tiles" aria-live="polite">
+        <div class="cd-tile"><b id="cdD">00</b><span id="cdDl">дней</span></div>
+        <i class="cd-colon">:</i>
+        <div class="cd-tile"><b id="cdH">00</b><span id="cdHl">часов</span></div>
+        <i class="cd-colon">:</i>
+        <div class="cd-tile"><b id="cdM">00</b><span id="cdMl">минут</span></div>
+        <i class="cd-colon">:</i>
+        <div class="cd-tile"><b id="cdS">00</b><span id="cdSl">секунд</span></div>
+      </div>
+      <a href="#apply" class="btn btn-acid cd-btn">Занять место</a>
+    </div>
+  </div>
+</div>
 
 <div class="marq">
   <div class="marq-in">
@@ -1131,6 +1187,46 @@ const io = new IntersectionObserver((entries) => {
   });
 }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* ====== обратный отсчёт до старта ====== */
+(() => {
+  const box = document.getElementById('countdown');
+  const start = new Date('2026-10-01T00:00:00+05:00').getTime();     // Алматы
+  const plural = (n, one, few, many) => {
+    const a = n % 10, b = n % 100;
+    if (a === 1 && b !== 11) return one;
+    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return few;
+    return many;
+  };
+  const parts = [
+    ['cdD', 'cdDl', ['день', 'дня', 'дней']],
+    ['cdH', 'cdHl', ['час', 'часа', 'часов']],
+    ['cdM', 'cdMl', ['минута', 'минуты', 'минут']],
+    ['cdS', 'cdSl', ['секунда', 'секунды', 'секунд']],
+  ].map(([v, l, w]) => ({ v: document.getElementById(v), l: document.getElementById(l), w }));
+
+  function tick() {
+    let left = Math.max(0, Math.floor((start - Date.now()) / 1000));
+    if (left === 0) {
+      box.classList.add('done');
+      box.querySelector('.cd-kicker').lastChild.textContent = 'Первый поток уже идёт';
+      box.querySelector('.cd-date').textContent = 'Следующий набор скоро';
+      clearInterval(timer);
+      return;
+    }
+    const vals = [Math.floor(left / 86400), Math.floor(left % 86400 / 3600), Math.floor(left % 3600 / 60), left % 60];
+    vals.forEach((n, i) => {
+      const p = parts[i], txt = String(n).padStart(2, '0');
+      if (p.v.textContent !== txt) {
+        p.v.textContent = txt;
+        p.v.classList.remove('tick'); void p.v.offsetWidth; p.v.classList.add('tick');
+      }
+      p.l.textContent = plural(n, ...p.w);
+    });
+  }
+  const timer = setInterval(tick, 1000);
+  tick();
+})();
 
 /* ====== сколько дней до старта ====== */
 (() => {
