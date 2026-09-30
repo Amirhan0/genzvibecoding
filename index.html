@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><path d='M62 2 C98 -4 126 26 118 62 C112 96 92 120 58 118 C24 116 0 94 2 58 C4 24 28 8 62 2 Z' fill='%235CBDB5'/><rect x='33' y='42' width='11' height='24' rx='5.5' fill='%230A0A0A'/><rect x='76' y='40' width='11' height='24' rx='5.5' fill='%230A0A0A'/><path d='M34 78 Q60 104 86 76' fill='none' stroke='%230A0A0A' stroke-width='11' stroke-linecap='round'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><path d='M62 2 C98 -4 126 26 118 62 C112 96 92 120 58 118 C24 116 0 94 2 58 C4 24 28 8 62 2 Z' fill='%2381DAD3'/><rect x='33' y='42' width='11' height='24' rx='5.5' fill='%230A0A0A'/><rect x='76' y='40' width='11' height='24' rx='5.5' fill='%230A0A0A'/><path d='M34 78 Q60 104 86 76' fill='none' stroke='%230A0A0A' stroke-width='11' stroke-linecap='round'/></svg>">
 <style>
 :root{
   --bg:#08080a;
@@ -21,8 +21,8 @@
   --line:#26262f;
   --text:#f2f2f5;
   --muted:#8b8b98;
-  --acid:#5CBDB5;          /* из логотипа */
-  --acid-rgb:92,189,181;
+  --acid:#81DAD3;          /* из логотипа */
+  --acid-rgb:129,218,211;
   --violet:#8b5cf6;
   --pink:#FF2E9F;          /* из логотипа */
   --ink:#0A0A0A;
@@ -1487,7 +1487,7 @@ document.getElementById('copyAgain').onclick = function () {
     obs.forEach(o => ctx.fillRect(o.x, groundY - o.h, o.w, o.h));
 
     // герой
-    ctx.fillStyle = '#5CBDB5';
+    ctx.fillStyle = '#81DAD3';
     ctx.fillRect(hero.x, hero.y, hero.s, hero.s);
     const blink = state === 'run' && Math.floor(t / 8) % 12 === 0;
     if (!blink) {
