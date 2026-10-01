@@ -2,7 +2,7 @@
 // Токен бота живёт в переменных окружения Vercel и в браузер не попадает.
 // Настройка описана в README.md.
 
-const LIMITS = { name: 80, contact: 120, level: 60, goal: 60, device: 60 };
+const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60 };
 
 const clean = (v, max) =>
   String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -39,6 +39,7 @@ module.exports = async function handler(req, res) {
   if (clean(body.company, 50)) return res.status(200).json({ ok: true });
 
   const lead = {
+    direction: clean(body.direction, LIMITS.direction),
     name: clean(body.name, LIMITS.name),
     contact: clean(body.contact, LIMITS.contact),
     level: clean(body.level, LIMITS.level),
@@ -50,13 +51,20 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ ok: false, error: 'missing_fields' });
   }
 
+  // форма курса и форма предзаписи на главной шлют разный набор полей,
+  // поэтому необязательные строки показываем, только если они заполнены
+  const rows = [
+    ['Направление', lead.direction],
+    ['Имя', lead.name],
+    ['Контакт', lead.contact],
+    ['Уровень', lead.level],
+    ['Цель', lead.goal],
+    ['Устройство', lead.device],
+  ].filter(([, v]) => v);
+
   const text =
-    '<b>Новая заявка — gen z vibecoding</b>\n\n' +
-    `<b>Имя:</b> ${esc(lead.name)}\n` +
-    `<b>Контакт:</b> ${esc(lead.contact)}\n` +
-    `<b>Уровень:</b> ${esc(lead.level || '—')}\n` +
-    `<b>Цель:</b> ${esc(lead.goal || '—')}\n` +
-    `<b>Устройство:</b> ${esc(lead.device || '—')}`;
+    '<b>Новая заявка · gen z school</b>\n\n' +
+    rows.map(([k, v]) => `<b>${k}:</b> ${esc(v)}`).join('\n');
 
   try {
     const tg = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
