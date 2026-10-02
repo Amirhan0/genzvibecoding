@@ -2,7 +2,7 @@
 // Токен бота живёт в переменных окружения Vercel и в браузер не попадает.
 // Настройка описана в README.md.
 
-const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60 };
+const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60, card: 40 };
 
 const clean = (v, max) =>
   String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -45,6 +45,7 @@ module.exports = async function handler(req, res) {
     level: clean(body.level, LIMITS.level),
     goal: clean(body.goal, LIMITS.goal),
     device: clean(body.device, LIMITS.device),
+    card: clean(body.card, LIMITS.card),
   };
 
   if (!lead.name || !lead.contact) {
@@ -60,6 +61,7 @@ module.exports = async function handler(req, res) {
     ['Уровень', lead.level],
     ['Цель', lead.goal],
     ['Устройство', lead.device],
+    ['Подписка Claude', lead.card],
   ].filter(([, v]) => v);
 
   const text =

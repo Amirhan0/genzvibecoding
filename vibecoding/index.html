@@ -371,6 +371,9 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .form-wrap{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,44px)}
 .field{margin-bottom:24px}
 .field label{display:block;font-size:14.5px;font-weight:600;margin-bottom:11px}
+.field-hint{font-size:13px;color:var(--muted);margin:-6px 0 11px;line-height:1.5}
+.price-note{margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.5;max-width:340px}
+.price-note b{color:var(--text);font-weight:600}
 .field input[type=text]{
   width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:13px;
   padding:15px 16px;color:var(--text);font-family:inherit;font-size:16px;transition:border-color .2s;
@@ -966,6 +969,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
           <div class="eyebrow">стоимость</div>
           <div class="big-price">20 000 ₸<small>второй поток · старт 10–12 ноября · 15 мест</small></div>
           <a href="#apply" class="btn btn-acid btn-lg" style="margin-top:22px">Записаться на поток</a>
+          <p class="price-note"><b>Плюс подписка Claude Pro</b>, около $20 в месяц. Оплачивается отдельно, напрямую Anthropic, картой, которая работает с зарубежными сервисами. Без неё курс не пройти.</p>
         </div>
         <ul class="incl">
           <li>5 живых эфиров с разработчиком</li>
@@ -1009,7 +1013,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         </ul>
 
         <div class="guide-buy">
-          <div class="guide-price">9 990 ₸<small>PDF, остаётся у вас</small></div>
+          <div class="guide-price">5 000 ₸<small>PDF, остаётся у вас</small></div>
           <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Купить в Telegram</a>
         </div>
         <p class="guide-legal">Файл цифровой, после отправки возврат не производится.</p>
@@ -1103,6 +1107,16 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
             <label class="opt"><input type="radio" name="device" value="Ноутбук Windows" checked><span>Ноутбук Windows</span></label>
             <label class="opt"><input type="radio" name="device" value="Mac"><span>Mac</span></label>
             <label class="opt"><input type="radio" name="device" value="Только телефон"><span>Только телефон</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Сможете оплатить подписку Claude?</label>
+          <p class="field-hint">Около $20 в месяц, отдельно от курса. Нужна карта, которой можно платить за границу.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="card" value="Да, есть карта" required><span>Да, есть карта</span></label>
+            <label class="opt"><input type="radio" name="card" value="Нет карты"><span>Нет карты</span></label>
+            <label class="opt"><input type="radio" name="card" value="Не знаю"><span>Не знаю</span></label>
           </div>
         </div>
 
@@ -1261,7 +1275,8 @@ const buildMsg = () => {
     'Контакт: ' + f.get('contact') + '\n' +
     'Уровень: ' + f.get('level') + '\n' +
     'Цель: ' + f.get('goal') + '\n' +
-    'Устройство: ' + f.get('device');
+    'Устройство: ' + f.get('device') + '\n' +
+    'Подписка Claude: ' + f.get('card');
 };
 
 const copyText = (txt) => {
@@ -1304,7 +1319,7 @@ form.onsubmit = async (e) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         direction: 'Вайбкодинг', name: f.get('name'), contact: f.get('contact'), level: f.get('level'),
-        goal: f.get('goal'), device: f.get('device'), company: f.get('company')
+        goal: f.get('goal'), device: f.get('device'), card: f.get('card'), company: f.get('company')
       })
     });
     sent = r.ok && (await r.json().catch(() => ({}))).ok === true;
