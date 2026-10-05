@@ -6,17 +6,50 @@
 <title>Вайбкодинг · gen z school · научу делать сайты без кода</title>
 <meta name="description" content="Курс по вайб-кодингу: 5 уроков за 2 недели. ИИ пишет код — вы объясняете задачу словами. С нуля до первого рабочего сайта.">
 <meta property="og:title" content="Вайбкодинг · gen z school">
-<meta property="og:description" content="5 уроков за 2 недели. ИИ пишет код — вы объясняете задачу словами.">
+<meta property="og:description" content="5 уроков за 2 недели. ИИ пишет код — вы объясняете задачу словами. Второй поток стартует 12 ноября.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://genzschool.vercel.app/vibecoding/">
 <meta property="og:image" content="https://genzschool.vercel.app/og-vibecoding.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="gen z school">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#08080a">
+<link rel="canonical" href="https://genzschool.vercel.app/vibecoding/">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><path d='M62 2 C98 -4 126 26 118 62 C112 96 92 120 58 118 C24 116 0 94 2 58 C4 24 28 8 62 2 Z' fill='%2381DAD3'/><rect x='33' y='42' width='11' height='24' rx='5.5' fill='%230A0A0A'/><rect x='76' y='40' width='11' height='24' rx='5.5' fill='%230A0A0A'/><path d='M34 78 Q60 104 86 76' fill='none' stroke='%230A0A0A' stroke-width='11' stroke-linecap='round'/></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Вайбкодинг: сайты без кода",
+  "description": "С нуля до своего сайта в интернете за две недели. 5 живых эфиров: ИИ пишет код, вы объясняете задачу обычными словами. Заявки с сайта приходят в Telegram.",
+  "inLanguage": "ru",
+  "url": "https://genzschool.vercel.app/vibecoding/",
+  "provider": {
+    "@type": "Organization",
+    "name": "gen z school",
+    "url": "https://genzschool.vercel.app/",
+    "sameAs": ["https://instagram.com/genz.school.kz"]
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "20000",
+    "priceCurrency": "KZT",
+    "category": "Paid",
+    "url": "https://genzschool.vercel.app/vibecoding/#apply"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "startDate": "2026-11-12",
+    "inLanguage": "ru"
+  }
+}
+</script>
 <style>
 :root{
   --bg:#08080a;
@@ -30,6 +63,7 @@
   --acid-rgb:129,218,211;
   --violet:#8b5cf6;
   --pink:#FF2E9F;          /* из логотипа */
+  --pink-deep:#D01174;     /* для белого текста на розовом, контраст ≥ 4.5:1 */
   --ink:#0A0A0A;
   --r:20px;
   --maxw:1160px;
@@ -63,6 +97,9 @@ section{padding:clamp(56px,9vw,120px) 0;position:relative}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--acid);opacity:.6}
 h2.sec{font-size:clamp(28px,4.6vw,52px);font-weight:700;margin-bottom:16px}
 .sec-sub{color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:620px;margin-bottom:44px}
+.rv > h2.sec:last-child{margin-bottom:clamp(28px,4vw,44px)}
+.alt{background:var(--bg-2);border-block:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 
 /* ---------- nav ---------- */
 header{
@@ -122,6 +159,8 @@ header.stuck{background:rgba(8,8,10,.78);backdrop-filter:blur(14px);border-botto
 .btn-ghost:hover{border-color:var(--acid);color:var(--acid)}
 .btn-sm{padding:10px 18px;font-size:13.5px}
 .btn-lg{padding:17px 34px;font-size:16px}
+.btn:active{transform:scale(.98)}
+.card:active,.tool:active,.step:active,.res:active{transform:scale(.98)}
 
 /* ---------- hero ---------- */
 .hero{padding-top:calc(var(--nav-h) + clamp(34px,7vw,64px));padding-bottom:clamp(48px,7vw,70px);overflow:hidden}
@@ -133,35 +172,45 @@ header.stuck{background:rgba(8,8,10,.78);backdrop-filter:blur(14px);border-botto
   background:rgba(var(--acid-rgb),.08);border:1px solid rgba(var(--acid-rgb),.3);font-size:14px;color:var(--text);
 }
 .start-badge b{color:var(--acid);font-weight:600}
-.start-badge .sb-sep{color:var(--muted)}
-.start-badge #startLeft{color:var(--muted)}
 .start-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 0 rgba(var(--acid-rgb),.6);animation:pulse 1.8s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(var(--acid-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),0)}}
 .guide-legal{font-size:12.5px;color:var(--muted);margin-top:12px}
 .guide-legal a{color:var(--muted);text-decoration:underline}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px;max-width:560px}
 .stat{
   border:1px solid var(--line);background:var(--card);border-radius:14px;
-  padding:10px 16px;display:flex;align-items:baseline;gap:8px;
+  padding:12px 14px;display:flex;flex-direction:column;gap:2px;
 }
 .stat i{font-style:normal;font-family:'Unbounded';font-weight:700;font-size:19px;color:var(--acid)}
-.stat span{font-size:12.5px;color:var(--muted);letter-spacing:.02em}
-h1{font-size:clamp(38px,7.4vw,86px);font-weight:900;margin-bottom:22px;max-width:14ch}
+.stat span{font-size:12.5px;color:var(--muted);letter-spacing:.02em;line-height:1.3}
+h1{font-size:clamp(38px,4.9vw,68px);font-weight:900;margin-bottom:22px;max-width:none}
 h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
-.hero p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:540px;margin-bottom:34px}
+.hero p.lead{font-size:clamp(16px,1.8vw,19px);color:var(--muted);max-width:560px;margin-bottom:16px}
 .hero p.lead b{color:var(--text);font-weight:500}
-.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:40px}
+.hero-format{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--text);margin-bottom:30px}
+.hero-format span{display:inline-flex;align-items:center;gap:7px}
+.hero-format span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin-bottom:28px}
 .price-tag{display:flex;flex-direction:column;line-height:1.25}
 .price-tag i{font-style:normal;font-family:'Unbounded';font-weight:700;font-size:22px}
 .price-tag span{font-size:12px;color:var(--muted)}
+.price-tag .pt-sub{color:var(--muted);font-size:12px;margin-top:3px}
 .hero-author{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
-.hero-author .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--acid),var(--violet));display:grid;place-items:center;color:#000;font-weight:700;font-family:'Unbounded';font-size:15px}
+.avs{display:flex;flex:none}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#08080a;font-weight:700;font-family:'Unbounded';font-size:15px;border:2px solid var(--bg)}
+.av-a{background:linear-gradient(135deg,var(--acid),#5fb8b0)}
+.av-d{background:linear-gradient(135deg,#ff7fc4,var(--pink));margin-left:-12px}
 .hero-author b{color:var(--text);font-weight:600;display:block}
 
 /* terminal mock */
 .term{
   border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);
-  overflow:hidden;box-shadow:0 40px 90px -40px #000;
+  overflow:hidden;box-shadow:0 40px 90px -40px #000,0 0 0 1px rgba(var(--acid-rgb),.06);
+}
+@media(min-width:1001px){
+  .term-3d{perspective:1400px}
+  .term{transform:rotateY(-9deg) rotateX(4deg);transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s;box-shadow:30px 50px 100px -40px #000,0 0 80px -30px rgba(var(--acid-rgb),.25)}
+  .term:hover{transform:none}
 }
 .term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--card)}
 .term-bar u{width:11px;height:11px;border-radius:50%;background:#3a3a45;display:block}
@@ -176,7 +225,7 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .term-body .ok{color:#5bd97f}
 .caret{display:inline-block;width:8px;height:15px;background:var(--acid);vertical-align:-2px;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:44px;align-items:center}
 
 /* ---------- cards / grids ---------- */
 .grid{display:grid;gap:18px}
@@ -259,13 +308,23 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .res:hover{transform:translateY(-4px);border-color:#3a3a46}
 .res{display:block}
 .res .top{
-  height:160px;display:grid;place-items:center;align-content:center;gap:8px;
-  font-family:'Unbounded';font-weight:700;font-size:23px;text-align:center;padding:16px;
+  height:220px;position:relative;overflow:hidden;display:block;
+  font-family:'Unbounded';font-weight:700;font-size:20px;line-height:1.15;text-align:left;padding:20px 22px;
 }
+.res .top .res-name{display:block;max-width:calc(100% - 160px)}
 .res-kind{
+  display:block;margin-bottom:6px;
   font-family:'Inter';font-size:10.5px;font-weight:600;letter-spacing:.18em;
   text-transform:uppercase;opacity:.7;
 }
+.phone{
+  position:absolute;right:22px;bottom:0;width:138px;padding:5px;border-radius:24px;
+  background:#0b0b0e;box-shadow:0 24px 50px -16px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);
+  transform:translateY(40%);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.phone::before{content:"";position:absolute;top:10px;left:50%;width:34px;height:5px;border-radius:9px;background:#0b0b0e;transform:translateX(-50%);z-index:1}
+.phone img.shot{width:100%;height:auto;border-radius:19px;background:#eee}
+.res:hover .phone{transform:translateY(28%)}
 .res .bt{padding:20px 22px}
 .res h3{font-size:17px;margin-bottom:7px}
 .res p{font-size:14px;color:var(--muted)}
@@ -275,6 +334,7 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .res:hover .res-go{transform:translateX(4px)}
 
 /* ---------- game ---------- */
+.game-wrap{margin-top:clamp(56px,8vw,96px)}
 .game-box{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:clamp(12px,2.4vw,20px);text-align:center}
 #runner{
   width:100%;max-width:720px;height:clamp(150px,34vw,220px);
@@ -297,22 +357,42 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .author-check b{color:var(--text);font-weight:600}
 .author blockquote{font-size:clamp(17px,2.2vw,24px);font-family:'Unbounded';font-weight:500;line-height:1.35;margin-bottom:20px}
 .author p{color:var(--muted);margin-bottom:14px}
+.author-photo .ap-d{
+  position:absolute;right:-14px;bottom:-14px;width:38%;aspect-ratio:1;border-radius:18px;
+  background:linear-gradient(135deg,#ff7fc4,var(--pink));display:grid;place-items:center;
+  font-size:.42em;border:4px solid var(--bg-2);
+}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;text-align:left}
+.tm{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:14px 16px;transition:border-color .2s}
+.tm:hover{border-color:rgba(var(--acid-rgb),.45)}
+.tm .av{border:0;flex:none}
+.tm-t b{display:block;font-weight:600;font-size:15px}
+.tm-t span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
+.tm-t em{font-style:normal;color:var(--acid);font-size:13px}
 
 /* ---------- price ---------- */
 .pricing{
-  border-radius:26px;padding:clamp(30px,4vw,56px);
-  background:linear-gradient(160deg,#16161d,#0c0c10);border:1px solid var(--line);position:relative;overflow:hidden;
+  border-radius:26px;padding:clamp(30px,4vw,56px);position:relative;overflow:hidden;
+  border:1px solid transparent;
+  background:
+    linear-gradient(160deg,#17171f,#0b0b0f) padding-box,
+    linear-gradient(135deg,rgba(var(--acid-rgb),.85),rgba(255,46,159,.55) 45%,rgba(var(--acid-rgb),.12) 75%,rgba(255,255,255,.08)) border-box;
+  box-shadow:0 50px 120px -70px rgba(var(--acid-rgb),.3);
 }
-.pricing::after{content:"";position:absolute;width:400px;height:400px;background:rgba(var(--acid-rgb),.1);filter:blur(120px);top:-180px;right:-120px}
-.pricing-in{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;position:relative}
+.pricing::after{content:"";position:absolute;width:400px;height:400px;background:rgba(var(--acid-rgb),.1);filter:blur(120px);top:-180px;right:-120px;pointer-events:none}
+.pricing-in{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;position:relative;z-index:1}
 .big-price{font-family:'Unbounded';font-weight:900;font-size:clamp(44px,7vw,76px);line-height:1;margin-bottom:8px}
-.big-price small{font-size:.32em;color:var(--muted);font-weight:500;display:block;margin-top:12px;letter-spacing:0}
+.big-price small{font:500 14px/1.5 'Inter',sans-serif;color:var(--muted);display:block;margin-top:14px;letter-spacing:0}
+.per-lesson{display:block;margin-top:14px;font-size:13.5px;color:var(--text)}
+.per-lesson b{font-weight:600;color:var(--acid)}
+.seats{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--pink-deep);color:#fff;font-size:12px;font-weight:600;letter-spacing:.02em}
+.pricing .btn-acid{box-shadow:0 0 0 1px rgba(var(--acid-rgb),.35),0 16px 46px -12px rgba(var(--acid-rgb),.7)}
+.pricing .btn-acid:hover{box-shadow:0 0 0 1px rgba(var(--acid-rgb),.5),0 20px 56px -10px rgba(var(--acid-rgb),.85)}
 .incl{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:0}
 .incl li{display:flex;gap:12px;font-size:15.5px;line-height:1.5}
 .incl li::before{content:"→";color:var(--acid);flex:none;font-weight:700}
 
 /* ---------- гайд ---------- */
-.guide-sec{padding-top:0}
 .guide{
   display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;
   border:1px solid var(--line);border-radius:26px;background:var(--card);
@@ -370,7 +450,10 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 /* ---------- form ---------- */
 .form-wrap{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,44px)}
 .field{margin-bottom:24px}
-.field label{display:block;font-size:14.5px;font-weight:600;margin-bottom:11px}
+fieldset.field{border:0;padding:0;min-width:0}
+.field > label,.field legend{display:block;font-size:14.5px;font-weight:600;margin-bottom:11px;padding:0}
+.field legend small{font-weight:400;color:var(--muted);font-size:13px}
+.field-warn{font-size:13px;color:#ffb3d9;margin-top:10px;line-height:1.5}
 .field-hint{font-size:13px;color:var(--muted);margin:-6px 0 11px;line-height:1.5}
 .price-note{margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.5;max-width:340px}
 .price-note b{color:var(--text);font-weight:600}
@@ -379,15 +462,17 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
   padding:15px 16px;color:var(--text);font-family:inherit;font-size:16px;transition:border-color .2s;
 }
 .field input[type=text]:focus{outline:none;border-color:var(--acid)}
-.field input::placeholder{color:#5c5c69}
+.field input::placeholder{color:#7a7a88}
 .opts{display:flex;flex-wrap:wrap;gap:9px}
 .opt{position:relative}
 .opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
 .opt span{
   display:block;padding:11px 17px;border:1px solid var(--line);border-radius:999px;
-  font-size:14px;color:var(--muted);cursor:pointer;transition:.2s;background:var(--bg-2);
+  font-size:14px;font-weight:500;color:var(--muted);cursor:pointer;transition:.2s;background:var(--bg-2);
 }
+.opt:hover span{border-color:#3a3a46;color:var(--text)}
 .opt input:checked+span{border-color:var(--acid);color:var(--acid);background:rgba(var(--acid-rgb),.08)}
+.opt input:focus-visible+span{outline:2px solid var(--acid);outline-offset:2px}
 .consent{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:var(--muted);margin-bottom:24px}
 .consent input{margin-top:3px;accent-color:var(--acid);width:16px;height:16px;flex:none}
 .consent a{color:var(--muted);text-decoration:underline}
@@ -413,29 +498,6 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 .foot-brand{display:flex;align-items:center;gap:12px;text-align:left}
 .foot-mark{width:34px;height:34px;flex:none;color:var(--acid)}
 .foot-brand em{font-style:normal;color:var(--acid);opacity:.85;font-size:12.5px}
-
-/* ---------- обратный отсчёт ---------- */
-.cd-wrap{padding:0 0 clamp(40px,6vw,64px)}
-.cd{
-  display:flex;align-items:center;justify-content:space-between;gap:28px;
-  border:1px solid rgba(var(--acid-rgb),.28);border-radius:24px;padding:22px 24px 22px 30px;
-  background:radial-gradient(120% 180% at 0% 0%,rgba(var(--acid-rgb),.09),transparent 55%),var(--card);
-}
-.cd-kicker{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acid);font-weight:600;margin-bottom:6px}
-.cd-kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
-.cd-date{font:700 20px 'Unbounded';letter-spacing:-.01em}
-.cd-tiles{display:flex;align-items:center;gap:8px}
-.cd-tile{
-  min-width:84px;padding:12px 10px 10px;border-radius:16px;background:#0b0b0e;border:1px solid var(--line);
-  text-align:center;display:flex;flex-direction:column;gap:4px;
-}
-.cd-tile b{font:900 38px/1 'Unbounded';color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.02em;display:block}
-.cd-tile span{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
-.cd-tile b.tick{animation:tick .35s ease}
-@keyframes tick{0%{transform:translateY(-6px);opacity:.3}100%{transform:none;opacity:1}}
-.cd-colon{font:900 28px 'Unbounded';color:rgba(var(--acid-rgb),.6);font-style:normal;margin-top:-18px}
-.cd-btn{flex:none}
-.cd.done .cd-tiles{display:none}
 
 /* ---------- marquee ---------- */
 .marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg-2)}
@@ -469,8 +531,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 @media(max-width:1000px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .g3,.g4,.steps{grid-template-columns:repeat(2,1fr)}
-  .author{grid-template-columns:1fr;gap:26px;text-align:center}
-  .author-photo{max-width:190px;margin:0 auto}
+  .author{grid-template-columns:1fr;gap:30px;text-align:center}
+  .author-photo{width:min(190px,56vw);max-width:none;margin:0 auto}
   .author .eyebrow{justify-content:center}
   .pricing-in{grid-template-columns:1fr;gap:30px}
   .term-body{min-height:200px}
@@ -482,19 +544,13 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   .burger{display:block;width:42px;height:42px}
 }
 
-/* телефон */
-@media(max-width:1000px){
-  .cd{flex-wrap:wrap;justify-content:center;text-align:center;padding:24px}
-  .cd-text{width:100%}
-  .cd-kicker{justify-content:center}
-}
-
 @media(max-width:900px){
   .guide{grid-template-columns:1fr;gap:34px;text-align:left}
   .guide-cover{max-width:220px;margin:0 auto;padding:18px 16px}
   .gc-title{font-size:22px}
 }
 
+/* телефон */
 @media(max-width:760px){
   .guide-list{grid-template-columns:1fr}
   .guide-buy{flex-direction:column;align-items:stretch}
@@ -511,36 +567,50 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
   h1{max-width:none;font-size:clamp(32px,9vw,46px)}
   h1 em{white-space:normal}
-  .hero p.lead{font-size:16.5px;margin-bottom:28px}
+  .hero p.lead{font-size:16.5px}
+  .hero-format{font-size:13px;margin-bottom:24px}
   .sec-sub{margin-bottom:30px}
 
-  /* счётчики — ровная сетка 2×2 вместо рваного переноса */
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:26px}
-  .stat{padding:11px 14px;justify-content:flex-start}
-  .stat i{font-size:17px}
-  .stat span{font-size:12px}
+  /* счётчики — компактно в одну строку из 4 */
+  .stats{grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:24px}
+  .stat{padding:10px 4px;flex-direction:column;align-items:center;gap:3px;text-align:center;border-radius:12px}
+  .stat i{font-size:17px;line-height:1.1}
+  .stat span{font-size:10.5px;line-height:1.25;letter-spacing:0}
 
   /* кнопка на всю ширину, цена под ней */
-  .hero-actions{flex-direction:column;align-items:stretch;gap:12px;margin-bottom:30px}
+  .hero-actions{flex-direction:column;align-items:stretch;gap:12px;margin-bottom:24px}
   .hero-actions .btn{width:100%}
-  .price-tag{flex-direction:row;align-items:baseline;gap:8px;justify-content:center}
+  .price-tag{align-items:center;text-align:center}
+  .price-tag .pt-main{display:flex;align-items:baseline;gap:8px}
 
   .term-bar em{display:none}
   .term-body{padding:16px;font-size:12.5px;line-height:1.75;min-height:170px}
 
-  .g2,.g3,.steps,.fits{grid-template-columns:1fr}
+  .g2,.g3,.steps,.fits,.team{grid-template-columns:1fr}
   .g4{grid-template-columns:1fr 1fr;gap:12px}
   .card,.step,.fit,.tool{padding:22px}
   .card .num{font-size:36px}
-  .res .top{height:104px;font-size:15px}
+  .res .top{height:210px;font-size:18px;padding:18px}
   .res .bt{padding:16px}
   .res h3{font-size:15px}
-  .res p{font-size:13px}
+  .res p{font-size:13.5px}
 
-  /* урок: номер + текст, длительность отдельной строкой */
+  /* карточки why / tools / setup — горизонтальная карусель */
+  .snap{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-inline:calc(-1 * max(20px, env(safe-area-inset-left)));
+    padding:4px max(20px, env(safe-area-inset-left)) 16px;
+    scroll-padding-inline:max(20px, env(safe-area-inset-left));
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .snap::-webkit-scrollbar{display:none}
+  .snap > *{flex:0 0 78%;scroll-snap-align:start}
+  .snap > .rv{opacity:1;transform:none}
+
+  /* урок: номер слева, длительность под текстом */
   .lesson{
     grid-template-columns:44px 1fr;gap:8px 16px;padding:20px;
-    grid-template-areas:"idx body" "dur dur";
+    grid-template-areas:"idx body" ". dur";
   }
   .lesson .idx{width:44px;height:44px;font-size:16px;border-radius:12px}
   .lesson h3{font-size:17px}
@@ -567,15 +637,10 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
 /* узкий телефон */
 @media(max-width:430px){
-  .cd-tile{min-width:0;flex:1;padding:10px 4px 8px}
-  .cd-tile b{font-size:28px}
-  .cd-tile span{font-size:10.5px}
-  .cd-colon{display:none}
-  .cd-tiles{width:100%;gap:6px}
-  .cd-btn{width:100%}
   .wrap{padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
-  .g4{grid-template-columns:1fr}
-  .res .top{height:120px;font-size:18px}
+  .snap{margin-inline:calc(-1 * max(16px, env(safe-area-inset-left)));padding-inline:max(16px, env(safe-area-inset-left));scroll-padding-inline:max(16px, env(safe-area-inset-left))}
+  .res .top{font-size:17px}
+  .res .top .res-name{max-width:calc(100% - 150px)}
   .res h3{font-size:16px}
   .res p{font-size:14px}
   .hero-author{font-size:13px}
@@ -588,6 +653,9 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   *{animation-duration:.001ms !important;transition-duration:.001ms !important}
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none}
+  .term{transform:none !important}
+  .phone{transform:translateY(34%) !important}
+  .marq-in{animation:none}
 }
 </style>
 </head>
@@ -641,18 +709,17 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       </span>
       <span class="logo-text">gen z <b>school</b></span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Разделы страницы">
       <a href="/">Все направления</a>
       <a href="#program">Программа</a>
+      <a href="#author">Кто ведёт</a>
       <a href="#results">Работы</a>
-      <a href="#game">Игра</a>
-      <a href="#author">Автор</a>
       <a href="#price">Цена</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
       <a href="#apply" class="btn btn-acid btn-sm">Оставить заявку</a>
-      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mmenu"><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -660,14 +727,14 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 <div class="mobile-menu" id="mmenu">
   <a href="/">Все направления</a>
   <a href="#program">Программа</a>
+  <a href="#author">Кто ведёт</a>
   <a href="#results">Работы</a>
-  <a href="#game">Игра</a>
-  <a href="#author">Автор</a>
   <a href="#price">Цена</a>
   <a href="#faq">FAQ</a>
   <a href="#apply" class="mm-cta">Оставить заявку</a>
 </div>
 
+<main>
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="glow glow-a"></div>
@@ -675,7 +742,21 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="start-badge"><span class="dot"></span><b>Первый поток уже идёт</b><span class="sb-sep">·</span><span>второй стартует 12 ноября</span></div>
+        <div class="start-badge"><span class="dot"></span><b>Набор во 2 поток</b><span>· старт 12 ноября</span></div>
+
+        <h1>Научу делать сайты <em>без кода</em></h1>
+
+        <p class="lead">С нуля до своего сайта в интернете за две недели — и заявки с него приходят вам в Telegram. <b>ИИ пишет код, вы объясняете задачу обычными словами.</b></p>
+        <div class="hero-format"><span>5 живых эфиров</span><span>записи остаются</span><span>проверка каждой домашки</span></div>
+
+        <div class="hero-actions">
+          <a href="#apply" class="btn btn-acid btn-lg">Записаться на поток</a>
+          <div class="price-tag">
+            <div class="pt-main"><i>20 000 ₸</i> <span>за весь курс</span></div>
+            <div class="pt-sub">+ подписка Claude ≈ $20/мес, всё расскажем до оплаты</div>
+          </div>
+        </div>
+
         <div class="stats">
           <div class="stat"><i data-count="2">2</i><span>недели</span></div>
           <div class="stat"><i data-count="5">5</i><span>живых эфиров</span></div>
@@ -683,51 +764,29 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
           <div class="stat"><i data-count="15">15</i><span>мест в группе</span></div>
         </div>
 
-        <h1>Научу делать сайты <em>без кода</em></h1>
-
-        <p class="lead">С нуля до первого рабочего сайта за две недели. <b>ИИ пишет код — вы объясняете задачу обычными словами.</b> Никакого синтаксиса, никаких лекций по программированию.</p>
-
-        <div class="hero-actions">
-          <a href="#apply" class="btn btn-acid btn-lg">Записаться на поток</a>
-          <div class="price-tag">
-            <i>20 000 ₸</i>
-            <span>за весь курс</span>
-          </div>
-        </div>
-
         <div class="hero-author">
-          <div class="av">А</div>
+          <div class="avs" aria-hidden="true"><div class="av av-a">А</div><div class="av av-d">Д</div></div>
           <div>
-            <b>Амир</b>
-            разработчик, работаю с ИИ каждый день
+            <b>Амир и Диас</b>
+            Амир ведёт эфиры, домашки проверяем вдвоём
           </div>
         </div>
       </div>
 
-      <div class="term">
-        <div class="term-bar"><u></u><u></u><u></u><em>Claude Agent — moy-pervyy-sayt</em></div>
-        <div class="term-body" id="term"></div>
+      <div class="term-3d">
+        <div class="term">
+          <div class="term-bar"><u></u><u></u><u></u><em>Claude Code · Zed</em></div>
+          <div class="term-body" id="term"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="cd-wrap">
-  <div class="wrap">
-    <div class="cd done" id="countdown">
-      <div class="cd-text">
-        <div class="cd-kicker"><span class="dot"></span>Первый поток уже идёт</div>
-        <div class="cd-date">Второй поток стартует 12 ноября, набираем 15 человек</div>
-      </div>
-      <a href="#apply" class="btn btn-acid cd-btn">Записаться</a>
-    </div>
-  </div>
-</div>
-
-<div class="marq">
+<div class="marq" aria-hidden="true">
   <div class="marq-in">
-    <span>Claude Code</span><span>•</span><span>вайб-кодинг</span><span>•</span><span>без синтаксиса</span><span>•</span><span>первый сайт за вечер</span><span>•</span><span>Telegram-боты</span><span>•</span><span>Gemini</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
-    <span>Claude Code</span><span>•</span><span>вайб-кодинг</span><span>•</span><span>без синтаксиса</span><span>•</span><span>первый сайт за вечер</span><span>•</span><span>Telegram-боты</span><span>•</span><span>Gemini</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
+    <span>Claude Code</span><span>•</span><span>вайб-кодинг</span><span>•</span><span>без синтаксиса</span><span>•</span><span>первый сайт на третьем уроке</span><span>•</span><span>Telegram-боты</span><span>•</span><span>Gemini</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
+    <span>Claude Code</span><span>•</span><span>вайб-кодинг</span><span>•</span><span>без синтаксиса</span><span>•</span><span>первый сайт на третьем уроке</span><span>•</span><span>Telegram-боты</span><span>•</span><span>Gemini</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
   </div>
 </div>
 
@@ -736,19 +795,19 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   <div class="wrap">
     <div class="rv">
       <div class="eyebrow">почему сейчас</div>
-      <h2 class="sec">Момент, когда порог входа упал до нуля</h2>
-      <p class="sec-sub">Ещё два года назад сайт означал месяцы учёбы. Сегодня достаточно уметь внятно объяснить, что вы хотите.</p>
+      <h2 class="sec">Свой сайт больше не требует программиста и полугода учёбы</h2>
+      <p class="sec-sub">Раньше было два пути: платить разработчику или долго учить код. Теперь хватает умения внятно объяснить, что нужно.</p>
     </div>
-    <div class="grid g3">
+    <div class="grid g3 snap">
       <div class="card rv"><span class="num">0</span><h3>опыта нужно</h3><p>Не надо знать HTML, CSS и JavaScript. Вы описываете задачу словами — ИИ пишет код и объясняет, что сделал.</p></div>
-      <div class="card rv"><span class="num">1</span><h3>вечер на первый сайт</h3><p>На третьем уроке у вас уже будет живой сайт в интернете со своей ссылкой. Не макет — рабочая страница.</p></div>
-      <div class="card rv"><span class="num">∞</span><h3>идей можно проверить</h3><p>Сайт, бот, калькулятор, мини-игра. Когда сборка занимает вечер, вы перестаёте бояться начинать.</p></div>
+      <div class="card rv"><span class="num">3</span><h3>урок — и сайт в сети</h3><p>На третьем уроке у вас уже будет живой сайт в интернете со своей ссылкой. Не макет — рабочая страница, которая открывается с телефона.</p></div>
+      <div class="card rv"><span class="num">∞</span><h3>идей можно проверить</h3><p>Лендинг, запись, калькулятор, мини-игра. Когда сборка занимает вечера, а не месяцы, вы перестаёте бояться начинать.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============ PROGRAM ============ -->
-<section id="program" style="background:var(--bg-2);border-block:1px solid var(--line)">
+<section id="program" class="alt">
   <div class="wrap">
     <div class="rv">
       <div class="eyebrow">программа</div>
@@ -781,7 +840,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         <div class="idx">03</div>
         <div class="body">
           <h3>Первый сайт с ИИ</h3>
-          <p>Собираем сайт для реального или выдуманного бизнеса от пустой папки до ссылки в интернете. Структура, тексты, картинки, адаптив под телефон, публикация.</p>
+          <p>Собираем сайт для реального или выдуманного бизнеса от пустой папки до ссылки в интернете. Структура, тексты, адаптив под телефон, публикация на Vercel.</p>
           <div class="tags"><span class="tag">практика</span><span class="tag">адаптив</span><span class="tag">публикация</span></div>
         </div>
         <div class="dur">~120 мин</div>
@@ -791,7 +850,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         <div class="idx">04</div>
         <div class="body">
           <h3>Сайты по референсу</h3>
-          <p>Как повторить чужой уровень дизайна: где искать референсы, как объяснить ИИ нужный стиль, как переносить приёмы — анимации, сетки, типографику — в свой проект.</p>
+          <p>Как повторить чужой уровень дизайна: где искать референсы, как объяснить ИИ нужный стиль, как переносить приёмы — анимации, сетки, типографику — в свой проект. Где сгенерировать картинки и где взять бесплатные фото.</p>
           <div class="tags"><span class="tag">дизайн</span><span class="tag">референсы</span><span class="tag">анимации</span></div>
         </div>
         <div class="dur">~90 мин</div>
@@ -801,8 +860,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         <div class="idx">05</div>
         <div class="body">
           <h3>Боты и бэкенд</h3>
-          <p>Telegram-бот, приём заявок с формы, хранение данных. Момент, когда сайт перестаёт быть картинкой и начинает что-то делать.</p>
-          <div class="tags"><span class="tag">Telegram-бот</span><span class="tag">формы</span><span class="tag">база данных</span></div>
+          <p>Подключаем Telegram-бота: заявка с формы вашего сайта приходит вам в личку. Момент, когда сайт перестаёт быть картинкой и начинает работать. В конце — обзор, куда расти дальше: таблицы с заявками, напоминания, личный кабинет.</p>
+          <div class="tags"><span class="tag">Telegram-бот</span><span class="tag">формы</span><span class="tag">серверная функция</span></div>
         </div>
         <div class="dur">~120 мин</div>
       </div>
@@ -810,24 +869,25 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   </div>
 </section>
 
-<!-- ============ SETUP ============ -->
-<section id="setup">
+<!-- ============ TOOLS ============ -->
+<section id="tools">
   <div class="wrap">
     <div class="rv">
-      <div class="eyebrow">до старта</div>
-      <h2 class="sec">Подготовка занимает три шага</h2>
-      <p class="sec-sub">Видео по установке приходит до начала потока, чтобы первый урок не превратился в техподдержку.</p>
+      <div class="eyebrow">инструменты</div>
+      <h2 class="sec">Связка, которой работаем</h2>
+      <p class="sec-sub">Платить отдельно нужно только за Claude. Публикация, хранение кода и бот — бесплатно.</p>
     </div>
-    <div class="steps">
-      <div class="step rv"><u>ШАГ 01</u><h3>Ставим инструменты</h3><p>Редактор Zed и Claude Code на Windows или Mac. Пошаговое видео, скриншот каждого экрана.</p></div>
-      <div class="step rv"><u>ШАГ 02</u><h3>Регистрируем аккаунт</h3><p>Аккаунт Claude и платная подписка — по шагам, без «разберитесь сами». Только официальный доступ.</p></div>
-      <div class="step rv"><u>ШАГ 03</u><h3>Проверяем связку</h3><p>Пишем первое сообщение ИИ в Zed и убеждаемся, что всё отвечает. К уроку 1 вы приходите готовыми.</p></div>
+    <div class="grid g4 snap">
+      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-terminal"/></svg></div><h3>Claude Code в Zed</h3><p>Основной инструмент. Пишет код прямо в проекте, правит файлы, объясняет каждый шаг. Все правки видно в редакторе.</p></div>
+      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg></div><h3>Gemini</h3><p>Генерация картинок для фона и абстракций. Для честных фото товара — бесплатные фотобанки.</p></div>
+      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-link"/></svg></div><h3>Vercel и GitHub</h3><p>Публикация сайта по ссылке и место, где хранится код. Бесплатно.</p></div>
+      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg></div><h3>Telegram-бот</h3><p>Принимает заявки с формы сайта и присылает их вам в Telegram. Бесплатно.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============ FOR WHOM ============ -->
-<section id="whom" style="background:var(--bg-2);border-block:1px solid var(--line)">
+<section id="whom" class="alt">
   <div class="wrap">
     <div class="rv">
       <div class="eyebrow">кому подойдёт</div>
@@ -839,7 +899,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         <ul>
           <li>Хотите навык, который останется с вами</li>
           <li>Нет опыта в программировании — и это нормально</li>
-          <li>Есть ноутбук и пара вечеров в неделю</li>
+          <li>Есть компьютер и время: 2–3 эфира в неделю плюс 1–2 вечера на практику</li>
           <li>Нужен сайт под свой проект или идею</li>
           <li>Готовы делать руками, а не только смотреть</li>
         </ul>
@@ -858,37 +918,47 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   </div>
 </section>
 
-<!-- ============ TOOLS ============ -->
-<section id="tools">
+<!-- ============ AUTHOR ============ -->
+<section id="author">
   <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow">инструменты</div>
-      <h2 class="sec">Не только Claude</h2>
-      <p class="sec-sub">Один инструмент закрывает не всё. Учимся собирать связку, где каждый делает свою часть работы.</p>
-    </div>
-    <div class="grid g4">
-      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-terminal"/></svg></div><h3>Claude Code</h3><p>Основной инструмент. Пишет код прямо в проекте, правит файлы, объясняет каждый шаг.</p></div>
-      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg></div><h3>Gemini</h3><p>Картинки и графика для сайта: обложки, иконки, фоны — под нужный стиль.</p></div>
-      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg></div><h3>ChatGPT</h3><p>Тексты, идеи, второй взгляд. Когда нужно переформулировать или проверить решение.</p></div>
-      <div class="tool rv"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-link"/></svg></div><h3>Связки</h3><p>Как соединить инструменты в один рабочий процесс и не тратить время на переключения.</p></div>
+    <div class="author rv">
+      <div class="author-photo" style="position:relative">А<span class="ap-d" aria-hidden="true">Д</span></div>
+      <div>
+        <div class="eyebrow">кто ведёт</div>
+        <blockquote>«Я пишу код каждый день — и каждый день пишу его с ИИ. Поэтому знаю, где он врёт.»</blockquote>
+        <p>Я Амир, разработчик. ИИ для меня не эксперимент на выходных, а рабочий инструмент: боевые задачи, свои проекты, заказы. Каждый день, а не «попробовал разок».</p>
+        <p>Отсюда и курс. Я не пересказываю чужие статьи — показываю то, чем работаю сам, и заранее знаю, в каком месте вы упрётесь и что там делать.</p>
+        <p class="author-check"><b>Домашние работы проверяем лично, вдвоём с Диасом.</b> Каждую, руками. Не бот и не автопроверка: напишем, что не так и как починить.</p>
+        <div class="team">
+          <a class="tm" href="https://t.me/ameerqan" target="_blank" rel="noopener">
+            <span class="av av-a" aria-hidden="true">А</span>
+            <span class="tm-t"><b>Амир</b><span>автор курса, ведёт эфиры</span><em>@ameerqan</em></span>
+          </a>
+          <a class="tm" href="https://t.me/p1kato" target="_blank" rel="noopener">
+            <span class="av av-d" style="margin-left:0" aria-hidden="true">Д</span>
+            <span class="tm-t"><b>Диас</b><span>преподаватель, проверяет домашки</span><em>@p1kato</em></span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ RESULTS ============ -->
-<section id="results" style="background:var(--bg-2);border-block:1px solid var(--line)">
+<!-- ============ RESULTS + GAME ============ -->
+<section id="results" class="alt">
   <div class="wrap">
     <div class="rv">
       <div class="eyebrow">мои работы</div>
-      <h2 class="sec">Собрано ровно так, как учу</h2>
-      <p class="sec-sub">Каждая работа — один вечер. Откройте любую с телефона и понажимайте: меню переключается, время записи занято по-настоящему, смета считается на лету.</p>
+      <h2 class="sec">Примеры, которые я собрал этим способом</h2>
+      <p class="sec-sub">Откройте любую с телефона и понажимайте: меню переключается, время записи занято по-настоящему, смета считается на лету.</p>
     </div>
     <div class="grid g3">
 
       <a class="res rv" href="/works/coffee/" target="_blank" rel="noopener">
         <div class="top" style="background:linear-gradient(150deg,#f7f1e8,#e0cdb2);color:#2e2018">
           <span class="res-kind">кофейня</span>
-          Восьмое утро
+          <span class="res-name">Восьмое утро</span>
+          <span class="phone"><img class="shot" src="/works/coffee/shot.png" width="390" height="780" loading="lazy" alt="Скриншот сайта кофейни «Восьмое утро» на телефоне" onerror="this.parentNode.remove()"></span>
         </div>
         <div class="bt">
           <h3>Лендинг с меню и бронью</h3>
@@ -899,9 +969,10 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       </a>
 
       <a class="res rv" href="/works/barber/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#1c1e22,#0d0e10);color:#c8a45c">
+        <div class="top" style="background:linear-gradient(150deg,#2a2c31,#0d0e10);color:#c8a45c">
           <span class="res-kind" style="color:#8b8f97">барбершоп</span>
-          ЛЕЗВИЕ
+          <span class="res-name">ЛЕЗВИЕ</span>
+          <span class="phone"><img class="shot" src="/works/barber/shot.png" width="390" height="780" loading="lazy" alt="Скриншот сайта барбершопа «Лезвие» на телефоне" onerror="this.parentNode.remove()"></span>
         </div>
         <div class="bt">
           <h3>Онлайн-запись в четыре шага</h3>
@@ -914,7 +985,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <a class="res rv" href="/works/repair/" target="_blank" rel="noopener">
         <div class="top" style="background:linear-gradient(150deg,#eaf0ff,#c7d8ff);color:#2f5fe0">
           <span class="res-kind" style="color:#68718a">ремонт квартир</span>
-          Смета за минуту
+          <span class="res-name">Смета за минуту</span>
+          <span class="phone"><img class="shot" src="/works/repair/shot.png" width="390" height="780" loading="lazy" alt="Скриншот сайта-калькулятора ремонта на телефоне" onerror="this.parentNode.remove()"></span>
         </div>
         <div class="bt">
           <h3>Калькулятор со сметой</h3>
@@ -925,36 +997,16 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       </a>
 
     </div>
-  </div>
-</section>
 
-<!-- ============ GAME ============ -->
-<section id="game">
-  <div class="wrap">
-    <div class="rv" style="text-align:center">
-      <div class="eyebrow" style="justify-content:center">пример на 20 минут</div>
-      <h2 class="sec">Эту игру написал ИИ</h2>
-      <p class="sec-sub" style="margin-inline:auto;text-align:center">Ретро-раннер прямо на странице. Промпт, пара правок — и всё работает. Через две недели такое вы соберёте сами.</p>
-    </div>
-    <div class="game-box rv">
-      <canvas id="runner" width="720" height="220" tabindex="0" aria-label="Мини-игра: прыгай через блоки"></canvas>
-      <div class="game-hint">Пробел, ↑ или тап по полю — прыжок</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ AUTHOR ============ -->
-<section id="author" style="background:var(--bg-2);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="author rv">
-      <div class="author-photo">А</div>
-      <div>
-        <div class="eyebrow">Амир</div>
-        <blockquote>«Я пишу код каждый день — и каждый день пишу его с ИИ. Поэтому знаю, где он врёт.»</blockquote>
-        <p>Я разработчик. ИИ для меня не эксперимент на выходных, а рабочий инструмент: боевые задачи, свои проекты, заказы. Каждый день, а не «попробовал разок».</p>
-        <p>Отсюда и курс. Я не пересказываю чужие статьи — показываю то, чем работаю сам, и заранее знаю, в каком месте вы упрётесь и что там делать.</p>
-        <p class="author-check"><b>Домашние работы проверяем лично, вдвоём с Диасом.</b> Каждую, руками. Не бот и не автопроверка: напишем, что не так и как починить.</p>
-        <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-ghost">Написать в Telegram →</a>
+    <div class="game-wrap" id="game">
+      <div class="rv" style="text-align:center">
+        <div class="eyebrow" style="justify-content:center">пример на 20 минут</div>
+        <h2 class="sec">Эту игру написал ИИ</h2>
+        <p class="sec-sub" style="margin-inline:auto;text-align:center">Ретро-раннер прямо на странице. Сделано тем же способом, которому учим на курсе.</p>
+      </div>
+      <div class="game-box rv">
+        <canvas id="runner" width="720" height="220" tabindex="0" aria-label="Мини-игра: прыгайте через блоки"></canvas>
+        <div class="game-hint">Пробел, ↑ или клик по полю — прыжок</div>
       </div>
     </div>
   </div>
@@ -967,19 +1019,150 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <div class="pricing-in">
         <div>
           <div class="eyebrow">стоимость</div>
-          <div class="big-price">20 000 ₸<small>второй поток · старт 12 ноября · 15 мест</small></div>
-          <a href="#apply" class="btn btn-acid btn-lg" style="margin-top:22px">Записаться на поток</a>
-          <p class="price-note"><b>Плюс подписка Claude Pro</b>, около $20 в месяц. Оплачивается отдельно, напрямую Anthropic, картой, которая работает с зарубежными сервисами. Без неё курс не пройти.</p>
+          <div class="big-price">20 000 ₸<small>второй поток · старт 12 ноября · <span class="seats">15 мест</span></small></div>
+          <div class="per-lesson">это <b>≈ 4 000 ₸ за урок</b> с живым разбором</div>
+          <div><a href="#apply" class="btn btn-acid btn-lg" style="margin-top:22px">Записаться на поток</a></div>
+          <p class="price-note"><b>Плюс подписка Claude Pro</b>, около $20 в месяц. Оплачивается отдельно, напрямую Anthropic, картой, которая работает с зарубежными сервисами. Без неё курс не пройти. Если сомневаетесь — проверим вашу карту вместе до оплаты курса.</p>
         </div>
         <ul class="incl">
           <li>5 живых эфиров с разработчиком</li>
           <li>Полная настройка инструментов до старта</li>
           <li>Первый сайт, опубликованный в интернете</li>
-          <li>Генерация картинок и графики для проектов</li>
+          <li>Картинки для сайта: где сгенерировать и где взять бесплатные фото</li>
           <li>Telegram-бот и приём заявок с формы</li>
           <li>Записи всех уроков остаются в чате</li>
           <li>Личный разбор каждой домашней работы от преподавателей, а не от бота</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SETUP ============ -->
+<section id="setup" class="alt">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">до старта</div>
+      <h2 class="sec">Подготовка занимает три шага</h2>
+      <p class="sec-sub">Видео по установке приходит до начала потока, чтобы первый урок не превратился в техподдержку.</p>
+    </div>
+    <div class="steps snap">
+      <div class="step rv"><u>ШАГ 01</u><h3>Ставим инструменты</h3><p>Редактор Zed и Claude Code на Windows, Mac или Linux. Пошаговое видео, скриншот каждого экрана.</p></div>
+      <div class="step rv"><u>ШАГ 02</u><h3>Регистрируем аккаунт</h3><p>Аккаунт Claude и платная подписка — по шагам, без «разберитесь сами». Только официальный доступ.</p></div>
+      <div class="step rv"><u>ШАГ 03</u><h3>Проверяем связку</h3><p>Пишем первое сообщение ИИ в Zed и убеждаемся, что всё отвечает. К уроку 1 вы приходите готовыми.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">faq</div>
+      <h2 class="sec">Частые вопросы</h2>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="q rv"><button type="button">Когда старт следующего потока?<i aria-hidden="true">+</i></button><div class="a"><p>Второй поток стартует 12 ноября. Первый поток идёт прямо сейчас. В группе 15 мест, поэтому записаться заранее имеет смысл.</p></div></div>
+      <div class="q rv"><button type="button">Сколько выйдет всего?<i aria-hidden="true">+</i></button><div class="a"><p>Курс — 20 000 ₸ один раз. Плюс подписка Claude Pro, около $20 в месяц: её оплачиваете вы напрямую Anthropic, на время курса это один месяц. Бесплатный план Claude не подойдёт. Хостинг на Vercel, GitHub и Telegram-бот — бесплатно. Актуальную цену подписки смотрите на claude.com, она меняется.</p></div></div>
+      <div class="q rv"><button type="button">Боюсь, что не смогу оплатить подписку Claude<i aria-hidden="true">+</i></button><div class="a"><p>Напишите нам до оплаты курса — поможем зарегистрироваться и проверим вашу карту вместе. Сначала убедимся, что всё работает, потом оплата.</p></div></div>
+      <div class="q rv"><button type="button">Можно ли вернуть деньги?<i aria-hidden="true">+</i></button><div class="a"><p>После оплаты возврата нет, поэтому все условия я рассказываю заранее: что нужен компьютер, платная подписка Claude и поддерживаемая страна. Исключение одно: если поток отменю или перенесу я сам, верну деньги полностью или перенесу вас на следующий поток, как выберете.</p></div></div>
+      <div class="q rv"><button type="button">Нужен ли опыт в программировании?<i aria-hidden="true">+</i></button><div class="a"><p>Нет. В этом весь смысл вайб-кодинга: вы объясняете задачу обычным языком, а код пишет ИИ. Ваша работа — понятно формулировать и проверять результат.</p></div></div>
+      <div class="q rv"><button type="button">Подойдёт, если я гуманитарий и не дружу с техникой?<i aria-hidden="true">+</i></button><div class="a"><p>Да. Главный навык здесь — внятно объяснить словами, что вы хотите, а это как раз сильная сторона гуманитариев. Установку проходим по шагам с видео, терминал не нужен, а на эфирах можно спрашивать всё, что непонятно.</p></div></div>
+      <div class="q rv"><button type="button">Что нужно для учёбы?<i aria-hidden="true">+</i></button><div class="a"><p>Компьютер на Windows, Mac или Linux и интернет. С одного телефона курс не пройти — нужен компьютер.</p></div></div>
+      <div class="q rv"><button type="button">А доступ к ИИ из нашего региона?<i aria-hidden="true">+</i></button><div class="a"><p>Работаем только через официальный доступ, обходные схемы не разбираем. До оплаты проверьте, что ваша страна есть в списке поддерживаемых на сайте Anthropic. Регистрацию и подписку разбираем по шагам в подготовительном видео — никто не остаётся один на один с проблемой.</p></div></div>
+      <div class="q rv"><button type="button">Сколько времени займёт в неделю?<i aria-hidden="true">+</i></button><div class="a"><p>2–3 живых эфира в неделю по 1,5–2 часа и ещё 1–2 вечера на практику. Без практики между занятиями курс не работает.</p></div></div>
+      <div class="q rv"><button type="button">Пропущу урок — что делать?<i aria-hidden="true">+</i></button><div class="a"><p>Все записи остаются в чате потока. Две недели дают запас времени, чтобы догнать и сдать практику позже.</p></div></div>
+      <div class="q rv"><button type="button">Обязательно ли включать камеру и микрофон?<i aria-hidden="true">+</i></button><div class="a"><p>Нет, можно участвовать без камеры и микрофона, а вопросы задавать в чате.</p></div></div>
+      <div class="q rv"><button type="button">Здесь учат искать клиентов и продавать?<i aria-hidden="true">+</i></button><div class="a"><p>Нет, и это осознанно. Курс только про то, как делать: инструменты, сайты, боты. Продажи и клиенты — отдельная тема, сюда она не входит.</p></div></div>
+      <div class="q rv"><button type="button">Как проходит оплата?<i aria-hidden="true">+</i></button><div class="a"><p>Вы оставляете заявку — я пишу в Telegram, отвечаю на вопросы и присылаю реквизиты. Оплата до старта потока, место закрепляется после оплаты.</p></div></div>
+      <div class="q rv"><button type="button">Чем гайд отличается от курса?<i aria-hidden="true">+</i></button><div class="a"><p>Гайд это PDF, который вы читаете сами: что такое вайбкодинг, что с ним можно сделать, ошибки новичков и план на первую неделю. Курс это практика с поддержкой: пять живых эфиров с разработчиком, свой сайт в интернете, заявки в Telegram и проверка каждой домашней работы. Если пока не уверены, что это ваше, начните с гайда.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLY ============ -->
+<section id="apply" class="alt">
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center">заявка</div>
+      <h2 class="sec">Оставить заявку на 12 ноября</h2>
+      <p class="sec-sub" style="margin-inline:auto;text-align:center">30 секунд, без оплаты. Напишу вам в Telegram в течение дня: отвечу на вопросы и вместе проверим подписку Claude. Место закрепляется после оплаты.</p>
+    </div>
+
+    <div class="form-wrap rv">
+      <form id="applyForm">
+        <div class="field">
+          <label for="name">Как вас зовут?</label>
+          <input type="text" id="name" name="name" placeholder="Имя" maxlength="80" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="contact">Telegram или телефон</label>
+          <input type="text" id="contact" name="contact" placeholder="@username или +7 ..." maxlength="120" required>
+        </div>
+
+        <fieldset class="field">
+          <legend>Ваш уровень</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="level" value="Полный ноль" required><span>Полный ноль</span></label>
+            <label class="opt"><input type="radio" name="level" value="Пробовал(а) ИИ"><span>Пробовал(а) ИИ</span></label>
+            <label class="opt"><input type="radio" name="level" value="Делал(а) сайты"><span>Делал(а) сайты</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Зачем вам курс <small>· необязательно</small></legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="goal" value="Хочу навык на будущее"><span>Хочу навык на будущее</span></label>
+            <label class="opt"><input type="radio" name="goal" value="Нужен сайт под свой проект"><span>Сайт под свой проект</span></label>
+            <label class="opt"><input type="radio" name="goal" value="Интересно разобраться в ИИ"><span>Разобраться в ИИ</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>С чего будете работать</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="device" value="Windows" required><span>Windows</span></label>
+            <label class="opt"><input type="radio" name="device" value="Mac"><span>Mac</span></label>
+            <label class="opt"><input type="radio" name="device" value="Linux"><span>Linux</span></label>
+            <label class="opt"><input type="radio" name="device" value="Только телефон"><span>Только телефон</span></label>
+          </div>
+          <p class="field-warn" id="phoneWarn" hidden>Для курса нужен компьютер — напишите нам, подскажем, что делать.</p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Сможете оплатить подписку Claude?</legend>
+          <p class="field-hint">Около $20 в месяц, отдельно от курса. Нужна карта, которой можно платить за границу.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="card" value="Да, есть карта" required><span>Да, есть карта</span></label>
+            <label class="opt"><input type="radio" name="card" value="Нет карты"><span>Нет карты</span></label>
+            <label class="opt"><input type="radio" name="card" value="Не знаю"><span>Не знаю</span></label>
+          </div>
+        </fieldset>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" required>
+          <span>Согласен(на) на обработку данных для связи по курсу.</span>
+        </label>
+
+        <!-- ловушка для ботов: живой человек это поле не видит и не заполняет -->
+        <div class="hp" aria-hidden="true">
+          <label>Не заполняйте это поле<input type="text" name="company" id="hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-acid btn-lg" style="width:100%">Отправить заявку</button>
+        <p class="form-note">Это ни к чему не обязывает.</p>
+      </form>
+
+      <div class="done" id="done" role="status">
+        <div class="ok" id="doneIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h3 id="doneTitle" tabindex="-1">Заявка отправлена</h3>
+        <p id="doneText">Она уже у меня в Telegram. Напишу вам в течение дня — отвечу на вопросы и вместе проверим подписку Claude.</p>
+        <textarea id="leadText" class="lead-text" readonly rows="6" aria-label="Текст заявки" hidden></textarea>
+        <div class="done-actions">
+          <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Открыть @ameerqan</a>
+          <button type="button" id="copyAgain" class="btn btn-ghost" hidden>Скопировать текст</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1014,7 +1197,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
         <div class="guide-buy">
           <div class="guide-price">5 000 ₸<small>PDF, остаётся у вас</small></div>
-          <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Купить в Telegram</a>
+          <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Купить гайд в Telegram</a>
         </div>
         <p class="guide-legal">Файл цифровой, после отправки возврат не производится.</p>
         <div class="guide-vs">
@@ -1036,117 +1219,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
     </div>
   </div>
 </section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" style="background:var(--bg-2);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow">faq</div>
-      <h2 class="sec">Частые вопросы</h2>
-    </div>
-    <div class="faq" id="faqList">
-      <div class="q rv"><button type="button">Когда старт следующего потока?<i>+</i></button><div class="a"><p>Второй поток стартует 12 ноября. Первый поток идёт прямо сейчас. В группе 15 мест, поэтому записаться заранее имеет смысл.</p></div></div>
-      <div class="q rv"><button type="button">Можно ли вернуть деньги?<i>+</i></button><div class="a"><p>После оплаты возврата нет, поэтому все условия я рассказываю заранее: что нужен компьютер, платная подписка Claude и поддерживаемая страна. Исключение одно: если поток отменю или перенесу я сам, верну деньги полностью или перенесу вас на следующий поток, как выберете.</p></div></div>
-      <div class="q rv"><button type="button">Нужен ли опыт в программировании?<i>+</i></button><div class="a"><p>Нет. В этом весь смысл вайб-кодинга: вы объясняете задачу обычным языком, а код пишет ИИ. Ваша работа — понятно формулировать и проверять результат.</p></div></div>
-      <div class="q rv"><button type="button">Что нужно для учёбы?<i>+</i></button><div class="a"><p>Ноутбук на Windows, Mac или Linux, интернет и пара свободных вечеров в неделю. С одного телефона курс не пройти — нужен компьютер. Ещё до оплаты стоит проверить, что ваша страна есть в списке поддерживаемых на сайте Anthropic.</p></div></div>
-      <div class="q rv"><button type="button">Нужно ли платить за что-то ещё, кроме курса?<i>+</i></button><div class="a"><p>Да, и я говорю об этом до оплаты. Claude Code работает только на платном аккаунте Claude — бесплатный план не подойдёт. Это отдельная подписка, её оплачиваете вы сами напрямую. Актуальную цену смотрите на claude.com, она меняется.</p></div></div>
-      <div class="q rv"><button type="button">А доступ к ИИ из нашего региона?<i>+</i></button><div class="a"><p>Работаем только через официальный доступ, обходные схемы не разбираем. До оплаты проверьте, что ваша страна есть в списке поддерживаемых на сайте Anthropic. Регистрацию и подписку разбираем по шагам в подготовительном видео — никто не остаётся один на один с проблемой.</p></div></div>
-      <div class="q rv"><button type="button">Пропущу урок — что делать?<i>+</i></button><div class="a"><p>Все записи остаются в чате потока. Две недели дают запас времени, чтобы догнать и сдать практику позже.</p></div></div>
-      <div class="q rv"><button type="button">Здесь учат искать клиентов и продавать?<i>+</i></button><div class="a"><p>Нет, и это осознанно. Курс только про то, как делать: инструменты, сайты, боты. Продажи и клиенты — отдельная тема, сюда она не входит.</p></div></div>
-      <div class="q rv"><button type="button">Чем гайд отличается от курса?<i>+</i></button><div class="a"><p>Гайд это PDF, который вы читаете сами: что такое вайбкодинг, что с ним можно сделать, ошибки новичков и план на первую неделю. Курс это практика с поддержкой: пять живых эфиров с разработчиком, свой сайт в интернете, заявки в Telegram и проверка каждой домашней работы. Если пока не уверены, что это ваше, начните с гайда.</p></div></div>
-      <div class="q rv"><button type="button">Сколько времени займёт в неделю?<i>+</i></button><div class="a"><p>Примерно 2–3 вечера: сам урок и практика после него. Без практики между занятиями курс не работает.</p></div></div>
-      <div class="q rv"><button type="button">Как проходит оплата?<i>+</i></button><div class="a"><p>Вы оставляете заявку — я пишу в Telegram, отвечаю на вопросы и присылаю реквизиты. Оплата до старта потока.</p></div></div>
-      <div class="q rv"><button type="button">Обязательно ли включать камеру и микрофон?<i>+</i></button><div class="a"><p>Нет, можно участвовать без камеры и микрофона, а вопросы задавать в чате.</p></div></div>
-      <div class="q rv"><button type="button">Подойдёт ли курс девушкам?<i>+</i></button><div class="a"><p>Да, конечно! Курс подходит всем, кто хочет научиться создавать свои проекты с помощью ИИ. Опыт в программировании не нужен.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ APPLY ============ -->
-<section id="apply">
-  <div class="wrap">
-    <div class="rv" style="text-align:center">
-      <div class="eyebrow" style="justify-content:center">заявка</div>
-      <h2 class="sec">Забронировать место</h2>
-      <p class="sec-sub" style="margin-inline:auto;text-align:center">Пара вопросов, чтобы я понимал, с кем работаю. После отправки открою чат в Telegram.</p>
-    </div>
-
-    <div class="form-wrap rv">
-      <form id="applyForm">
-        <div class="field">
-          <label for="name">Как вас зовут?</label>
-          <input type="text" id="name" name="name" placeholder="Имя" required>
-        </div>
-
-        <div class="field">
-          <label for="contact">Telegram или телефон</label>
-          <input type="text" id="contact" name="contact" placeholder="@username или +7 ..." required>
-        </div>
-
-        <div class="field">
-          <label>Ваш уровень</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="level" value="Полный ноль" checked><span>Полный ноль</span></label>
-            <label class="opt"><input type="radio" name="level" value="Пробовал(а) ИИ"><span>Пробовал(а) ИИ</span></label>
-            <label class="opt"><input type="radio" name="level" value="Делал(а) сайты"><span>Делал(а) сайты</span></label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Зачем вам курс</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="goal" value="Хочу навык на будущее" checked><span>Хочу навык на будущее</span></label>
-            <label class="opt"><input type="radio" name="goal" value="Нужен сайт под свой проект"><span>Сайт под свой проект</span></label>
-            <label class="opt"><input type="radio" name="goal" value="Интересно разобраться в ИИ"><span>Разобраться в ИИ</span></label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>С чего будете работать</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="device" value="Ноутбук Windows" checked><span>Ноутбук Windows</span></label>
-            <label class="opt"><input type="radio" name="device" value="Mac"><span>Mac</span></label>
-            <label class="opt"><input type="radio" name="device" value="Только телефон"><span>Только телефон</span></label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Сможете оплатить подписку Claude?</label>
-          <p class="field-hint">Около $20 в месяц, отдельно от курса. Нужна карта, которой можно платить за границу.</p>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="card" value="Да, есть карта" required><span>Да, есть карта</span></label>
-            <label class="opt"><input type="radio" name="card" value="Нет карты"><span>Нет карты</span></label>
-            <label class="opt"><input type="radio" name="card" value="Не знаю"><span>Не знаю</span></label>
-          </div>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" id="consent" required>
-          <span>Согласен(на) на обработку данных для связи по курсу.</span>
-        </label>
-
-        <!-- ловушка для ботов: живой человек это поле не видит и не заполняет -->
-        <div class="hp" aria-hidden="true">
-          <label>Не заполняйте это поле<input type="text" name="company" id="hp" tabindex="-1" autocomplete="off"></label>
-        </div>
-
-        <button type="submit" id="submitBtn" class="btn btn-acid btn-lg" style="width:100%">Оставить заявку</button>
-        <p class="form-note">Заявка придёт мне в Telegram. Отвечу в течение дня.</p>
-      </form>
-
-      <div class="done" id="done">
-        <div class="ok" id="doneIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
-        <h3 id="doneTitle">Заявка отправлена</h3>
-        <p id="doneText">Она уже у меня в Telegram. Напишу вам в ближайшее время — отвечу на вопросы и расскажу про оплату.</p>
-        <textarea id="leadText" class="lead-text" readonly rows="6" aria-label="Текст заявки" hidden></textarea>
-        <div class="done-actions">
-          <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Открыть @ameerqan</a>
-          <button type="button" id="copyAgain" class="btn btn-ghost" hidden>Скопировать текст</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
 <div class="sticky-cta" id="stickyCta">
   <div class="sp"><i>20 000 ₸</i><span>старт 12 ноября</span></div>
@@ -1170,8 +1243,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 </footer>
 
 <script>
-/* ====== настройки: меняй здесь ====== */
-const TG = 'ameerqan';   // ник в Telegram без @
+const t0 = Date.now();   // время загрузки: сервер по нему отсекает слишком быстрые (ботовые) заявки
 
 /* ====== шапка ====== */
 const hdr = document.getElementById('hdr');
@@ -1179,15 +1251,17 @@ addEventListener('scroll', () => hdr.classList.toggle('stuck', scrollY > 20), {p
 
 /* ====== мобильное меню ====== */
 const burger = document.getElementById('burger'), mmenu = document.getElementById('mmenu');
-const closeMenu = () => { burger.classList.remove('on'); mmenu.classList.remove('on'); document.body.classList.remove('locked'); };
-burger.onclick = () => {
-  const on = burger.classList.toggle('on');
+const setMenu = (on) => {
+  burger.classList.toggle('on', on);
   mmenu.classList.toggle('on', on);
   document.body.classList.toggle('locked', on);
+  burger.setAttribute('aria-expanded', on ? 'true' : 'false');
 };
+const closeMenu = () => setMenu(false);
+burger.onclick = () => setMenu(!burger.classList.contains('on'));
 mmenu.querySelectorAll('a').forEach(a => a.onclick = closeMenu);
 addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-addEventListener('resize', () => { if (innerWidth > 760) closeMenu(); });
+addEventListener('resize', () => { if (innerWidth > 940) closeMenu(); });
 
 /* ====== появление блоков при скролле ====== */
 const io = new IntersectionObserver((entries) => {
@@ -1239,12 +1313,24 @@ function type() {
 setTimeout(type, 700);
 
 /* ====== FAQ ====== */
-document.querySelectorAll('#faqList .q').forEach(q => {
+const qs = document.querySelectorAll('#faqList .q');
+qs.forEach((q, n) => {
   const btn = q.querySelector('button'), a = q.querySelector('.a');
+  a.id = 'faq-a' + n;
+  btn.setAttribute('aria-controls', a.id);
+  btn.setAttribute('aria-expanded', 'false');
   btn.onclick = () => {
     const open = q.classList.contains('open');
-    document.querySelectorAll('#faqList .q').forEach(o => { o.classList.remove('open'); o.querySelector('.a').style.maxHeight = null; });
-    if (!open) { q.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    qs.forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.a').style.maxHeight = null;
+      o.querySelector('button').setAttribute('aria-expanded', 'false');
+    });
+    if (!open) {
+      q.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+    }
   };
 });
 // при повороте экрана текст перевёрстывается — пересчитываем высоту открытого ответа
@@ -1267,16 +1353,23 @@ syncSticky();
 /* ====== форма заявки ====== */
 const form = document.getElementById('applyForm');
 const doneBox = document.getElementById('done');
+const val = (f, k) => (f.get(k) || '').toString().trim();
+
+// «только телефон» — сразу честно предупреждаем, что нужен компьютер
+const phoneWarn = document.getElementById('phoneWarn');
+form.querySelectorAll('input[name=device]').forEach(r => r.addEventListener('change', () => {
+  phoneWarn.hidden = !form.querySelector('input[name=device][value="Только телефон"]').checked;
+}));
 
 const buildMsg = () => {
   const f = new FormData(form);
   return 'Заявка на курс «Вайбкодинг» · gen z school\n' +
-    'Имя: ' + f.get('name') + '\n' +
-    'Контакт: ' + f.get('contact') + '\n' +
-    'Уровень: ' + f.get('level') + '\n' +
-    'Цель: ' + f.get('goal') + '\n' +
-    'Устройство: ' + f.get('device') + '\n' +
-    'Подписка Claude: ' + f.get('card');
+    'Имя: ' + val(f, 'name') + '\n' +
+    'Контакт: ' + val(f, 'contact') + '\n' +
+    'Уровень: ' + (val(f, 'level') || '—') + '\n' +
+    'Цель: ' + (val(f, 'goal') || '—') + '\n' +
+    'Устройство: ' + (val(f, 'device') || '—') + '\n' +
+    'Подписка Claude: ' + (val(f, 'card') || '—');
 };
 
 const copyText = (txt) => {
@@ -1296,7 +1389,7 @@ function showManual(msg) {
   document.getElementById('doneIcon').firstElementChild.innerHTML = '<use href="#i-clipboard"/>';
   document.getElementById('doneTitle').textContent = 'Почти готово';
   document.getElementById('doneText').textContent =
-    'Отправить автоматически не вышло. Текст заявки скопирован — откройте чат и вставьте его.';
+    'Отправить автоматически не вышло. Скопируйте текст ниже и отправьте нам в Telegram.';
   const ta = document.getElementById('leadText');
   ta.value = msg; ta.hidden = false;
   document.getElementById('copyAgain').hidden = false;
@@ -1305,6 +1398,10 @@ function showManual(msg) {
 
 form.onsubmit = async (e) => {
   e.preventDefault();
+  // пробелы по краям не считаем ответом
+  ['name', 'contact'].forEach(id => { const el = document.getElementById(id); el.value = el.value.trim(); });
+  if (!form.reportValidity()) return;
+
   const f = new FormData(form);
   const msg = buildMsg();
   const btn = document.getElementById('submitBtn');
@@ -1318,8 +1415,9 @@ form.onsubmit = async (e) => {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        direction: 'Вайбкодинг', name: f.get('name'), contact: f.get('contact'), level: f.get('level'),
-        goal: f.get('goal'), device: f.get('device'), card: f.get('card'), company: f.get('company')
+        direction: 'Вайбкодинг', name: val(f, 'name'), contact: val(f, 'contact'), level: val(f, 'level'),
+        goal: val(f, 'goal'), device: val(f, 'device'), card: val(f, 'card'), company: val(f, 'company'),
+        t: Date.now() - t0, source: [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')).map(([k, v]) => k + '=' + v).join(' ').slice(0, 100)
       })
     });
     sent = r.ok && (await r.json().catch(() => ({}))).ok === true;
@@ -1330,6 +1428,7 @@ form.onsubmit = async (e) => {
   form.style.display = 'none';
   doneBox.classList.add('on');
   if (!sent) showManual(msg);
+  document.getElementById('doneTitle').focus();
 };
 
 // повторное копирование, если буфер не сработал или текст потерялся
@@ -1343,10 +1442,10 @@ document.getElementById('copyAgain').onclick = function () {
 (() => {
   const cv = document.getElementById('runner'), ctx = cv.getContext('2d');
 
-  const touch = matchMedia('(hover:none)').matches;
-  const TAP_HINT = touch ? 'НАЖМИТЕ, ЧТОБЫ НАЧАТЬ' : 'НАЖМИТЕ ПРОБЕЛ ИЛИ КЛИКНИТЕ';
+  const touch = matchMedia('(pointer:coarse)').matches;
+  const TAP_HINT = touch ? 'ТАПНИТЕ, ЧТОБЫ ИГРАТЬ' : 'НАЖМИТЕ ПРОБЕЛ ИЛИ КЛИКНИТЕ';
   document.querySelector('.game-hint').textContent =
-    touch ? 'Тап по полю — прыжок' : 'Пробел, ↑ или тап по полю — прыжок';
+    touch ? 'Тап по полю — прыжок' : 'Пробел, ↑ или клик по полю — прыжок';
 
   let W = 720, H = 220, k = 1, groundY = 194;   // k — масштаб под текущий размер
   let hero, obs = [], speed, score, best = 0, state = 'idle', t = 0;
@@ -1388,16 +1487,20 @@ document.getElementById('copyAgain').onclick = function () {
     if (hero.y >= groundY - hero.s - 0.5) hero.vy = -11.5 * k;
   }
 
-  // игра на экране? только тогда перехватываем пробел и тратим кадры
+  // игра на экране? только тогда тратим кадры
   const onScreen = () => {
     const r = cv.getBoundingClientRect();
     return r.bottom > 0 && r.top < innerHeight;
   };
 
+  // пробел/стрелку забираем, только если фокус на игре или ни на чём (body),
+  // чтобы не ломать кнопки, ссылки и прокрутку страницы
   addEventListener('keydown', e => {
-    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
-    if (typing || !onScreen()) return;
-    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); jump(); }
+    if (e.code !== 'Space' && e.code !== 'ArrowUp') return;
+    const tgt = e.target;
+    if (tgt !== cv && tgt !== document.body && tgt !== document.documentElement) return;
+    if (!onScreen()) return;
+    e.preventDefault(); jump();
   });
   cv.addEventListener('pointerdown', e => { e.preventDefault(); cv.focus(); jump(); });
 

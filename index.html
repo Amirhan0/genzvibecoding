@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>gen z school · учим создавать с нуля</title>
-<meta name="description" content="Школа gen z: IT, дизайн и другие направления для тех, кто начинает с нуля. Живые эфиры, практика и проверка каждой работы.">
-<meta property="og:title" content="gen z school">
-<meta property="og:description" content="Учим создавать с нуля: IT, дизайн и другие направления. Живые эфиры и только практика.">
+<title>gen z school — курс вайбкодинга и IT с нуля</title>
+<meta name="description" content="Школа gen z: курс вайбкодинга — свой сайт за две недели без знания кода. 5 живых эфиров, проверка каждой домашки, второй поток 12 ноября. Дизайн скоро.">
+<link rel="canonical" href="https://genzschool.vercel.app/">
+<meta property="og:title" content="gen z school — курс вайбкодинга и IT с нуля">
+<meta property="og:description" content="Свой сайт за две недели без знания кода: 5 живых эфиров и проверка каждой домашки. Набор во второй поток — 12 ноября.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="gen z school">
 <meta property="og:url" content="https://genzschool.vercel.app/">
 <meta property="og:image" content="https://genzschool.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
@@ -15,13 +18,25 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><path d='M62 2 C98 -4 126 26 118 62 C112 96 92 120 58 118 C24 116 0 94 2 58 C4 24 28 8 62 2 Z' fill='%2381DAD3'/><rect x='33' y='42' width='11' height='24' rx='5.5' fill='%230A0A0A'/><rect x='76' y='40' width='11' height='24' rx='5.5' fill='%230A0A0A'/><path d='M34 78 Q60 104 86 76' fill='none' stroke='%230A0A0A' stroke-width='11' stroke-linecap='round'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+<!-- Permanent Marker нужен только для двух стикеров в хиро: грузим лишь эти буквы -->
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&text=LESTHORYMDINGAPBW%20&display=swap" rel="stylesheet">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "gen z school",
+  "url": "https://genzschool.vercel.app/",
+  "logo": "https://genzschool.vercel.app/logo.svg",
+  "sameAs": ["https://www.instagram.com/genz.school.kz/"]
+}
+</script>
 <style>
 :root{
   --bg:#08080a; --bg-2:#0e0e12; --card:#131318; --card-2:#17171e; --line:#26262f;
   --text:#f2f2f5; --muted:#8b8b98;
-  --acid:#81DAD3; --acid-rgb:129,218,211; --pink:#FF2E9F; --ink:#0A0A0A;
+  --acid:#81DAD3; --acid-rgb:129,218,211; --pink:#FF2E9F; --pink-deep:#D6157F; --ink:#0A0A0A;
   --r:22px; --maxw:1160px; --nav-h:68px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -31,6 +46,7 @@ body.locked{overflow:hidden}
 h1,h2,h3{font-family:'Unbounded','Inter',sans-serif;line-height:1.06;letter-spacing:-.02em}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--acid);color:#000}
+:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
 .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left)) max(20px,env(safe-area-inset-right))}
 section{padding:clamp(60px,9vw,120px) 0;position:relative}
 .alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -47,6 +63,7 @@ h2.sec span{color:var(--acid)}
 .btn-acid:hover{transform:translateY(-2px);box-shadow:0 12px 34px -10px rgba(var(--acid-rgb),.6)}
 .btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02)}
 .btn-ghost:hover{border-color:var(--acid);color:var(--acid)}
+.btn:active{transform:scale(.98)}
 .btn-lg{padding:17px 32px;font-size:16px}
 .btn-sm{padding:10px 18px;font-size:13.5px}
 
@@ -84,9 +101,11 @@ header.stuck{background:rgba(8,8,10,.8);backdrop-filter:blur(14px);border-bottom
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
 .badge{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:rgba(var(--acid-rgb),.08);border:1px solid rgba(var(--acid-rgb),.3);font-size:14px;margin-bottom:26px}
 .badge b{color:var(--acid);font-weight:600}
-.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
+a.badge{transition:border-color .2s,background .2s}
+a.badge:hover{border-color:var(--acid);background:rgba(var(--acid-rgb),.14)}
+.badge .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),.6)}70%{box-shadow:0 0 0 10px rgba(var(--acid-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),0)}}
-h1{font-size:clamp(44px,8vw,96px);font-weight:900;margin-bottom:24px}
+h1{font-size:clamp(44px,7vw,84px);font-weight:900;margin-bottom:24px}
 h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .lead{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:560px;margin-bottom:34px}
@@ -115,7 +134,7 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .dir.main{border-color:rgba(var(--acid-rgb),.45);background:radial-gradient(130% 90% at 100% 0%,rgba(var(--acid-rgb),.12),transparent 55%),var(--card)}
 .status{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:22px}
 .status.open{background:var(--acid);color:var(--ink)}
-.status.soon{background:var(--pink);color:#fff}
+.status.soon{background:var(--pink-deep);color:#fff}
 .status.you{border:1px dashed var(--muted);color:var(--muted)}
 .dir h3{font-size:26px;margin-bottom:8px}
 .dir .sub{color:var(--muted);font-size:15px;margin-bottom:20px}
@@ -124,7 +143,8 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .dir li::before{content:"";flex:none;width:15px;height:15px;margin-top:3px;background:var(--acid);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.8 12.6 9.6 17.4 19.2 6.9' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.8 12.6 9.6 17.4 19.2 6.9' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.dir .price{font-family:'Unbounded';font-weight:700;font-size:22px;margin-bottom:18px}
+.dir .price{font-family:'Unbounded';font-weight:700;font-size:22px;margin-bottom:4px}
+.dir .price-note{font-size:13.5px;color:var(--muted);margin-bottom:18px}
 .dir .price small{font-family:'Inter';font-weight:500;font-size:13px;color:var(--muted);margin-left:6px}
 .dir .btn{margin-top:auto;align-self:stretch}
 .dir.ghost{border-style:dashed;background:transparent}
@@ -142,11 +162,12 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .person{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:32px;display:flex;gap:26px;align-items:flex-start}
 .ava{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font:900 40px 'Unbounded'}
 .ava.a{background:linear-gradient(135deg,var(--acid),#3f8f88);color:var(--ink)}
-.ava.d{background:linear-gradient(135deg,var(--pink),#a8145f);color:#fff}
+.ava.d{background:linear-gradient(135deg,var(--pink-deep),#a8145f);color:#fff}
 .person h3{font-size:26px;margin-bottom:10px}
 .role{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:14px}
-.role.dev{background:var(--pink);color:#fff}
-.role.teach{background:var(--acid);color:var(--ink)}
+/* цвет роли совпадает с аватаром: Амир — бирюзовый, Диас — розовый */
+.role.dev{background:var(--acid);color:var(--ink)}
+.role.teach{background:var(--pink-deep);color:#fff}
 .person p{color:var(--muted);font-size:15px}
 .team-note{margin-top:22px;font-size:16px;color:var(--muted)}
 .team-note b{color:var(--acid);font-weight:600}
@@ -155,7 +176,13 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .work{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card);transition:.25s;display:flex;flex-direction:column}
 .work:hover{transform:translateY(-4px);border-color:#3a3a46}
-.work .top{height:150px;display:grid;place-items:center;font:700 20px/1.2 'Unbounded';text-align:center;padding:16px}
+.work .top{position:relative;height:200px;overflow:hidden;display:flex;justify-content:center}
+.work .kind{position:absolute;left:16px;top:14px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.75;z-index:1}
+/* телефон со скриншотом выезжает снизу, на hover приподнимается */
+.work .phone{position:absolute;top:40px;width:150px;border-radius:24px 24px 0 0;border:6px solid #0b0b0e;border-bottom:0;overflow:hidden;background:#0b0b0e;
+  transition:transform .35s ease;box-shadow:0 18px 40px -12px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08)}
+.work .phone img{display:block;width:100%;height:auto}
+.work:hover .phone,.work:focus-visible .phone{transform:translateY(-12px)}
 .work .bt{padding:20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
 .work h3{font-size:17px}
 .work p{font-size:14px;color:var(--muted);flex:1}
@@ -179,10 +206,13 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 /* форма */
 .form-wrap{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,44px)}
 .field{margin-bottom:22px}
-.field label{display:block;font-size:14.5px;font-weight:600;margin-bottom:10px}
+.field label,.field legend{display:block;font-size:14.5px;font-weight:600;margin-bottom:10px}
+fieldset.field{border:0;padding:0;min-width:0}
+.opt-hint{margin-top:10px;font-size:13px;color:var(--muted)}
+.opt-hint a{color:var(--acid);text-decoration:underline;text-underline-offset:2px}
 .field input[type=text],.field textarea{width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:13px;padding:15px 16px;color:var(--text);font:16px 'Inter';transition:border-color .2s;resize:vertical}
 .field input[type=text]:focus,.field textarea:focus{outline:none;border-color:var(--acid)}
-.field ::placeholder{color:#5c5c69}
+.field ::placeholder{color:#7a7a88}
 .opts{display:flex;flex-wrap:wrap;gap:9px}
 .opt{position:relative}
 .opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
@@ -198,6 +228,7 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .done .ok{display:grid;place-items:center;margin-bottom:16px}
 .done .ok svg{width:58px;height:58px;padding:14px;border-radius:50%;background:var(--acid);color:var(--ink)}
 .done h3{font-size:22px;margin-bottom:10px}
+.done h3:focus{outline:none}
 .done p{color:var(--muted);margin-bottom:20px}
 .lead-text{width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--muted);font:13px/1.6 ui-monospace,monospace;margin-bottom:18px}
 .done-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -212,12 +243,13 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 .person-tg:hover{text-decoration:underline}
 .foot a:hover{color:var(--acid)}
 
+.rv > h2.sec:last-child{margin-bottom:clamp(28px,4vw,44px)}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
 .rv.in{opacity:1;transform:none}
 
 @media(max-width:1000px){
   .hero-grid{grid-template-columns:1fr}
-  .hero-art{max-width:320px;order:-1}
+  .hero-art{max-width:220px;order:1}
   .dirs{grid-template-columns:1fr 1fr}
   .how{grid-template-columns:1fr 1fr}
   .works{grid-template-columns:1fr 1fr}
@@ -232,7 +264,16 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   .person{padding:24px;gap:18px}
   .ava{width:72px;height:72px;font-size:30px}
   .hero-actions .btn{flex:1 1 100%}
-  .hero-art{max-width:240px}
+  /* маскот компактно сбоку от бейджа, чтобы кнопки влезали в первый экран */
+  .hero-grid{grid-template-columns:1fr auto;grid-template-areas:"badge art" "h1 h1" "lead lead" "act act";column-gap:14px;row-gap:0;align-items:center}
+  .hero-text{display:contents}
+  .hero-text .badge{grid-area:badge;justify-self:start;margin-bottom:22px}
+  .hero-text h1{grid-area:h1}
+  .hero-text .lead{grid-area:lead;margin-bottom:26px}
+  .hero-text .hero-actions{grid-area:act}
+  .hero-art{grid-area:art;order:0;width:84px;max-width:none;align-self:start;margin-top:-6px}
+  .hero-art .st{display:none}
+  .hero-art .spark{width:26%;top:2%;right:0}
   .guide-strip .btn{width:100%}
   .q button{padding:18px;font-size:15.5px}
   .q .a p{padding:0 18px 18px}
@@ -244,7 +285,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 @media(max-width:430px){
   .wrap{padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
   h1{font-size:clamp(38px,11vw,48px)}
-  .badge{font-size:13px}
+  .badge{font-size:13px;padding:8px 14px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms !important;transition-duration:.001ms !important}
@@ -291,8 +332,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <a href="#faq">Вопросы</a>
     </nav>
     <div class="nav-cta">
-      <a href="#apply" class="btn btn-acid btn-sm">Записаться</a>
-      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+      <a href="/vibecoding/#apply" class="btn btn-acid btn-sm">Записаться на курс</a>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mmenu"><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -303,7 +344,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   <a href="#team">Преподаватели</a>
   <a href="#works">Работы</a>
   <a href="#faq">Вопросы</a>
-  <a href="#apply" class="mm-cta">Записаться</a>
+  <a href="/vibecoding/#apply" class="mm-cta">Записаться на курс</a>
 </div>
 
 <!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
@@ -311,12 +352,12 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="wrap hero-grid">
-    <div>
-      <div class="badge"><span class="dot"></span><b>Школа gen z</b><span>IT, дизайн и не только</span></div>
+    <div class="hero-text">
+      <a href="/vibecoding/" class="badge"><span class="dot"></span><span><b>Вайбкодинг</b> · набор во 2 поток · 12 ноября →</span></a>
       <h1>Учим создавать <em>с нуля<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C80 4 200 3 296 11" fill="none" stroke="#FF2E9F" stroke-width="6" stroke-linecap="round"/></svg></em></h1>
-      <p class="lead">IT, дизайн и другие направления. Даже если вы никогда этим не занимались: <b>объясняем простыми словами, делаем вместе на живых эфирах</b> и доводим до результата, который не стыдно показать.</p>
+      <p class="lead">Сейчас идёт набор на курс вайбкодинга: <b>свой сайт за две недели без знания кода.</b> ИИ пишет код, вы объясняете задачу словами. 5 живых эфиров, проверка каждой домашки, 15 мест.</p>
       <div class="hero-actions">
-        <a href="#directions" class="btn btn-acid btn-lg">Выбрать направление</a>
+        <a href="/vibecoding/" class="btn btn-acid btn-lg">Курс вайбкодинга →</a>
         <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Написать в Telegram</a>
       </div>
     </div>
@@ -329,7 +370,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
   </div>
 </section>
 
-<div class="marq">
+<div class="marq" aria-hidden="true">
   <div class="marq-in">
     <span>вайбкодинг</span><span>•</span><span>дизайн</span><span>•</span><span>живые эфиры</span><span>•</span><span>только практика</span><span>•</span><span>проверка каждой работы</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
     <span>вайбкодинг</span><span>•</span><span>дизайн</span><span>•</span><span>живые эфиры</span><span>•</span><span>только практика</span><span>•</span><span>проверка каждой работы</span><span>•</span><span>no thoughts, just ship it</span><span>•</span>
@@ -356,6 +397,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
           <li>Проверка каждой домашней работы</li>
         </ul>
         <div class="price">20 000 ₸<small>за весь курс</small></div>
+        <p class="price-note">+ подписка Claude Pro ≈ $20/мес</p>
         <a href="/vibecoding/" class="btn btn-acid">Подробнее о курсе</a>
       </div>
       <div class="dir rv">
@@ -438,15 +480,15 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
     </div>
     <div class="works">
       <a class="work rv" href="/works/coffee/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(135deg,#f4ece1,#c9a98a);color:#3d2b1f">Восьмое<br>утро</div>
+        <div class="top" style="background:linear-gradient(150deg,#f7f1e8,#e0cdb2);color:#2e2018"><span class="kind">кофейня</span><div class="phone"><img src="/works/coffee/shot.png" width="390" height="780" loading="lazy" alt="Сайт кофейни «Восьмое утро» на телефоне"></div></div>
         <div class="bt"><h3>Сайт кофейни</h3><p>Меню с вкладками, бронь стола, адаптив под телефон.</p><span class="go">Открыть →</span></div>
       </a>
       <a class="work rv" href="/works/barber/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(135deg,#1b1b1f,#3a2f1c);color:#c8a45c">Лезвие</div>
+        <div class="top" style="background:linear-gradient(150deg,#1c1e22,#0d0e10);color:#8b8f97"><span class="kind">барбершоп</span><div class="phone"><img src="/works/barber/shot.png" width="390" height="780" loading="lazy" alt="Сайт барбершопа «Лезвие» с онлайн-записью на телефоне"></div></div>
         <div class="bt"><h3>Онлайн-запись в барбершоп</h3><p>Мастер, услуга, день и свободное время.</p><span class="go">Открыть →</span></div>
       </a>
       <a class="work rv" href="/works/repair/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(135deg,#2f5fe0,#1b3a9c);color:#fff">Смета за<br>минуту</div>
+        <div class="top" style="background:linear-gradient(150deg,#eaf0ff,#c7d8ff);color:#68718a"><span class="kind">ремонт квартир</span><div class="phone"><img src="/works/repair/shot.png" width="390" height="780" loading="lazy" alt="Калькулятор ремонта «Смета за минуту» на телефоне"></div></div>
         <div class="bt"><h3>Калькулятор ремонта</h3><p>Площадь, тип ремонта и смета прямо на экране.</p><span class="go">Открыть →</span></div>
       </a>
     </div>
@@ -474,12 +516,12 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <h2 class="sec">Частые <span>вопросы</span></h2>
     </div>
     <div class="faq" id="faqList">
-      <div class="q rv"><button type="button">Нужен ли опыт?<i>+</i></button><div class="a"><p>Нет. Все направления рассчитаны на тех, кто начинает с нуля.</p></div></div>
-      <div class="q rv"><button type="button">Как проходят занятия?<i>+</i></button><div class="a"><p>Живые эфиры в Telegram. Записи остаются в чате группы, вопросы можно задать голосом на эфире или текстом в чате. Каждую домашнюю работу проверяем сами.</p></div></div>
-      <div class="q rv"><button type="button">Обязательно ли включать камеру и микрофон?<i>+</i></button><div class="a"><p>Нет, можно участвовать без камеры и микрофона, а вопросы задавать в чате.</p></div></div>
-      <div class="q rv"><button type="button">Подойдёт ли школа девушкам?<i>+</i></button><div class="a"><p>Да, конечно! Школа для всех, кто хочет научиться создавать своё.</p></div></div>
-      <div class="q rv"><button type="button">Когда стартует дизайн?<i>+</i></button><div class="a"><p>Программа сейчас в работе. Оставьте предзапись, и мы сообщим о старте первыми.</p></div></div>
-      <div class="q rv"><button type="button">Как записаться и оплатить?<i>+</i></button><div class="a"><p>Оставьте заявку ниже. Мы напишем вам в Telegram, ответим на вопросы и пришлём реквизиты.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Нужен ли опыт?<i>+</i></button><div class="a"><p>Нет. Все направления рассчитаны на тех, кто начинает с нуля.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Как проходят занятия?<i>+</i></button><div class="a"><p>Живые эфиры в Telegram. Записи остаются в чате группы, вопросы можно задать голосом на эфире или текстом в чате. Каждую домашнюю работу проверяем сами.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Обязательно ли включать камеру и микрофон?<i>+</i></button><div class="a"><p>Нет, можно участвовать без камеры и микрофона, а вопросы задавать в чате.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Подойдёт ли школа девушкам?<i>+</i></button><div class="a"><p>Да, конечно! Школа для всех, кто хочет научиться создавать своё.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Когда стартует дизайн?<i>+</i></button><div class="a"><p>Программа сейчас в работе. Оставьте предзапись, и мы сообщим о старте первыми.</p></div></div>
+      <div class="q rv"><button type="button" aria-expanded="false">Как записаться и оплатить?<i>+</i></button><div class="a"><p>Оставьте заявку ниже. Мы напишем вам в Telegram, ответим на вопросы и пришлём реквизиты. Для курса вайбкодинга понадобятся компьютер или ноутбук и подписка Claude Pro (≈ $20/мес), её оплачиваете отдельно.</p></div></div>
     </div>
   </div>
 </section>
@@ -495,25 +537,26 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 
     <div class="form-wrap rv">
       <form id="applyForm">
-        <div class="field">
-          <label>Направление</label>
+        <fieldset class="field">
+          <legend>Направление</legend>
           <div class="opts" id="dirOpts">
             <label class="opt"><input type="radio" name="direction" value="Вайбкодинг" checked><span>Вайбкодинг</span></label>
             <label class="opt"><input type="radio" name="direction" value="Дизайн"><span>Дизайн</span></label>
             <label class="opt"><input type="radio" name="direction" value="Другое"><span>Другое</span></label>
           </div>
-        </div>
+          <p class="opt-hint" id="vibeHint">Для курса удобнее <a href="/vibecoding/#apply">заявка на странице курса</a> — там пара вопросов про компьютер и подписку Claude.</p>
+        </fieldset>
         <div class="field">
           <label for="name">Как вас зовут?</label>
-          <input type="text" id="name" name="name" placeholder="Имя" required>
+          <input type="text" id="name" name="name" placeholder="Имя" required maxlength="80" autocomplete="name">
         </div>
         <div class="field">
           <label for="contact">Telegram или телефон</label>
-          <input type="text" id="contact" name="contact" placeholder="@username или +7 ..." required>
+          <input type="text" id="contact" name="contact" placeholder="@username или +7 ..." required maxlength="120">
         </div>
         <div class="field">
           <label for="goal">Что хотите сделать или изучить? <span style="color:var(--muted);font-weight:400">необязательно</span></label>
-          <textarea id="goal" name="goal" rows="3" placeholder="Например: хочу сайт для своего дела или научиться делать логотипы"></textarea>
+          <textarea id="goal" name="goal" rows="3" maxlength="200" placeholder="Например: хочу сайт для своего дела или научиться делать логотипы"></textarea>
         </div>
         <div class="hp" aria-hidden="true"><label>Не заполняйте это поле<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
         <label class="consent"><input type="checkbox" id="consent" required><span>Согласен(на) на обработку данных для связи.</span></label>
@@ -521,9 +564,9 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         <p class="form-note">Заявка придёт нам в Telegram. Ответим в течение дня.</p>
       </form>
 
-      <div class="done" id="done">
+      <div class="done" id="done" role="status">
         <div class="ok" id="doneIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
-        <h3 id="doneTitle">Заявка отправлена</h3>
+        <h3 id="doneTitle" tabindex="-1">Заявка отправлена</h3>
         <p id="doneText">Она уже у нас. Напишем вам в Telegram в ближайшее время.</p>
         <textarea id="leadText" class="lead-text" readonly rows="6" hidden aria-label="Текст заявки"></textarea>
         <div class="done-actions">
@@ -558,9 +601,10 @@ addEventListener('scroll', () => hdr.classList.toggle('stuck', scrollY > 20), {p
 
 /* мобильное меню */
 const burger = document.getElementById('burger'), mmenu = document.getElementById('mmenu');
-const closeMenu = () => { burger.classList.remove('on'); mmenu.classList.remove('on'); document.body.classList.remove('locked'); };
+const closeMenu = () => { burger.classList.remove('on'); burger.setAttribute('aria-expanded', 'false'); mmenu.classList.remove('on'); document.body.classList.remove('locked'); };
 burger.onclick = () => {
   const on = burger.classList.toggle('on');
+  burger.setAttribute('aria-expanded', on);
   mmenu.classList.toggle('on', on);
   document.body.classList.toggle('locked', on);
 };
@@ -575,23 +619,34 @@ const io = new IntersectionObserver(es => es.forEach((e, i) => {
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
 /* вопросы */
-document.querySelectorAll('#faqList .q').forEach(q => {
-  const a = q.querySelector('.a');
-  q.querySelector('button').onclick = () => {
+document.querySelectorAll('#faqList .q').forEach((q, i) => {
+  const a = q.querySelector('.a'), btn = q.querySelector('button');
+  a.id = 'faq-a' + i; btn.setAttribute('aria-controls', a.id);
+  btn.onclick = () => {
     const open = q.classList.contains('open');
-    document.querySelectorAll('#faqList .q').forEach(o => { o.classList.remove('open'); o.querySelector('.a').style.maxHeight = null; });
-    if (!open) { q.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    document.querySelectorAll('#faqList .q').forEach(o => {
+      o.classList.remove('open'); o.querySelector('.a').style.maxHeight = null;
+      o.querySelector('button').setAttribute('aria-expanded', 'false');
+    });
+    if (!open) { q.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; btn.setAttribute('aria-expanded', 'true'); }
   };
 });
 
 /* кнопки направлений сразу выбирают нужный вариант в форме */
+/* подсказка про страницу курса видна, только когда выбран вайбкодинг */
+const vibeHint = document.getElementById('vibeHint');
+const syncHint = () => { vibeHint.hidden = document.querySelector('#dirOpts input:checked').value !== 'Вайбкодинг'; };
+document.getElementById('dirOpts').addEventListener('change', syncHint);
+syncHint();
+
 document.querySelectorAll('[data-direction]').forEach(b => b.addEventListener('click', () => {
   const r = document.querySelector('#dirOpts input[value="' + b.dataset.direction + '"]');
-  if (r) r.checked = true;
+  if (r) { r.checked = true; syncHint(); }
 }));
 
 /* заявка */
 const form = document.getElementById('applyForm');
+const t0 = Date.now(); // сколько человек провёл на странице до отправки: сервер отсеивает слишком быстрых ботов
 const copyText = txt => {
   if (navigator.clipboard && isSecureContext) return navigator.clipboard.writeText(txt);
   const ta = document.createElement('textarea');
@@ -604,10 +659,17 @@ const copyText = txt => {
 form.onsubmit = async e => {
   e.preventDefault();
   const f = new FormData(form);
+  const val = k => String(f.get(k) || '').trim();
   const data = {
-    direction: f.get('direction'), name: f.get('name'), contact: f.get('contact'),
-    goal: f.get('goal'), company: f.get('company')
+    direction: val('direction'), name: val('name'), contact: val('contact'),
+    goal: val('goal'), company: val('company'),
+    t: Date.now() - t0, source: [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')).map(([k, v]) => k + '=' + v).join(' ').slice(0, 100)
   };
+  if (!data.name || !data.contact) {
+    const el = document.getElementById(data.name ? 'contact' : 'name');
+    el.value = ''; el.reportValidity(); el.focus();
+    return;
+  }
   const msg = 'Заявка в gen z school\n' +
     'Направление: ' + data.direction + '\nИмя: ' + data.name + '\nКонтакт: ' + data.contact +
     (data.goal ? '\nХочу: ' + data.goal : '');
@@ -623,15 +685,17 @@ form.onsubmit = async e => {
   btn.disabled = false; btn.textContent = label;
   form.style.display = 'none';
   document.getElementById('done').classList.add('on');
+  const doneTitle = document.getElementById('doneTitle');
   if (!sent) {
     // запасной путь: показываем текст, человек отправляет его сам
     document.getElementById('doneIcon').firstElementChild.innerHTML = '<use href="#i-clipboard"/>';
     document.getElementById('doneTitle').textContent = 'Почти готово';
-    document.getElementById('doneText').textContent = 'Отправить автоматически не вышло. Текст заявки скопирован, откройте чат и вставьте его.';
+    document.getElementById('doneText').textContent = 'Отправить автоматически не вышло. Скопируйте текст ниже и отправьте нам в Telegram.';
     const ta = document.getElementById('leadText'); ta.value = msg; ta.hidden = false;
     document.getElementById('copyAgain').hidden = false;
     copyText(msg).catch(() => {});
   }
+  doneTitle.focus();
 };
 document.getElementById('copyAgain').onclick = function () {
   copyText(document.getElementById('leadText').value).catch(() => {});

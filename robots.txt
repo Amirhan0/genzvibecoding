@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://genzschool.vercel.app/sitemap.xml

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ЛЕЗВИЕ — барбершоп в Астане · онлайн-запись</title>
 <meta name="description" content="Барбершоп ЛЕЗВИЕ, Астана. Выбери мастера, услугу и время — запись за минуту, без звонков.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -487,6 +488,14 @@ SERVICES.forEach(s => {
   pWrap.appendChild(d);
 });
 
+/* ---------- элементы (объявляем до первого b.click() в блоке дней) ---------- */
+const slotsEl = document.getElementById('slots');
+const rowsEl = document.getElementById('sumRows');
+const totalEl = document.getElementById('sumTotal');
+const confirmBtn = document.getElementById('confirm');
+const nameEl = document.getElementById('cName');
+const phoneEl = document.getElementById('cPhone');
+
 /* ---------- дни ---------- */
 const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 const MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
@@ -522,7 +531,6 @@ function busy(masterId, date, mins) {
   return (seed * 2654435761 % 100) < 34;
 }
 
-const slotsEl = document.getElementById('slots');
 function drawSlots() {
   slotsEl.innerHTML = '';
   if (!state.master || !state.day) {
@@ -558,11 +566,6 @@ function drawSlots() {
 }
 
 /* ---------- сводка ---------- */
-const rowsEl = document.getElementById('sumRows');
-const totalEl = document.getElementById('sumTotal');
-const confirmBtn = document.getElementById('confirm');
-const nameEl = document.getElementById('cName');
-const phoneEl = document.getElementById('cPhone');
 
 function dayLabel(d) {
   return d.getDate() + ' ' + MON[d.getMonth()] + ', ' + WD[d.getDay()];

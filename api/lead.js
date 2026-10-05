@@ -2,7 +2,7 @@
 // Токен бота живёт в переменных окружения Vercel и в браузер не попадает.
 // Настройка описана в README.md.
 
-const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60, card: 40 };
+const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60, card: 40, source: 100 };
 
 const clean = (v, max) =>
   String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -38,6 +38,11 @@ module.exports = async function handler(req, res) {
   // отвечаем успехом, чтобы спамер не понял, что его отсекли.
   if (clean(body.company, 50)) return res.status(200).json({ ok: true });
 
+  // вторая ловушка: t — сколько миллисекунд прошло от загрузки страницы до отправки.
+  // человек не заполнит форму быстрее трёх секунд, бот — запросто. тоже отвечаем успехом.
+  const t = Number(body.t);
+  if (Number.isFinite(t) && t > 0 && t < 3000) return res.status(200).json({ ok: true });
+
   const lead = {
     direction: clean(body.direction, LIMITS.direction),
     name: clean(body.name, LIMITS.name),
@@ -46,6 +51,7 @@ module.exports = async function handler(req, res) {
     goal: clean(body.goal, LIMITS.goal),
     device: clean(body.device, LIMITS.device),
     card: clean(body.card, LIMITS.card),
+    source: clean(body.source, LIMITS.source), // location.search: ?utm_source=... и т. п.
   };
 
   if (!lead.name || !lead.contact) {
@@ -62,6 +68,7 @@ module.exports = async function handler(req, res) {
     ['Цель', lead.goal],
     ['Устройство', lead.device],
     ['Подписка Claude', lead.card],
+    ['Источник', lead.source],
   ].filter(([, v]) => v);
 
   const text =
@@ -78,20 +85,18 @@ module.exports = async function handler(req, res) {
         parse_mode: 'HTML',
         disable_web_page_preview: true,
       }),
+      // не держим функцию до таймаута Vercel, если Telegram завис
+      signal: AbortSignal.timeout(8000),
     });
 
     if (!tg.ok) {
-      // отдаём причину наружу: в ней нет токена, зато без неё непонятно,
-      // что чинить — токен, chat_id или не нажатый Start у бота
+      // причину пишем только в логи Vercel (Deployments → Functions → Logs):
+      // по ней видно, что чинить — токен, chat_id или не нажатый Start у бота.
+      // наружу её не отдаём.
       const info = await tg.json().catch(() => ({}));
       const description = info.description || 'нет описания';
       console.error('Telegram ответил ошибкой:', tg.status, description);
-      return res.status(502).json({
-        ok: false,
-        error: 'telegram_failed',
-        tg_status: tg.status,
-        tg_description: description,
-      });
+      return res.status(502).json({ ok: false, error: 'telegram_failed' });
     }
 
     return res.status(200).json({ ok: true });
