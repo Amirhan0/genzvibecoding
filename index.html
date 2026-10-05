@@ -161,6 +161,7 @@ h1 em svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.22em}
 .team{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .person{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:32px;display:flex;gap:26px;align-items:flex-start}
 .ava{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font:900 40px 'Unbounded'}
+.ava.a.has-img{background:url(/img/amir-ava.jpg) center/cover}
 .ava.a{background:linear-gradient(135deg,var(--acid),#3f8f88);color:var(--ink)}
 .ava.d{background:linear-gradient(135deg,var(--pink-deep),#a8145f);color:#fff}
 .person h3{font-size:26px;margin-bottom:10px}
@@ -448,7 +449,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
     </div>
     <div class="team">
       <div class="person rv">
-        <div class="ava a">А</div>
+        <div class="ava a has-img" role="img" aria-label="Амир"></div>
         <div>
           <h3>Амир</h3>
           <span class="role dev">Разработчик</span>

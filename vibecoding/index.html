@@ -366,6 +366,9 @@ h1 em{font-style:normal;color:var(--acid);position:relative;white-space:nowrap}
 .tm{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:14px 16px;transition:border-color .2s}
 .tm:hover{border-color:rgba(var(--acid-rgb),.45)}
 .tm .av{border:0;flex:none}
+.author-photo.has-img{background:url(/img/amir.jpg) center 30%/cover;font-size:0}
+.author-photo.has-img .ap-d{font-size:24px}
+.av-a.has-img{background:url(/img/amir-ava.jpg) center/cover}
 .tm-t b{display:block;font-weight:600;font-size:15px}
 .tm-t span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
 .tm-t em{font-style:normal;color:var(--acid);font-size:13px}
@@ -765,7 +768,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
         </div>
 
         <div class="hero-author">
-          <div class="avs" aria-hidden="true"><div class="av av-a">А</div><div class="av av-d">Д</div></div>
+          <div class="avs" aria-hidden="true"><div class="av av-a has-img"></div><div class="av av-d">Д</div></div>
           <div>
             <b>Амир и Диас</b>
             Амир ведёт эфиры, домашки проверяем вдвоём
@@ -922,16 +925,16 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
 <section id="author">
   <div class="wrap">
     <div class="author rv">
-      <div class="author-photo" style="position:relative">А<span class="ap-d" aria-hidden="true">Д</span></div>
+      <div class="author-photo has-img" style="position:relative" role="img" aria-label="Амир на финише Almaty Marathon 2026"><span class="ap-d" aria-hidden="true">Д</span></div>
       <div>
         <div class="eyebrow">кто ведёт</div>
         <blockquote>«Я пишу код каждый день — и каждый день пишу его с ИИ. Поэтому знаю, где он врёт.»</blockquote>
-        <p>Я Амир, разработчик. ИИ для меня не эксперимент на выходных, а рабочий инструмент: боевые задачи, свои проекты, заказы. Каждый день, а не «попробовал разок».</p>
+        <p>Я Амир, разработчик. ИИ для меня не эксперимент на выходных, а рабочий инструмент: боевые задачи, свои проекты, заказы. Каждый день, а не «попробовал разок». А ещё бегаю марафоны — на фото финиш Almaty Marathon 2026, так что довести дело до конца умею.</p>
         <p>Отсюда и курс. Я не пересказываю чужие статьи — показываю то, чем работаю сам, и заранее знаю, в каком месте вы упрётесь и что там делать.</p>
         <p class="author-check"><b>Домашние работы проверяем лично, вдвоём с Диасом.</b> Каждую, руками. Не бот и не автопроверка: напишем, что не так и как починить.</p>
         <div class="team">
           <a class="tm" href="https://t.me/ameerqan" target="_blank" rel="noopener">
-            <span class="av av-a" aria-hidden="true">А</span>
+            <span class="av av-a has-img" aria-hidden="true"></span>
             <span class="tm-t"><b>Амир</b><span>автор курса, ведёт эфиры</span><em>@ameerqan</em></span>
           </a>
           <a class="tm" href="https://t.me/p1kato" target="_blank" rel="noopener">
