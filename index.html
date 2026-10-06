@@ -123,22 +123,22 @@ header.stuck{background:rgba(8,8,10,.82);backdrop-filter:blur(14px);border-botto
 .mobile-menu a.mm-cta::after{display:none}
 
 /* ===== первый экран ===== */
-/* первый экран целиком помещается в окно и стоит по центру */
-.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-top:calc(var(--nav-h) + 20px);padding-bottom:40px;overflow:hidden;text-align:center}
+/* первый экран помещается в окно без прокрутки */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-top:calc(var(--nav-h) + 20px);padding-bottom:40px;overflow:hidden}
 .hero>.wrap{width:100%}
 .glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-1}
 .glow-a{width:620px;height:620px;background:rgba(var(--acid-rgb),.13);top:-200px;right:-160px}
 .glow-b{width:520px;height:520px;background:rgba(255,46,159,.13);bottom:-120px;left:-220px}
 
 /* лавровые плашки: как фестивальные значки, только про курс */
-.laurels{display:flex;flex-wrap:wrap;justify-content:center;gap:10px clamp(14px,2.4vw,34px);margin-bottom:clamp(20px,4vh,44px)}
+.laurels{display:flex;flex-wrap:wrap;gap:10px clamp(14px,2.4vw,34px);margin-bottom:clamp(20px,4vh,44px)}
 .laurel{display:flex;align-items:center;gap:6px;color:var(--muted)}
 .laurel svg{width:16px;height:42px;color:var(--acid);flex:none;opacity:.85}
 .laurel svg.r{transform:scaleX(-1)}
 .laurel span{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.3;text-align:center}
 .laurel span b{display:block;color:var(--text);font:700 19px/1.05 var(--display);letter-spacing:.02em}
 
-.hero h1{font-size:clamp(52px,min(10vw,17vh),140px)}
+.hero h1{font-size:clamp(52px,min(9vw,16vh),140px)}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
 /* на широком экране «учим создавать» в одну строку */
 @media(min-width:761px){.hero h1 .ln:nth-child(-n+2){display:inline-block;vertical-align:top}.hero h1 .ln:first-child{margin-right:.22em}}
@@ -147,7 +147,7 @@ header.stuck{background:rgba(8,8,10,.82);backdrop-filter:blur(14px);border-botto
 .hero h1 .ln:nth-child(3)>span{animation-delay:.2s}
 @keyframes rise{to{transform:none}}
 .hero h1 .scrib .ring{left:-5%;top:-6%;width:110%;height:116%}
-.hero h1 .ln-3{display:flex;align-items:flex-end;justify-content:center;gap:clamp(14px,2.4vw,40px);overflow:visible}
+.hero h1 .ln-3{display:flex;align-items:flex-end;gap:clamp(14px,2.4vw,40px);overflow:visible}
 .hero h1 .ln>span.hero-mascot{position:relative;width:.8em;flex:none;align-self:center;opacity:0;transform:none;animation:pop .7s .7s cubic-bezier(.3,1.6,.5,1) forwards}
 .hero-mascot>svg:first-child{width:100%;display:block;color:var(--acid);animation:float 6s ease-in-out infinite}
 .hero-mascot .spark{position:absolute;width:30%;top:-10%;right:-12%;color:var(--pink);animation:spin 10s linear infinite}
@@ -155,18 +155,19 @@ header.stuck{background:rgba(8,8,10,.82);backdrop-filter:blur(14px);border-botto
 @keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(3deg)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.hero-bottom{margin-top:clamp(20px,4vh,44px)}
-.lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:640px;margin-inline:auto}
+.hero-bottom{display:grid;grid-template-columns:1fr auto;gap:30px 60px;align-items:end;margin-top:clamp(22px,4vh,48px);padding-top:clamp(20px,3vh,32px);border-top:1px solid var(--line)}
+.lead{font-size:clamp(16px,1.7vw,20px);color:var(--muted);max-width:600px}
 .lead b{color:var(--text);font-weight:500}
-.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(18px,3vh,28px)}
-.hero-dirs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(18px,3vh,30px)}
-.hd{display:flex;align-items:center;gap:10px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);transition:border-color .2s}
-.hd:hover{border-color:var(--acid)}
-.hd i{font:700 13px var(--display);color:var(--muted);font-style:normal}
-.hd b{font:700 18px/1 var(--display);text-transform:uppercase}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-card{display:block;width:340px;border:1px solid rgba(var(--acid-rgb),.35);border-radius:var(--r);padding:22px 24px;background:radial-gradient(140% 120% at 100% 0%,rgba(var(--acid-rgb),.14),transparent 60%),var(--card);transition:.25s}
+.hd{display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--line);transition:padding .25s}
+.hd:hover{padding-left:6px}
+.hd i{font:700 15px var(--display);color:var(--muted);font-style:normal}
+.hd b{flex:1;font:700 26px/1 var(--display);text-transform:uppercase}
 .hd:hover b{color:var(--acid)}
-.hd em{display:inline-flex;align-items:center;gap:7px;font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hd em{display:inline-flex;align-items:center;gap:7px;font-style:normal;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hd em.on{color:var(--acid)}
+.hero-card .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--acid);margin-bottom:12px}
 .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),.6)}70%{box-shadow:0 0 0 10px rgba(var(--acid-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--acid-rgb),0)}}
 
@@ -365,6 +366,8 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
   .burger{display:block}
   .about,.faq-grid,.apply-grid{grid-template-columns:1fr}
   .faq-side{position:static}
+  .hero-bottom{grid-template-columns:1fr}
+  .hero-card{width:100%;max-width:420px}
   .guides .wrap{grid-template-columns:repeat(4,1fr)}
   .guides i:nth-child(n+5){display:none}
 }
@@ -501,7 +504,8 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
           <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Написать в Telegram</a>
         </div>
       </div>
-      <div class="hero-dirs" aria-label="Направления школы">
+      <div class="hero-card">
+        <span class="tag">Направления школы</span>
         <a href="/vibecoding/" class="hd"><i>01</i><b>Вайбкодинг</b><em class="on"><span class="dot"></span>набор</em></a>
         <a href="#apply" class="hd" data-direction="Дизайн"><i>02</i><b>Дизайн</b><em>скоро</em></a>
         <a href="#apply" class="hd" data-direction="Другое"><i>03</i><b>Ваше</b><em>по заявкам</em></a>
