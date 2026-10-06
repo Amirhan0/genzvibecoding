@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<!-- Промо-картинка школы: рендер в promo.png командой из README рядом -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080a;--card:#131318;--line:#26262f;--text:#f2f2f5;--muted:#8b8b98;--acid:#81DAD3;--pink:#FF2E9F;--pink-deep:#D6157F}
+html,body{width:1448px;height:1086px;overflow:hidden;background:var(--bg)}
+body{position:relative;font-family:Inter,sans-serif;color:var(--text)}
+.abs{position:absolute}
+
+/* фон: сетка, свечение, диагональные плоскости справа */
+.grid{inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:72px 72px}
+.glow{border-radius:50%;filter:blur(120px)}
+.plane1{inset:0;background:#111117;clip-path:polygon(64% 0,100% 0,100% 100%,38% 100%)}
+.plane2{inset:0;background:linear-gradient(160deg,var(--pink-deep),#7a0c48);clip-path:polygon(100% 52%,100% 100%,60% 100%)}
+.plane3{inset:0;background:var(--acid);opacity:.9;clip-path:polygon(78% 0,80.5% 0,62% 100%,59.5% 100%)}
+
+/* левая часть */
+.brand{left:72px;top:64px;display:flex;align-items:center;gap:14px;font:700 26px Inter;letter-spacing:-.5px}
+.brand svg{width:46px;height:46px}
+.brand b{color:var(--acid)}
+.kicker{left:72px;top:170px;display:flex;align-items:center;gap:26px}
+.kicker i{width:82px;height:6px;background:var(--pink);border-radius:3px}
+.kicker span{font:600 19px/1.45 Inter;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
+.kicker b{color:var(--text);font-weight:600}
+h1{left:66px;top:262px;font:700 126px/.9 Oswald;text-transform:uppercase;letter-spacing:-1px}
+h1 .p{color:var(--pink)}
+h1 .scr{position:relative;display:inline-block}
+h1 .scr svg{position:absolute;left:-2%;bottom:-6px;width:104%;height:26px}
+.stack{left:72px;top:556px;font:500 27px Inter;color:#d6d6de;display:flex;gap:16px;align-items:center}
+.stack i{width:8px;height:8px;border-radius:50%;background:var(--acid)}
+.feats{left:72px;top:640px;display:flex}
+.feat{display:flex;flex-direction:column;gap:14px;padding:0 24px;border-left:1px solid var(--line)}
+.feat:first-child{padding-left:0;border:0}
+.feat svg{width:48px;height:48px;color:var(--acid)}
+.feat span{font:600 21px Inter}
+.hr{left:72px;top:812px;width:680px;height:1px;background:var(--line)}
+.pills{left:72px;top:848px;display:flex;gap:18px}
+.pill{display:flex;align-items:center;gap:12px;font:500 19px Inter;color:#d6d6de}
+.pill b{width:50px;height:50px;border-radius:50%;background:#17171e;border:1px solid var(--line);display:grid;place-items:center}
+.pill b svg{width:28px;height:28px;color:var(--pink)}
+.tag{left:72px;bottom:38px;font:500 15px Inter;letter-spacing:.3em;color:#55555f;text-transform:uppercase}
+
+/* окна справа */
+.win{border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08)}
+.bar{height:40px;display:flex;align-items:center;gap:9px;padding:0 18px}
+.bar i{width:13px;height:13px;border-radius:50%}
+.bar i:nth-child(1){background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.term{left:820px;top:96px;width:700px;height:440px;background:#0c0c10;transform:rotate(-3deg);transform-origin:0 0}
+.term .bar{background:#15151b;border-bottom:1px solid var(--line)}
+.term .bar span{margin-left:14px;font:500 14px 'JetBrains Mono';color:var(--muted)}
+.code{padding:24px 28px;font:400 18px/1.75 'JetBrains Mono';color:#cfcfd8}
+.code .u{color:var(--pink)}
+.code .c{color:var(--acid)}
+.code .m{color:var(--muted)}
+.code .ok{color:#28c840}
+.cursor{display:inline-block;width:11px;height:20px;background:var(--acid);vertical-align:-3px}
+
+.browser{left:880px;top:410px;width:640px;height:440px;background:#f7f1e8;transform:rotate(-3deg);transform-origin:0 0}
+.browser .bar{background:#ece4d6}
+.browser .url{margin-left:18px;flex:1;max-width:330px;height:24px;border-radius:7px;background:#fff;font:500 13px Inter;color:#6b5a4a;display:flex;align-items:center;padding:0 12px}
+.browser img{width:100%;display:block}
+
+.phone{left:1236px;top:556px;width:186px;height:372px;border-radius:34px;background:#0b0b0e;border:7px solid #1b1b22;overflow:hidden;box-shadow:0 40px 70px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.1);transform:rotate(-3deg)}
+.phone img{width:100%;display:block}
+.phone::before{display:none;content:"";position:absolute;left:50%;top:8px;width:64px;height:18px;margin-left:-32px;border-radius:10px;background:#000;z-index:1}
+
+.sticker{font-family:'Permanent Marker',cursive;text-transform:uppercase;line-height:.95;color:var(--acid);font-size:30px;transform:rotate(-8deg);text-shadow:0 4px 18px rgba(0,0,0,.6)}
+
+/* цепочка внизу: идея → Claude → сайт */
+.flow{left:806px;top:968px;display:flex;align-items:center;gap:12px}
+.node{height:80px;padding:0 22px;border-radius:18px;background:#101015;border:1px solid #2e2e38;display:flex;align-items:center;gap:14px;font:600 22px Inter;box-shadow:0 20px 40px -16px rgba(0,0,0,.6)}
+.node svg{width:34px;height:34px}
+.node.hot{background:var(--acid);color:#0a0a0a;border-color:var(--acid)}
+.arrow{font:500 22px Inter;color:#fff;opacity:.85;letter-spacing:-2px}
+</style></head>
+<body>
+<div class="abs grid"></div>
+<div class="abs glow" style="width:520px;height:520px;left:-200px;top:-160px;background:rgba(129,218,211,.12)"></div>
+<div class="abs glow" style="width:460px;height:460px;left:300px;bottom:-260px;background:rgba(255,46,159,.12)"></div>
+<div class="abs plane1"></div>
+<div class="abs plane2"></div>
+<div class="abs plane3"></div>
+
+<!-- лево -->
+<div class="abs brand">
+  <svg viewBox="0 0 120 120"><path d="M62 2 C98 -4 126 26 118 62 C112 96 92 120 58 118 C24 116 0 94 2 58 C4 24 28 8 62 2 Z" fill="#81DAD3"/><rect x="33" y="42" width="11" height="24" rx="5.5" fill="#0A0A0A"/><rect x="76" y="40" width="11" height="24" rx="5.5" fill="#0A0A0A"/><path d="M34 78 Q60 104 86 76" fill="none" stroke="#0A0A0A" stroke-width="11" stroke-linecap="round"/></svg>
+  <span>gen z <b>school</b></span>
+</div>
+
+<div class="abs kicker"><i></i><span>Онлайн-курс для тех,<br><b>кто начинает с нуля</b></span></div>
+
+<h1 class="abs">Вайбкодинг<br><span class="p">с</span> <span class="scr p">нуля<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M4 14 C80 4 200 3 296 11" fill="none" stroke="#81DAD3" stroke-width="7" stroke-linecap="round"/></svg></span></h1>
+
+<div class="abs stack">Claude <i></i> Claude Code <i></i> GitHub <i></i> Vercel</div>
+
+<div class="abs feats">
+  <div class="feat">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><rect x="5" y="8" width="38" height="30" rx="4"/><path d="M5 16h38M16 44h16M24 38v6"/></svg>
+    <span>Свой сайт</span>
+  </div>
+  <div class="feat">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 38h6"/></svg>
+    <span>Под телефон</span>
+  </div>
+  <div class="feat">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M43 7 4 22l13 5 3 13 7-8 10 8z"/><path d="m17 27 20-14"/></svg>
+    <span>Заявки в Telegram</span>
+  </div>
+  <div class="feat">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="24" cy="24" r="19"/><path d="M5 24h38M24 5c6 6 8 12 8 19s-2 13-8 19M24 5c-6 6-8 12-8 19s2 13 8 19"/></svg>
+    <span>Своя ссылка</span>
+  </div>
+</div>
+
+<div class="abs hr"></div>
+
+<div class="abs pills">
+  <div class="pill"><b><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></b>5 живых эфиров</div>
+  <div class="pill"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 12.6 9.6 17.4 19.2 6.9"/></svg></b>Проверка домашек</div>
+  <div class="pill"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/><path d="M5 5l14 14"/></svg></b>Без знания кода</div>
+</div>
+
+<div class="abs tag">no thoughts, just ship it</div>
+
+<!-- право -->
+<div class="abs win term">
+  <div class="bar"><i></i><i></i><i></i><span>claude — ~/kofeynya</span></div>
+  <div class="code">
+    <div><span class="u">&gt;</span> сделай сайт для кофейни: меню,</div>
+    <div>&nbsp;&nbsp;бронь стола и заявки в telegram</div>
+    <div class="m">&nbsp;</div>
+    <div><span class="c">●</span> Создаю структуру сайта…</div>
+    <div><span class="ok">✓</span> index.html <span class="m">— главная и меню</span></div>
+    <div><span class="ok">✓</span> style.css <span class="m">— адаптив под телефон</span></div>
+    <div><span class="ok">✓</span> api/lead.js <span class="m">— заявки в Telegram</span></div>
+    <div><span class="c">●</span> Деплой на Vercel <span class="cursor"></span></div>
+  </div>
+</div>
+
+<div class="abs win browser">
+  <div class="bar"><i></i><i></i><i></i><div class="url">kofeynya.vercel.app</div></div>
+  <img src="coffee-desk.png" alt="">
+</div>
+
+<div class="abs phone"><img src="../../works/barber/shot.png" alt=""></div>
+
+<div class="abs sticker" style="left:1262px;top:236px;color:#fff">готово<br>за вечер</div>
+
+<div class="abs flow">
+  <div class="node"><svg viewBox="0 0 40 40" fill="none" stroke="#81DAD3" stroke-width="2.6" stroke-linejoin="round"><path d="M6 8h28v18H18l-8 7v-7H6z"/></svg>Идея</div>
+  <span class="arrow">←→</span>
+  <div class="node hot"><svg viewBox="0 0 36 36"><path d="M18 0 C21 11 25 15 36 18 C25 21 21 25 18 36 C15 25 11 21 0 18 C11 15 15 11 18 0 Z" fill="#0A0A0A"/></svg>Claude</div>
+  <span class="arrow">←→</span>
+  <div class="node"><svg viewBox="0 0 40 40" fill="none" stroke="#FF2E9F" stroke-width="2.6" stroke-linecap="round"><circle cx="20" cy="20" r="15"/><path d="M5 20h30M20 5c5 5 6 10 6 15s-1 10-6 15M20 5c-5 5-6 10-6 15s1 10 6 15"/></svg>Сайт</div>
+</div>
+</body></html>
