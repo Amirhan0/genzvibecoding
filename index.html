@@ -281,6 +281,14 @@ header.stuck{background:rgba(8,8,10,.82);backdrop-filter:blur(14px);border-botto
 .work .go{font-size:13.5px;color:var(--acid);font-weight:600;margin-top:8px}
 
 /* гайд */
+.voices{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.voice{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:24px 26px;display:flex;flex-direction:column;gap:14px}
+.voice blockquote{font-size:16px;line-height:1.55}
+.voice figcaption{margin-top:auto;font-size:13.5px;color:var(--muted)}
+.voice figcaption b{display:block;color:var(--text);font-size:15px;font-weight:600}
+.works-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:28px}
+.works-cta .more{color:var(--acid);font-weight:600;font-size:14.5px}
+@media(min-width:1101px){.works-nav{display:none}}
 .guide-strip{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;border:1px solid rgba(var(--acid-rgb),.3);border-radius:var(--r);padding:30px 34px;background:radial-gradient(120% 180% at 0% 0%,rgba(var(--acid-rgb),.09),transparent 55%),var(--card)}
 .guide-strip h3{font:700 clamp(26px,2.6vw,36px)/1 var(--display);text-transform:uppercase;margin-bottom:8px}
 .guide-strip p{color:var(--muted);font-size:15px}
@@ -376,6 +384,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
   .dirs,.team{grid-template-columns:1fr}
   .dir{min-height:0}
   .works{grid-auto-columns:84%}
+  .voices{grid-template-columns:1fr}
   .fact{grid-template-columns:1fr;gap:6px}
   .hero h1{font-size:clamp(48px,14.5vw,72px)}
   .hero-actions .btn{flex:1 1 100%}
@@ -456,7 +465,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <a href="#about">О школе</a>
       <a href="#directions">Направления</a>
       <a href="#team">Команда</a>
-      <a href="#works">Работы</a>
+      <a href="#works">Ученики</a>
       <a href="#faq">Вопросы</a>
     </nav>
     <div class="nav-cta">
@@ -470,7 +479,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
   <a href="#about">О школе</a>
   <a href="#directions">Направления</a>
   <a href="#team">Команда</a>
-  <a href="#works">Работы</a>
+  <a href="#works">Ученики</a>
   <a href="#faq">Вопросы</a>
   <a href="#apply" class="mm-cta">Оставить заявку</a>
 </div>
@@ -560,11 +569,11 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <span class="num" aria-hidden="true">01</span>
         <span class="status open">Второй поток · 14 ноября</span>
         <h3>Вайбкодинг</h3>
-        <p class="sub">Свой сайт с нуля за две недели, без знания кода. Первый поток уже учится, набираем второй.</p>
+        <p class="sub">Свой сайт с нуля за две недели, без знания кода. Первый поток уже сделал свои сайты, набираем второй.</p>
         <ul>
-          <li>5 живых эфиров с разработчиком</li>
-          <li>Свой сайт в интернете со своей ссылкой</li>
-          <li>Заявки с сайта приходят в Telegram</li>
+          <li>5 живых эфиров с разработчиком и демо-день</li>
+          <li>Свой сайт в интернете уже после первого урока</li>
+          <li>Заявки в Telegram, база данных и свой домен</li>
           <li>Проверка каждой домашней работы</li>
         </ul>
         <div class="price">40 000 ₸<small>за весь курс</small></div>
@@ -666,39 +675,43 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="label"><b>(05)</b> примеры работ</div>
-        <h2 class="d h-xl">Такое можно<br><span class="acid">собрать</span></h2>
+        <div class="label"><b>(05)</b> работы учеников</div>
+        <h2 class="d h-xl">Что делают<br><span class="acid">наши ученики</span></h2>
       </div>
       <div>
-        <p style="margin-bottom:20px">Собрано тем же способом, которому учим на курсе. Откройте любой с телефона и понажимайте: всё работает по-настоящему.</p>
+        <p style="margin-bottom:20px">Эти сайты ученики первого потока сделали за две недели на курсе вайбкодинга, без опыта в коде. Откройте любой с телефона: это настоящие проекты, которые уже работают.</p>
         <div class="works-nav"><button type="button" id="wPrev" aria-label="Предыдущая работа">←</button><button type="button" id="wNext" aria-label="Следующая работа">→</button></div>
       </div>
     </div>
     <div class="works" id="worksRow">
       <a class="work rv" href="https://got-shop.vercel.app/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#f6f4eb,#dfe5cc);color:#3a5a3c"><span class="kind">работа ученика · 1 поток</span><div class="phone"><img src="/works/got-shop/shot.png" width="390" height="780" loading="lazy" alt="Сайт чайной лавки Gardens of Tavria на телефоне"></div></div>
-        <div class="bt"><h3>Чайная лавка Gardens of Tavria</h3><p>Сайт ученика первого потока: чай, дегустации и подарочные наборы.</p><span class="go">Открыть →</span></div>
+        <div class="top" style="background:linear-gradient(150deg,#f6f4eb,#dfe5cc);color:#3a5a3c"><span class="kind">ученик · 1 поток</span><div class="phone"><img src="/works/got-shop/shot.png" width="390" height="780" loading="lazy" alt="Сайт чайной лавки Gardens of Tavria на телефоне"></div></div>
+        <div class="bt"><h3>Чайная лавка Gardens of Tavria</h3><p>Чай, дегустации и подарочные наборы, светлая и тёмная тема.</p><span class="go">Открыть →</span></div>
       </a>
       <a class="work rv" href="https://denis-shutov.com/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#f5eee2,#e8d3bd);color:#b8603e"><span class="kind">работа ученика · 1 поток</span><div class="phone"><img src="/works/denis-shutov/shot.png" width="390" height="780" loading="lazy" alt="Сайт психолога Дениса Шутова с трекерами настроения на телефоне"></div></div>
+        <div class="top" style="background:linear-gradient(150deg,#f5eee2,#e8d3bd);color:#b8603e"><span class="kind">ученик · 1 поток</span><div class="phone"><img src="/works/denis-shutov/shot.png" width="390" height="780" loading="lazy" alt="Сайт психолога Дениса Шутова с трекерами настроения на телефоне"></div></div>
         <div class="bt"><h3>Сайт психолога с трекерами</h3><p>Онлайн-трекеры настроения и привычек со входом в личный кабинет.</p><span class="go">Открыть →</span></div>
       </a>
       <a class="work rv" href="https://goats-running.vercel.app/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#1a1a1c,#050505);color:#e4262c"><span class="kind">работа ученика · 1 поток</span><div class="phone"><img src="/works/goats-running/shot.png" width="390" height="780" loading="lazy" alt="Сайт бегового клуба GOATS RUNNING на телефоне"></div></div>
+        <div class="top" style="background:linear-gradient(150deg,#1a1a1c,#050505);color:#e4262c"><span class="kind">ученик · 1 поток</span><div class="phone"><img src="/works/goats-running/shot.png" width="390" height="780" loading="lazy" alt="Сайт бегового клуба GOATS RUNNING на телефоне"></div></div>
         <div class="bt"><h3>Беговой клуб GOATS RUNNING</h3><p>Бесплатный беговой клуб в Алматы: расписание тренировок и запись.</p><span class="go">Открыть →</span></div>
       </a>
-      <a class="work rv" href="/works/coffee/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#f7f1e8,#e0cdb2);color:#2e2018"><span class="kind">кофейня</span><div class="phone"><img src="/works/coffee/shot.png" width="390" height="780" loading="lazy" alt="Сайт кофейни «Восьмое утро» на телефоне"></div></div>
-        <div class="bt"><h3>Сайт кофейни</h3><p>Меню с вкладками, бронь стола, адаптив под телефон.</p><span class="go">Открыть →</span></div>
-      </a>
-      <a class="work rv" href="/works/barber/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#1c1e22,#0d0e10);color:#8b8f97"><span class="kind">барбершоп</span><div class="phone"><img src="/works/barber/shot.png" width="390" height="780" loading="lazy" alt="Сайт барбершопа «Лезвие» с онлайн-записью на телефоне"></div></div>
-        <div class="bt"><h3>Онлайн-запись в барбершоп</h3><p>Мастер, услуга, день и свободное время.</p><span class="go">Открыть →</span></div>
-      </a>
-      <a class="work rv" href="/works/repair/" target="_blank" rel="noopener">
-        <div class="top" style="background:linear-gradient(150deg,#eaf0ff,#c7d8ff);color:#68718a"><span class="kind">ремонт квартир</span><div class="phone"><img src="/works/repair/shot.png" width="390" height="780" loading="lazy" alt="Калькулятор ремонта «Смета за минуту» на телефоне"></div></div>
-        <div class="bt"><h3>Калькулятор ремонта</h3><p>Площадь, тип ремонта и смета прямо на экране.</p><span class="go">Открыть →</span></div>
-      </a>
+    </div>
+
+    <div class="voices">
+      <figure class="voice rv">
+        <blockquote>«Курс понятный: ребята грамотно и простым языком объясняют всё, без воды. И очень отзывчивые — на любой вопрос отвечали быстро и по делу».</blockquote>
+        <figcaption><b>Денис Шутов</b>психолог, сайт с трекерами</figcaption>
+      </figure>
+      <figure class="voice rv">
+        <blockquote>«Мне как раз нужен был сайт для нашего бегового клуба — на курсе я его сделал и параллельно разобрался в вайбкодинге».</blockquote>
+        <figcaption><b>Адиль</b>беговой клуб GOATS RUNNING</figcaption>
+      </figure>
+    </div>
+
+    <div class="works-cta rv">
+      <a href="/vibecoding/" class="btn btn-acid btn-lg">Смотреть курс вайбкодинга →</a>
+      <a href="/vibecoding/#reviews" class="more">Все отзывы</a>
     </div>
 
     <div class="guide-strip rv" style="margin-top:clamp(40px,5vw,64px)">
@@ -805,7 +818,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <a href="#about">О школе</a>
         <a href="#directions">Направления</a>
         <a href="#team">Команда</a>
-        <a href="#works">Работы</a>
+        <a href="#works">Ученики</a>
         <a href="#faq">Вопросы</a>
       </div>
       <div class="foot-col">
