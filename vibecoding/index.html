@@ -348,6 +348,13 @@ h1 em path{fill:none;stroke:var(--acid);stroke-width:6;stroke-linecap:round;stro
 .res h3{font-size:22px;margin-bottom:8px}
 .res p{font-size:14px;color:var(--muted)}
 .res-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+/* ---------- отзывы учеников ---------- */
+.review{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:26px 28px;display:flex;flex-direction:column;gap:18px}
+.review blockquote{font-size:16px;line-height:1.6;color:var(--text)}
+.review blockquote::before{content:"“";display:block;font-family:var(--display);font-size:56px;line-height:.6;color:var(--acid);margin-bottom:10px}
+.review .who{margin-top:auto;font-size:13.5px;color:var(--muted)}
+.review .who b{display:block;color:var(--text);font-size:15px;font-weight:600}
+.review .who a{color:var(--acid);text-decoration:none}
 .res-tags span{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 .res-go{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;color:var(--acid);transition:transform .2s}
 .res:hover .res-go{transform:translateX(4px)}
@@ -1084,6 +1091,17 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         </div>
       </a>
 
+    </div>
+
+    <div class="grid g2" style="margin-top:18px">
+      <div class="review rv">
+        <blockquote>Курс понятный: ребята грамотно и простым языком объясняют всё, без воды. Всё ценное, что было на уроках, забрал себе в работу и собрал сайт с трекерами на своём домене. Отдельно спасибо за отзывчивость: на любой вопрос в чате отвечали быстро и по делу.</blockquote>
+        <div class="who"><b>Денис Шутов</b>психолог · <a href="https://denis-shutov.com/" target="_blank" rel="noopener">denis-shutov.com</a></div>
+      </div>
+      <div class="review rv">
+        <blockquote>Мне как раз нужен был сайт для нашего бегового клуба — и на курсе я его сделал, параллельно разобравшись в вайбкодинге. Собирал по ходу уроков: каждое занятие добавлял новый кусок, и к концу курса сайт уже был в интернете. Теперь сам обновляю расписание и меняю что нужно, без разработчика.</blockquote>
+        <div class="who"><b>GOATS RUNNING</b>беговой клуб, Алматы · <a href="https://goats-running.vercel.app/" target="_blank" rel="noopener">goats-running.vercel.app</a></div>
+      </div>
     </div>
 
     <div class="game-wrap" id="game">
