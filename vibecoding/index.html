@@ -289,6 +289,19 @@ h1 em path{fill:none;stroke:var(--acid);stroke-width:6;stroke-linecap:round;stro
 .lesson .dur{font-size:12.5px;color:var(--muted);white-space:nowrap;padding-top:14px}
 
 /* ---------- steps ---------- */
+/* ---------- приведи друга ---------- */
+.ref-box{margin-top:18px;border:1px solid rgba(var(--acid-rgb),.3);border-radius:var(--r);padding:28px 30px;background:radial-gradient(120% 180% at 0% 0%,rgba(var(--acid-rgb),.09),transparent 55%),var(--card)}
+.ref-box h3{font-size:26px;margin-bottom:6px}
+.ref-box > p{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+.ref-row{display:flex;gap:10px;flex-wrap:wrap}
+.ref-row input{flex:1 1 240px;min-width:0;background:var(--bg-2);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--text);font:inherit;font-size:16px}
+.ref-row input:focus{outline:none;border-color:var(--acid)}
+.ref-out{margin-top:16px}
+.ref-out code{display:block;padding:14px 16px;border-radius:13px;background:var(--bg-2);border:1px dashed rgba(var(--acid-rgb),.5);color:var(--acid);font-size:15px;word-break:break-all;margin-bottom:10px}
+.ref-rules{margin-top:18px;font-size:13px;color:var(--muted);line-height:1.6}
+.ref-rules b{color:var(--text);font-weight:600}
+.ref-note{margin-top:18px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:13px;border:1px solid rgba(var(--acid-rgb),.4);background:rgba(var(--acid-rgb),.08);font-size:14px}
+.ref-note b{color:var(--acid)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
 .step{background:linear-gradient(180deg,var(--card),rgba(19,19,24,.4));border:1px solid var(--line);border-radius:var(--r);padding:26px;position:relative}
 .step u{display:block;font-family:ui-monospace,monospace;font-size:12px;color:var(--acid);margin-bottom:14px;text-decoration:none;letter-spacing:.1em}
@@ -804,6 +817,8 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
           </div>
         </div>
 
+        <div class="ref-note" id="refNote" hidden>🎁 <span>Вас пригласил <b id="refWho"></b>: курс обойдётся в <b>35 000 ₸</b> вместо 40 000 ₸</span></div>
+
         <div class="stats">
           <div class="stat"><i data-count="2">2</i><span>недели</span></div>
           <div class="stat"><i data-count="5">5</i><span>живых эфиров</span></div>
@@ -1145,6 +1160,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
           <div class="eyebrow">стоимость</div>
           <div class="big-price">40 000 ₸<small>второй поток · старт 14 ноября · <span class="seats">15 мест</span></small></div>
           <div class="per-lesson">это <b>≈ 8 000 ₸ за урок</b> с живым разбором</div>
+          <div class="per-lesson">по приглашению друга — <b>35 000 ₸</b> · <a href="#friends" style="color:var(--acid)">как это работает</a></div>
           <div><a href="#apply" class="btn btn-acid btn-lg" style="margin-top:22px">Записаться на поток</a></div>
           <p class="price-note"><b>Плюс подписка Claude Pro</b>, около $20 в месяц. Оплачивается отдельно, напрямую Anthropic, картой, которая работает с зарубежными сервисами. Без неё курс не пройти. Если сомневаетесь — проверим вашу карту вместе до оплаты курса.</p>
         </div>
@@ -1160,6 +1176,38 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
           <li>Сертификат об окончании</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПРИВЕДИ ДРУГА ============ -->
+<section id="friends">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">приведи друга</div>
+      <h2 class="sec">Другу скидка,<br>вам <span class="acid">5 000 ₸</span></h2>
+      <p class="sec-sub">Пригласить может любой, учиться на курсе для этого не нужно. Друг платит 35 000 ₸ вместо 40 000 ₸, а вы получаете 5 000 ₸ за каждого, кто оплатил курс.</p>
+    </div>
+    <div class="steps snap">
+      <div class="step rv"><u>ШАГ 01</u><h3>Получите ссылку</h3><p>Впишите свой Telegram ниже — сайт сразу соберёт вашу личную ссылку.</p></div>
+      <div class="step rv"><u>ШАГ 02</u><h3>Отправьте другу</h3><p>Друг открывает ссылку и оставляет заявку — вы будете указаны в ней сами. Или он просто пишет Амиру, что пришёл от вас.</p></div>
+      <div class="step rv"><u>ШАГ 03</u><h3>Получите 5 000 ₸</h3><p>Когда друг оплатит курс, Амир напишет вам в Telegram и переведёт 5 000 ₸ на карту.</p></div>
+    </div>
+    <div class="ref-box rv">
+      <h3>Ваша ссылка</h3>
+      <p>Друзей может быть сколько угодно — за каждого оплатившего 5 000 ₸.</p>
+      <form class="ref-row" id="refForm">
+        <input type="text" id="refMe" placeholder="Ваш Telegram, например @username" maxlength="40" autocomplete="off" aria-label="Ваш Telegram" required>
+        <button type="submit" class="btn btn-acid">Получить ссылку</button>
+      </form>
+      <div class="ref-out" id="refOut" hidden>
+        <code id="refLink"></code>
+        <div class="ref-row">
+          <button type="button" class="btn btn-ghost btn-sm" id="refCopy">Скопировать</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="refShare" hidden>Поделиться</button>
+        </div>
+      </div>
+      <p class="ref-rules"><b>Условия.</b> 5 000 ₸ переводим после того, как друг оплатит курс. Друг должен указать вас в заявке или сказать Амиру, что пришёл от вас, — до оплаты. Скидка не суммируется с другими. Пригласить самого себя нельзя. Вопросы — <a href="https://t.me/ameerqan" target="_blank" rel="noopener" style="color:var(--acid)">@ameerqan</a>.</p>
     </div>
   </div>
 </section>
@@ -1190,6 +1238,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
     <div class="faq" id="faqList">
       <div class="q rv"><button type="button">Когда старт?<i aria-hidden="true">+</i></button><div class="a"><p>14 ноября. В группе 15 мест, место закрепляется после оплаты.</p></div></div>
       <div class="q rv"><button type="button">Сколько выйдет всего?<i aria-hidden="true">+</i></button><div class="a"><p>Курс — 40 000 ₸ один раз. Плюс подписка Claude Pro ≈ $20 в месяц, её оплачиваете напрямую Anthropic, на время курса нужен один месяц. Хостинг, GitHub, Telegram-бот и база данных — бесплатно. Свой домен — по желанию, оплачивается отдельно.</p></div></div>
+      <div class="q rv"><button type="button">Есть скидки?<i aria-hidden="true">+</i></button><div class="a"><p>Да: если курс вам посоветовал друг, укажите его Telegram в заявке — курс обойдётся в 35 000 ₸. А другу мы переведём 5 000 ₸. Подробнее — в блоке <a href="#friends" style="color:var(--acid)">«Приведи друга»</a>.</p></div></div>
       <div class="q rv"><button type="button">Боюсь, что не получится оплатить Claude<i aria-hidden="true">+</i></button><div class="a"><p>Напишите нам до оплаты курса — вместе зарегистрируемся и проверим карту. Работаем только через официальный доступ. Сначала убеждаемся, что всё работает, потом оплата.</p></div></div>
       <div class="q rv"><button type="button">Мне нет 18 — можно?<i aria-hidden="true">+</i></button><div class="a"><p>Да. Claude можно оформить только с 18 лет, поэтому аккаунт и подписку заводит родитель или другой взрослый, а учитесь на нём вы. Подскажем, как всё настроить.</p></div></div>
       <div class="q rv"><button type="button">Я гуманитарий и никогда не программировал(а)<i aria-hidden="true">+</i></button><div class="a"><p>Это нормально. Код пишет ИИ, ваша задача — понятно объяснить словами, что нужно, и проверить результат. Установку проходим по шагам с видео, терминал не нужен.</p></div></div>
@@ -1221,6 +1270,12 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <div class="field">
           <label for="contact">Telegram или телефон</label>
           <input type="text" id="contact" name="contact" placeholder="@username или +7 ..." maxlength="120" required>
+        </div>
+
+        <div class="field">
+          <label for="ref">Кто вас пригласил? <small>· необязательно</small></label>
+          <p class="field-hint">Telegram друга, который посоветовал курс. По приглашению — скидка 5 000 ₸.</p>
+          <input type="text" id="ref" name="ref" placeholder="@username друга" maxlength="40" autocomplete="off">
         </div>
 
         <fieldset class="field">
@@ -1375,6 +1430,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <a href="/">Все направления</a>
         <a href="#guide">Гайд</a>
         <a href="#apply">Записаться</a>
+        <a href="#friends">Приведи друга</a>
       </div>
       <div class="foot-col">
         <h4>Связь</h4>
@@ -1518,7 +1574,8 @@ const buildMsg = () => {
     'Уровень: ' + (val(f, 'level') || '—') + '\n' +
     'Цель: ' + (val(f, 'goal') || '—') + '\n' +
     'Устройство: ' + (val(f, 'device') || '—') + '\n' +
-    'Подписка Claude: ' + (val(f, 'card') || '—');
+    'Подписка Claude: ' + (val(f, 'card') || '—') +
+    (val(f, 'ref') ? '\nПригласил: ' + val(f, 'ref') : '');
 };
 
 const copyText = (txt) => {
@@ -1565,7 +1622,7 @@ form.onsubmit = async (e) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         direction: 'Вайбкодинг', name: val(f, 'name'), contact: val(f, 'contact'), level: val(f, 'level'),
-        goal: val(f, 'goal'), device: val(f, 'device'), card: val(f, 'card'), company: val(f, 'company'),
+        goal: val(f, 'goal'), device: val(f, 'device'), card: val(f, 'card'), ref: val(f, 'ref'), company: val(f, 'company'),
         t: Date.now() - t0, source: [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')).map(([k, v]) => k + '=' + v).join(' ').slice(0, 100)
       })
     });
@@ -1586,6 +1643,45 @@ document.getElementById('copyAgain').onclick = function () {
   this.textContent = 'Скопировано ✓';
   setTimeout(() => { this.textContent = 'Скопировать текст'; }, 1800);
 };
+
+/* ====== приведи друга: ссылка ?ref=username, запоминаем пригласившего ====== */
+const normRef = (v) => {
+  const h = String(v || '').trim().replace(/^https?:\/\/t\.me\//i, '').replace(/^@+/, '').replace(/[^A-Za-z0-9_]/g, '').slice(0, 32);
+  return h ? '@' + h : '';
+};
+(() => {
+  let ref = normRef(new URLSearchParams(location.search).get('ref'));
+  try {
+    if (ref) localStorage.setItem('genz-ref', ref);
+    else ref = normRef(localStorage.getItem('genz-ref'));
+  } catch (_) { /* приватный режим — живём без памяти */ }
+  if (ref) {
+    document.getElementById('ref').value = ref;
+    document.getElementById('refWho').textContent = ref;
+    document.getElementById('refNote').hidden = false;
+  }
+
+  const out = document.getElementById('refOut'), link = document.getElementById('refLink');
+  const share = document.getElementById('refShare');
+  document.getElementById('refForm').onsubmit = (e) => {
+    e.preventDefault();
+    const me = normRef(document.getElementById('refMe').value);
+    if (!me) return;
+    link.textContent = location.origin + '/vibecoding/?ref=' + me.slice(1);
+    out.hidden = false;
+    share.hidden = !navigator.share;
+  };
+  document.getElementById('refCopy').onclick = function () {
+    copyText(link.textContent).catch(() => {});
+    this.textContent = 'Скопировано ✓';
+    setTimeout(() => { this.textContent = 'Скопировать'; }, 1800);
+  };
+  share.onclick = () => navigator.share({
+    title: 'Курс вайбкодинга · gen z school',
+    text: 'Смотри, курс, где за две недели делаешь свой сайт с ИИ. По моей ссылке скидка 5 000 ₸:',
+    url: link.textContent,
+  }).catch(() => {});
+})();
 
 /* ====== мини-игра (адаптивная, с учётом ретины) ====== */
 (() => {

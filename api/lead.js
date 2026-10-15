@@ -2,7 +2,7 @@
 // Токен бота живёт в переменных окружения Vercel и в браузер не попадает.
 // Настройка описана в README.md.
 
-const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60, card: 40, source: 100 };
+const LIMITS = { direction: 40, name: 80, contact: 120, level: 60, goal: 200, device: 60, card: 40, source: 100, ref: 40 };
 
 const clean = (v, max) =>
   String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -52,6 +52,7 @@ module.exports = async function handler(req, res) {
     device: clean(body.device, LIMITS.device),
     card: clean(body.card, LIMITS.card),
     source: clean(body.source, LIMITS.source), // location.search: ?utm_source=... и т. п.
+    ref: clean(body.ref, LIMITS.ref), // «приведи друга»: Telegram пригласившего
   };
 
   if (!lead.name || !lead.contact) {
@@ -69,6 +70,7 @@ module.exports = async function handler(req, res) {
     ['Устройство', lead.device],
     ['Подписка Claude', lead.card],
     ['Источник', lead.source],
+    ['Пригласил', lead.ref && `${lead.ref} (другу скидка 5 000 ₸, пригласившему 5 000 ₸ после оплаты)`],
   ].filter(([, v]) => v);
 
   const text =
