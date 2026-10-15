@@ -138,7 +138,8 @@ header.stuck{background:rgba(8,8,10,.78);backdrop-filter:blur(14px);border-botto
 .logo:hover .logo-spark{transform:rotate(90deg) scale(1.25)}
 .logo-text b{color:var(--acid);font-weight:700}
 .nav-links{display:flex;gap:28px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.nav-links a{position:relative;padding:6px 0;transition:color .2s}
+.nav-links a{position:relative;padding:6px 0;transition:color .2s;white-space:nowrap}
+@media(max-width:1240px){.nav-links{gap:18px;letter-spacing:.1em}}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--pink);transform:scaleX(0);transform-origin:left;transition:transform .25s}
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a:hover{color:var(--text)}
@@ -582,7 +583,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
 }
 
 /* меню в бургер раньше, чем ломается вёрстка шапки */
-@media(max-width:940px){
+@media(max-width:1080px){
   .nav-links,.nav-cta .btn{display:none}
   .burger{display:block;width:42px;height:42px}
 }
@@ -758,6 +759,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <a href="#program">Программа</a>
       <a href="#author">Кто ведёт</a>
       <a href="#results">Работы</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#price">Цена</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -773,6 +775,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
   <a href="#program">Программа</a>
   <a href="#author">Кто ведёт</a>
   <a href="#results">Работы</a>
+  <a href="#reviews">Отзывы</a>
   <a href="#price">Цена</a>
   <a href="#faq">FAQ</a>
   <a href="#apply" class="mm-cta">Оставить заявку</a>
@@ -1093,17 +1096,6 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
 
     </div>
 
-    <div class="grid g2" style="margin-top:18px">
-      <div class="review rv">
-        <blockquote>Курс понятный: ребята грамотно и простым языком объясняют всё, без воды. Всё ценное, что было на уроках, забрал себе в работу и собрал сайт с трекерами на своём домене. Отдельно спасибо за отзывчивость: на любой вопрос в чате отвечали быстро и по делу.</blockquote>
-        <div class="who"><b>Денис Шутов</b>психолог · <a href="https://denis-shutov.com/" target="_blank" rel="noopener">denis-shutov.com</a></div>
-      </div>
-      <div class="review rv">
-        <blockquote>Мне как раз нужен был сайт для нашего бегового клуба — и на курсе я его сделал, параллельно разобравшись в вайбкодинге. Собирал по ходу уроков: каждое занятие добавлял новый кусок, и к концу курса сайт уже был в интернете. Теперь сам обновляю расписание и меняю что нужно, без разработчика.</blockquote>
-        <div class="who"><b>GOATS RUNNING</b>беговой клуб, Алматы · <a href="https://goats-running.vercel.app/" target="_blank" rel="noopener">goats-running.vercel.app</a></div>
-      </div>
-    </div>
-
     <div class="game-wrap" id="game">
       <div class="rv" style="text-align:center">
         <div class="eyebrow" style="justify-content:center">пример на 20 минут</div>
@@ -1113,6 +1105,27 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <div class="game-box rv">
         <canvas id="runner" width="720" height="220" tabindex="0" aria-label="Мини-игра: прыгайте через блоки"></canvas>
         <div class="game-hint">Пробел, ↑ или клик по полю — прыжок</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">отзывы</div>
+      <h2 class="sec">Что говорят<br><span class="pink">ученики</span></h2>
+      <p class="sec-sub">Отзывы учеников первого потока. Добавляем новые по мере того, как ребята заканчивают проекты.</p>
+    </div>
+    <div class="grid g2">
+      <div class="review rv">
+        <blockquote>Курс понятный: ребята грамотно и простым языком объясняют всё, без воды. Всё ценное, что было на уроках, забрал себе в работу и собрал сайт с трекерами на своём домене. Отдельно спасибо за отзывчивость: на любой вопрос в чате отвечали быстро и по делу.</blockquote>
+        <div class="who"><b>Денис Шутов</b>психолог · <a href="https://denis-shutov.com/" target="_blank" rel="noopener">denis-shutov.com</a></div>
+      </div>
+      <div class="review rv">
+        <blockquote>Мне как раз нужен был сайт для нашего бегового клуба — и на курсе я его сделал, параллельно разобравшись в вайбкодинге. Собирал по ходу уроков: каждое занятие добавлял новый кусок, и к концу курса сайт уже был в интернете. Теперь сам обновляю расписание и меняю что нужно, без разработчика.</blockquote>
+        <div class="who"><b>Адиль</b>беговой клуб GOATS RUNNING, Алматы · <a href="https://goats-running.vercel.app/" target="_blank" rel="noopener">goats-running.vercel.app</a></div>
       </div>
     </div>
   </div>
@@ -1345,6 +1358,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <a href="#program">Программа</a>
         <a href="#author">Кто ведёт</a>
         <a href="#results">Работы</a>
+        <a href="#reviews">Отзывы</a>
         <a href="#price">Цена</a>
         <a href="#faq">Вопросы</a>
       </div>
