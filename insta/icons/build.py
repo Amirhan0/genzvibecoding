@@ -1,5 +1,5 @@
-"""Обложки для «Актуального»: python3 build.py"""
-import pathlib, subprocess
+"""Обложки для «Актуального»: python3 build.py [имя ...] — без аргументов собирает все"""
+import pathlib, subprocess, sys
 HERE = pathlib.Path(__file__).parent
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 T, P = "#81DAD3", "#FF2E9F"
@@ -14,6 +14,7 @@ ICONS = {
   "voprosy":  f'<circle cx="12" cy="12" r="9" {S}/><path d="M9.4 9.3a2.7 2.7 0 1 1 3.7 2.5c-.7.3-1.1.9-1.1 1.6v.6" {S}/><circle cx="12" cy="17" r="1" fill="{T}"/>',
   "kontakty": f'<path d="M21 3 3.6 10.2c-.8.3-.8 1.4 0 1.7l4.4 1.6 1.6 5.2c.2.8 1.2 1 1.8.4l2.5-2.4 4.5 3.3c.6.5 1.6.1 1.7-.7L23 4.3c.1-.9-.8-1.6-2-1.3Z" transform="translate(-.6 .4) scale(.95)" {S}/><path d="m8 13.5 9-6.3" {S}/>',
   "dizajn":   f'<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z" {S}/><circle cx="7.5" cy="11" r="1.2" fill="{T}"/><circle cx="10.5" cy="7.3" r="1.2" fill="{P}"/><circle cx="15" cy="7.8" r="1.2" fill="{T}"/>',
+  "druzyam":  f'<rect x="3.5" y="8" width="17" height="4" rx="1.2" {S}/><path d="M5 12v7.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V12M12 8v13" {S}/><path d="M12 8H8.6a2.4 2.4 0 1 1 0-4.8C11 3.2 12 8 12 8Zm0 0h3.4a2.4 2.4 0 1 0 0-4.8C13 3.2 12 8 12 8Z" {S}/><circle cx="12" cy="15.6" r="1.1" fill="{P}"/>',
 }
 
 def page(icon):
@@ -29,6 +30,7 @@ def page(icon):
 </body></html>'''
 
 for name, icon in ICONS.items():
+    if sys.argv[1:] and name not in sys.argv[1:]: continue
     src = HERE / f"{name}.html"; src.write_text(page(icon), encoding="utf-8")
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
         "--window-size=1080,1080", "--force-device-scale-factor=1", f"--screenshot={HERE/(name+'.png')}", src.as_uri()],
