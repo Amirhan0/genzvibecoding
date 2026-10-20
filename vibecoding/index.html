@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Вайбкодинг · gen z school · научу делать сайты без кода</title>
+<title>Вайбкодинг · gen z school · научим делать сайты без кода</title>
 <meta name="description" content="Курс по вайб-кодингу: 5 уроков и демо-день за 2 недели. ИИ пишет код — вы объясняете задачу словами. С нуля до сайта с заявками, базой данных и своим доменом.">
 <meta property="og:title" content="Вайбкодинг · gen z school">
 <meta property="og:description" content="5 уроков за 2 недели. ИИ пишет код — вы объясняете задачу словами. Второй поток стартует 14 ноября.">
@@ -302,6 +302,8 @@ h1 em path{fill:none;stroke:var(--acid);stroke-width:6;stroke-linecap:round;stro
 .ref-rules b{color:var(--text);font-weight:600}
 .ref-note{margin-top:18px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:13px;border:1px solid rgba(var(--acid-rgb),.4);background:rgba(var(--acid-rgb),.08);font-size:14px}
 .ref-note b{color:var(--acid)}
+/* display:inline-flex/flex выше перебивает атрибут hidden — без этого плашка видна всем */
+[hidden]{display:none!important}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
 .step{background:linear-gradient(180deg,var(--card),rgba(19,19,24,.4));border:1px solid var(--line);border-radius:var(--r);padding:26px;position:relative}
 .step u{display:block;font-family:ui-monospace,monospace;font-size:12px;color:var(--acid);margin-bottom:14px;text-decoration:none;letter-spacing:.1em}
@@ -804,7 +806,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <div>
         <div class="start-badge"><span class="dot"></span><b>Набор во 2 поток</b><span>· старт 14 ноября</span></div>
 
-        <h1>Научу делать сайты <em>без кода<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 14 C80 4 200 3 296 11"/></svg></em></h1>
+        <h1>Научим делать сайты <em>без кода<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 14 C80 4 200 3 296 11"/></svg></em></h1>
 
         <p class="lead">С нуля до своего сайта в интернете за две недели: заявки приходят в Telegram и сохраняются в базу, сайт на своём домене. <b>ИИ пишет код, вы объясняете задачу обычными словами.</b></p>
         <div class="hero-format"><span>5 живых эфиров + демо-день</span><span>записи остаются</span><span>проверка каждой домашки</span></div>
@@ -847,8 +849,8 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
 
 <div class="marq" aria-hidden="true">
   <div class="marq-in">
-    <span>Claude Code</span><span>✦</span><span>вайб-кодинг</span><span>✦</span><span>без синтаксиса</span><span>✦</span><span>сайт в сети в первый же вечер</span><span>✦</span><span>Telegram-боты</span><span>✦</span><span>свой домен</span><span>✦</span><span>no thoughts, just ship it</span><span>✦</span>
-    <span>Claude Code</span><span>✦</span><span>вайб-кодинг</span><span>✦</span><span>без синтаксиса</span><span>✦</span><span>сайт в сети в первый же вечер</span><span>✦</span><span>Telegram-боты</span><span>✦</span><span>свой домен</span><span>✦</span><span>no thoughts, just ship it</span><span>✦</span>
+    <span>Claude Code</span><span>✦</span><span>вайб-кодинг</span><span>✦</span><span>без синтаксиса</span><span>✦</span><span>сайт в сети в первый же вечер</span><span>✦</span><span>Telegram-боты</span><span>✦</span><span>свой домен</span><span>✦</span><span>just ship it</span><span>✦</span>
+    <span>Claude Code</span><span>✦</span><span>вайб-кодинг</span><span>✦</span><span>без синтаксиса</span><span>✦</span><span>сайт в сети в первый же вечер</span><span>✦</span><span>Telegram-боты</span><span>✦</span><span>свой домен</span><span>✦</span><span>just ship it</span><span>✦</span>
   </div>
 </div>
 
@@ -995,15 +997,16 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
         <blockquote>«Я пишу код каждый день — и каждый день пишу его с ИИ. Поэтому знаю, где он врёт.»</blockquote>
         <p>Я Амир, разработчик. ИИ для меня не эксперимент на выходных, а рабочий инструмент: боевые задачи, свои проекты, заказы. Каждый день, а не «попробовал разок». А ещё бегаю марафоны, так что довести дело до конца умею.</p>
         <p>Отсюда и курс. Я не пересказываю чужие статьи — показываю то, чем работаю сам, и заранее знаю, в каком месте вы упрётесь и что там делать.</p>
-        <p class="author-check"><b>Домашние работы проверяем лично, вдвоём с Диасом.</b> Каждую, руками. Не бот и не автопроверка: напишем, что не так и как починить.</p>
+        <p>Диас — второй преподаватель курса. Он на связи в чате потока каждый день: отвечает на вопросы между эфирами и помогает, если вы застряли на установке или запуске сайта.</p>
+        <p class="author-check"><b>Домашние работы проверяем лично, вдвоём.</b> Каждую, руками. Не бот и не автопроверка: напишем, что не так и как починить.</p>
         <div class="team">
           <a class="tm" href="https://t.me/ameerqan" target="_blank" rel="noopener">
             <span class="av av-a has-img" aria-hidden="true"></span>
-            <span class="tm-t"><b>Амир</b><span>автор курса, ведёт эфиры</span><em>@ameerqan</em></span>
+            <span class="tm-t"><b>Амир</b><span>автор курса, ведёт эфиры, проверяет домашки</span><em>@ameerqan</em></span>
           </a>
           <a class="tm" href="https://t.me/p1kato" target="_blank" rel="noopener">
             <span class="av av-d has-img" style="margin-left:0" aria-hidden="true"></span>
-            <span class="tm-t"><b>Диас</b><span>преподаватель, проверяет домашки</span><em>@p1kato</em></span>
+            <span class="tm-t"><b>Диас</b><span>преподаватель, на связи в чате, проверяет домашки</span><em>@p1kato</em></span>
           </a>
         </div>
       </div>
@@ -1015,7 +1018,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
 <section id="results" class="alt">
   <div class="wrap">
     <div class="rv">
-      <div class="eyebrow">мои работы</div>
+      <div class="eyebrow">наши работы</div>
       <h2 class="sec">Примеры, собранные<br><span class="acid">этим способом</span></h2>
       <p class="sec-sub">Откройте любую с телефона и понажимайте: меню переключается, время записи занято по-настоящему, смета считается на лету.</p>
     </div>
@@ -1249,7 +1252,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <div class="q rv"><button type="button">У меня нет идеи для сайта<i aria-hidden="true">+</i></button><div class="a"><p>Не страшно. Лучше всего взять бизнес знакомых — тогда в конце можно показать им готовый сайт. Или выбрать один из 10 готовых брифов от нас: там уже есть тексты и цены, можно сразу начинать.</p></div></div>
       <div class="q rv"><button type="button">Что нужно и сколько времени?<i aria-hidden="true">+</i></button><div class="a"><p>Компьютер на Windows, Mac или Linux — с одного телефона курс не пройти. По времени: 2–3 эфира в неделю по 1,5–2 часа и 1–2 вечера на практику.</p></div></div>
       <div class="q rv"><button type="button">Пропущу урок — что делать?<i aria-hidden="true">+</i></button><div class="a"><p>Все записи остаются в чате потока, догоните в удобное время. Камера и микрофон не обязательны, вопросы можно писать в чат.</p></div></div>
-      <div class="q rv"><button type="button">Как оплатить и можно ли вернуть деньги?<i aria-hidden="true">+</i></button><div class="a"><p>Оставляете заявку — я пишу в Telegram, отвечаю на вопросы и присылаю реквизиты. Оплата до старта. После оплаты возврата нет, поэтому все условия рассказываю заранее. Если поток отменю или перенесу я, верну деньги или перенесу вас — как выберете.</p></div></div>
+      <div class="q rv"><button type="button">Как оплатить и можно ли вернуть деньги?<i aria-hidden="true">+</i></button><div class="a"><p>Оставляете заявку — Амир пишет вам в Telegram, отвечает на вопросы и присылает реквизиты. Оплата до старта. После оплаты возврата нет, поэтому все условия рассказываем заранее. Если поток отменим или перенесём мы, вернём деньги или перенесём вас — как выберете.</p></div></div>
       <div class="q rv"><button type="button">Чем гайд отличается от курса?<i aria-hidden="true">+</i></button><div class="a"><p>Гайд — PDF, который читаете сами. Курс — пять живых эфиров и демо-день, свой сайт с заявками в Telegram, базой данных и доменом, проверка каждой домашки. Не уверены — начните с гайда.</p></div></div>
     </div>
   </div>
@@ -1261,7 +1264,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
     <div class="rv" style="text-align:center">
       <div class="eyebrow" style="justify-content:center">заявка</div>
       <h2 class="sec">Заявка на<br><span class="acid">14 ноября</span></h2>
-      <p class="sec-sub" style="margin-inline:auto;text-align:center">30 секунд, без оплаты. Напишу вам в Telegram в течение дня: отвечу на вопросы и вместе проверим подписку Claude. Место закрепляется после оплаты.</p>
+      <p class="sec-sub" style="margin-inline:auto;text-align:center">30 секунд, без оплаты. Амир напишет вам в Telegram в течение дня: ответит на вопросы и поможет проверить подписку Claude. Место закрепляется после оплаты.</p>
     </div>
 
     <div class="form-wrap rv">
@@ -1338,7 +1341,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
       <div class="done" id="done" role="status">
         <div class="ok" id="doneIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
         <h3 id="doneTitle" tabindex="-1">Заявка отправлена</h3>
-        <p id="doneText">Она уже у меня в Telegram. Напишу вам в течение дня — отвечу на вопросы и вместе проверим подписку Claude.</p>
+        <p id="doneText">Она уже у Амира в Telegram. Он напишет вам в течение дня — ответит на вопросы и поможет проверить подписку Claude.</p>
         <textarea id="leadText" class="lead-text" readonly rows="6" aria-label="Текст заявки" hidden></textarea>
         <div class="done-actions">
           <a href="https://t.me/ameerqan" target="_blank" rel="noopener" class="btn btn-acid btn-lg">Открыть @ameerqan</a>
@@ -1418,7 +1421,7 @@ footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 28px;colo
           </span>
           <span class="logo-text">gen z <b>school</b></span>
         </a>
-        <p>Практические курсы с нуля. Амир и Диас.<br><em>no thoughts, just ship it</em></p>
+        <p>Практические курсы с нуля. Амир и Диас.<br><em>just ship it</em></p>
       </div>
       <div class="foot-col">
         <h4>Курс</h4>
